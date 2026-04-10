@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuarzo — Programas Marzo 2026</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #08080d;
+  --surface: #111118;
+  --card: #16161f;
+  --border: #222233;
+  --text: #e8e8ef;
+  --muted: #7a7a8e;
+  --eltrece: #e74c3c;
+  --telefe: #3498db;
+  --canal9: #f39c12;
+  --america: #2ecc71;
+  --radio: #9b59b6;
+  --gh: #e91e63;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideRight { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 40px;
+  background: rgba(8,8,13,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.3s;
+}
+.nav-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: 3px; color: var(--text); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a:hover { color: var(--text); }
+.nav-back { color: var(--muted); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+.nav-back:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(139,92,246,0.06) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 60%, rgba(236,72,153,0.05) 0%, transparent 50%);
+  z-index: 0;
+}
+.hero > * { position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-block;
+  padding: 6px 18px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  animation: fadeIn 1s ease;
+}
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #fff 0%, #a8b4ff 50%, #ff6b9d 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeUp 1s ease, gradientShift 6s ease infinite;
+}
+.hero p {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+  animation: fadeUp 1s ease 0.2s both;
+}
+.hero-stats {
+  display: flex; gap: 50px;
+  margin-top: 50px;
+  animation: fadeUp 1s ease 0.4s both;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3498db, #9b59b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+.scroll-hint {
+  position: absolute; bottom: 40px;
+  font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+/* SECTION */
+.section { padding: 100px 40px; max-width: 1300px; margin: 0 auto; }
+.section-header { margin-bottom: 50px; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-tag.eltrece { background: rgba(231,76,60,0.15); color: var(--eltrece); }
+.section-tag.telefe { background: rgba(52,152,219,0.15); color: var(--telefe); }
+.section-tag.canal9 { background: rgba(243,156,18,0.15); color: var(--canal9); }
+.section-tag.america { background: rgba(46,204,113,0.15); color: var(--america); }
+.section-tag.radio { background: rgba(155,89,182,0.15); color: var(--radio); }
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+.section-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* PROGRAM CARD */
+.programs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 24px; }
+
+.prog-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  position: relative;
+}
+.prog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-color: rgba(255,255,255,0.1);
+}
+.prog-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.prog-card.eltrece::before { background: linear-gradient(90deg, var(--eltrece), #c0392b); }
+.prog-card.telefe::before { background: linear-gradient(90deg, var(--telefe), #2980b9); }
+.prog-card.canal9::before { background: linear-gradient(90deg, var(--canal9), #e67e22); }
+.prog-card.america::before { background: linear-gradient(90deg, var(--america), #27ae60); }
+.prog-card.gh::before { background: linear-gradient(90deg, var(--gh), #c2185b); }
+
+.prog-body { padding: 28px; }
+.prog-channel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.prog-card.eltrece .prog-channel { color: var(--eltrece); }
+.prog-card.telefe .prog-channel { color: var(--telefe); }
+.prog-card.canal9 .prog-channel { color: var(--canal9); }
+.prog-card.america .prog-channel { color: var(--america); }
+.prog-card.gh .prog-channel { color: var(--gh); }
+
+.prog-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
+.prog-host { color: var(--muted); font-size: 0.88rem; font-weight: 500; margin-bottom: 4px; }
+.prog-schedule { color: var(--muted); font-size: 0.78rem; margin-bottom: 16px; opacity: 0.7; }
+
+.prog-divider { height: 1px; background: var(--border); margin-bottom: 16px; }
+
+.prog-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+
+/* GH SPECIAL CARD */
+.gh-card {
+  background: linear-gradient(135deg, #1a0a1a 0%, #0d0d1a 100%);
+  border: 1px solid rgba(233,30,99,0.2);
+  border-radius: 20px;
+  padding: 50px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+.gh-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gh), #ff6b9d, var(--gh));
+  background-size: 200% auto;
+  animation: gradientShift 3s ease infinite;
+}
+.gh-card::after {
+  content: '';
+  position: absolute; top: -50%; right: -20%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(233,30,99,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.gh-tag { color: var(--gh); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.gh-title { font-size: 3rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 6px; position: relative; z-index: 1; }
+.gh-sub { font-size: 1.2rem; font-weight: 700; color: var(--gh); margin-bottom: 8px; }
+.gh-host { color: var(--muted); font-size: 1rem; margin-bottom: 6px; }
+.gh-schedule { color: var(--muted); font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px; }
+.gh-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 700px; position: relative; z-index: 1; }
+
+/* RADIO SECTION */
+.radio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+.radio-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 26px;
+  display: flex; align-items: center; gap: 18px;
+  transition: all 0.3s;
+}
+.radio-card:hover { border-color: rgba(155,89,182,0.3); transform: translateX(4px); }
+.radio-time {
+  font-size: 0.75rem; font-weight: 700; color: var(--radio);
+  min-width: 80px;
+  text-align: center;
+  padding: 6px 10px;
+  background: rgba(155,89,182,0.1);
+  border-radius: 8px;
+}
+.radio-name { font-size: 0.95rem; font-weight: 700; }
+
+/* MEDIOS SECTION */
+.medios-grid {
+  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  margin-top: 40px;
+}
+.medio-item {
+  text-align: center;
+  padding: 30px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  min-width: 140px;
+  transition: all 0.3s;
+}
+.medio-item:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.1); }
+.medio-icon { font-size: 2rem; margin-bottom: 10px; }
+.medio-name { font-size: 0.85rem; font-weight: 700; }
+
+/* FOOTER */
+.footer {
+  padding: 60px 40px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-logo { font-size: 1.2rem; font-weight: 800; letter-spacing: 4px; margin-bottom: 12px; }
+.footer-text { color: var(--muted); font-size: 0.82rem; }
+
+/* LOGIN */
+.login-wrap { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--bg); }
+.login-box { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 44px; width: 90%; max-width: 420px; text-align: center; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero-stats { gap: 30px; }
+  .section { padding: 60px 20px; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .gh-card { padding: 30px; }
+  .gh-title { font-size: 2rem; }
+  .nav { padding: 12px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="login-wrap">
+  <div class="login-box">
+    <div style="font-size:1.2rem;font-weight:800;letter-spacing:3px;margin-bottom:20px">KUARZO</div>
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:28px">Iniciá sesión para ver el brochure</p>
+    <div id="g_id_onload" data-client_id="565943171883-hnchbfc88k6duvcd159iupr3ns5grnqj.apps.googleusercontent.com" data-callback="handleGoogleLogin" data-auto_prompt="false"></div>
+    <div style="display:flex;justify-content:center;margin-bottom:12px">
+      <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_black" data-text="signin_with" data-shape="pill" data-logo_alignment="left" data-width="300"></div>
+    </div>
+    <p id="loginError" style="color:#ef4444;font-size:.78rem;margin-top:10px;display:none">Tu email no tiene acceso</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" style="display:none">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">KUARZO</div>
+  <div class="nav-links">
+    <a href="#tv">TV</a>
+    <a href="#gh">Gran Hermano</a>
+    <a href="#radio">Radio</a>
+    <a href="index.html" class="nav-back">← Volver</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Marzo 2026</div>
+  <h1>Nuestros<br>Programas</h1>
+  <p>Descubrí la grilla más completa de la televisión argentina. Entretenimiento, información y contenido de calidad para todas las audiencias.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">9</div><div class="label">Programas</div></div>
+    <div class="hero-stat"><div class="num">4</div><div class="label">Canales</div></div>
+    <div class="hero-stat"><div class="num">1</div><div class="label">Radio</div></div>
+  </div>
+  <div class="scroll-hint">scroll para explorar ↓</div>
+</section>
+
+<!-- ELTRECE -->
+<section class="section" id="tv">
+  <div class="section-header reveal">
+    <div class="section-tag eltrece">Eltrece</div>
+    <h2 class="section-title">Eltrece</h2>
+    <p class="section-sub">Los programas que marcan la agenda del prime time y las tardes.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card eltrece reveal reveal-delay-1">
+      <div class="prog-body">
+        <div class="prog-channel">Eltrece</div>
+        <div class="prog-name">Es Mi Sueño</div>
+        <div class="prog-host">Guido Kaczka</div>
+        <div class="prog-schedule">Lunes a Viernes — 21:00hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">El big show de Eltrece. Un casting federal para buscar talentos en todo el país. Con un jurado de lujo: Abel Pintos, La Mona Jiménez, Joaquín Levinton y Jimena Barón. El camino culmina en la calle Corrientes.</div>
+      </div>
+    </div>
+    <div class="prog-card eltrece reveal reveal-delay-2">
+      <div class="prog-body">
+        <div class="prog-channel">Eltrece</div>
+        <div class="prog-name">La Cocina Rebelde</div>
+        <div class="prog-host">Jimena Monteverde</div>
+        <div class="prog-schedule">Lunes a Viernes — 14:45hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Cocina con mucho sabor. Recetas prácticas para todos los días, tips reales y un gran equipo. Con la co-conducción de Coco Carreño. Entretenimiento y contenido diario con alto potencial de afinidad.</div>
+      </div>
+    </div>
+    <div class="prog-card eltrece reveal reveal-delay-3">
+      <div class="prog-body">
+        <div class="prog-channel">Eltrece</div>
+        <div class="prog-name">Cuestión de Peso</div>
+        <div class="prog-host">Mario Massaccesi</div>
+        <div class="prog-schedule">Lunes a Viernes — 16:45hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">El más legendario y saludable de los reality shows. Regresa para mejorar la vida de los participantes y de todos los argentinos. Con la familia Cormillot y el profe Sergio Verón.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELEFE -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag telefe">Telefe</div>
+    <h2 class="section-title">Telefe</h2>
+    <p class="section-sub">La señal líder de audiencia con los formatos más potentes del mercado.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card telefe reveal reveal-delay-1">
+      <div class="prog-body">
+        <div class="prog-channel">Telefe</div>
+        <div class="prog-name">A La Barbarossa</div>
+        <div class="prog-host">Georgina Barbarossa</div>
+        <div class="prog-schedule">Lunes a Viernes — 9:30hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Un programa para divertirte en las mañanas de Telefe. Actualidad, cocina y humor con Nancy Pazos, Pía Shaw, Noe Antonelli, Rodrigo Gascón, Analía Franchin y Pablo Kablan.</div>
+      </div>
+    </div>
+    <div class="prog-card telefe reveal reveal-delay-2">
+      <div class="prog-body">
+        <div class="prog-channel">Telefe</div>
+        <div class="prog-name">Cortá por Lozano</div>
+        <div class="prog-host">Verónica Lozano</div>
+        <div class="prog-schedule">Lunes a Viernes — 14:30hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Programa de actualidad y espectáculo. Verónica Lozano analiza los temas del día junto a un panel de reconocidos especialistas. Entrevistas, sketches, servicios y terapia con famosos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAN HERMANO - SPECIAL -->
+<section class="section" id="gh">
+  <div class="gh-card reveal">
+    <div class="gh-tag">Telefe — El evento del año</div>
+    <div class="gh-title">Gran Hermano</div>
+    <div class="gh-sub">Generación Dorada</div>
+    <div class="gh-host">Santiago del Moro</div>
+    <div class="gh-schedule">Lunes a Jueves 22:15hs  |  Sábados y Domingos 22:15hs</div>
+    <div class="gh-desc">A 25 años de la primera temporada de Gran Hermano en Argentina, se viene una edición muy especial. Van a participar desde famosos hasta gente desconocida. El programa que domina la conversación en redes, en la calle y en cada rincón del país. La máxima exposición para tu marca.</div>
+  </div>
+</section>
+
+<!-- CANAL 9 -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag canal9">Canal 9</div>
+    <h2 class="section-title">Canal 9</h2>
+    <p class="section-sub">Entretenimiento familiar en el prime time nocturno.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card canal9 reveal reveal-delay-1">
+      <div class="prog-body">
+        <div class="prog-channel">Canal 9</div>
+        <div class="prog-name">Bienvenidos a Ganar</div>
+        <div class="prog-host">Hernán Drago</div>
+        <div class="prog-schedule">Lunes a Viernes — 22:00hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Con la conducción de Hernán Drago y la participación de los jurados: Rodrigo Vagoneta y La Locomotora Olivera. Un programa de entretenimiento para toda la familia donde los participantes muestran sus cualidades y participan por diferentes premios.</div>
+      </div>
+    </div>
+    <div class="prog-card canal9 reveal reveal-delay-2">
+      <div class="prog-body">
+        <div class="prog-channel">Canal 9</div>
+        <div class="prog-name">Todo Cocinado</div>
+        <div class="prog-host">Rocío Marengo</div>
+        <div class="prog-schedule">Canal 9</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Cocina, entretenimiento y diversión. Un formato que combina recetas accesibles con momentos de humor y la energía de Rocío Marengo. Ideal para marcas que buscan integración orgánica en contenido familiar y distendido.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMÉRICA -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag america">América</div>
+    <h2 class="section-title">América</h2>
+    <p class="section-sub">Debate, actualidad y los personajes que generan conversación.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card america reveal reveal-delay-1">
+      <div class="prog-body">
+        <div class="prog-channel">América</div>
+        <div class="prog-name">Polémica en el Bar</div>
+        <div class="prog-host">Mariano Iúdica</div>
+        <div class="prog-schedule">Lunes a Viernes — 19:00hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Uno de los programas más icónicos de la TV argentina. Debate, humor y actualidad con los panelistas más reconocidos del medio. Alta audiencia y un público fiel que sigue la conversación del día.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RADIO -->
+<section class="section" id="radio">
+  <div class="section-header reveal">
+    <div class="section-tag radio">Radio Con Vos</div>
+    <h2 class="section-title">Radio Con Vos</h2>
+    <p class="section-sub">Programación completa con los conductores más escuchados.</p>
+  </div>
+  <div class="radio-grid">
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 08hs</div><div><div class="radio-name">Vamo a Calmarno</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">08 — 12hs</div><div><div class="radio-name">¿Y Ahora Quién Podrá Ayudarnos?</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">12 — 14hs</div><div><div class="radio-name">La Inmensa Minoría</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">14 — 17hs</div><div><div class="radio-name">Pasaron Cosas</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">17 — 19hs</div><div><div class="radio-name">No Dejes Para Mañana</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">19 — 22hs</div><div><div class="radio-name">Radio Con Vos</div></div></div>
+  </div>
+</section>
+
+<!-- NUESTROS MEDIOS -->
+<section class="section" style="text-align:center">
+  <div class="section-header reveal" style="text-align:center">
+    <h2 class="section-title">Nuestros Medios</h2>
+    <p class="section-sub">Presencia en las principales pantallas y frecuencias del país.</p>
+  </div>
+  <div class="medios-grid reveal">
+    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">Telefe</div></div>
+    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">Eltrece</div></div>
+    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">Canal 9</div></div>
+    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">América</div></div>
+    <div class="medio-item"><div class="medio-icon">📻</div><div class="medio-name">Radio Con Vos</div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">KUARZO</div>
+  <p class="footer-text">La productora independiente más grande de Latinoamérica  |  Marzo 2026</p>
+</footer>
+
+</div><!-- /mainContent -->
+
+<script>
+// AUTH
+const ALLOWED_EMAILS=['mburlet@kuarzo.com','ffalce@kuarzo.com','martink@kuarzo.com','matiask@kuarzo.com','hkweller@kuarzo.com'];
+function handleGoogleLogin(r){const p=JSON.parse(atob(r.credential.split('.')[1]));const e=p.email.toLowerCase();if(ALLOWED_EMAILS.includes(e)){sessionStorage.setItem('rkAuth',e);show()}else{document.getElementById('loginError').style.display='block'}}
+function show(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';initReveal()}
+if(ALLOWED_EMAILS.includes(sessionStorage.getItem('rkAuth'))){show()}
+
+// SCROLL REVEAL
+function initReveal(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// NAV SCROLL EFFECT
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 100) {
+    nav.style.background = 'rgba(8,8,13,0.95)';
+    nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+  } else {
+    nav.style.background = 'rgba(8,8,13,0.85)';
+    nav.style.borderBottomColor = 'rgba(255,255,255,0.05)';
+  }
+});
+</script>
+</body>
+</html>
