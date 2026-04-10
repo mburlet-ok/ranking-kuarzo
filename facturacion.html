@@ -84,25 +84,27 @@ tr.r1 td.rank{color:var(--gold)}tr.r2 td.rank{color:var(--muted)}tr.r3 td.rank{c
 </div>
 <div id="mainContent" style="display:none">
 <div class="header">
-  <div><h1>FACTURACION MEDIOS</h1><p style="color:var(--muted);font-size:.78rem">Datos de monitores + costos estimados — Enero / Febrero 2026</p></div>
+  <div><h1>FACTURACION MEDIOS</h1><p style="color:var(--muted);font-size:.78rem">Comparación Agosto vs Septiembre</p></div>
   <a href="index.html">← Volver al inicio</a>
 </div>
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('tv')">TV Aire + Streaming</div>
+  <div class="tab active" onclick="switchTab('tv')">TV Aire</div>
+  <div class="tab" onclick="switchTab('streaming')">Streaming</div>
   <div class="tab" onclick="switchTab('cable')">TV Cable</div>
   <div class="tab" onclick="switchTab('radios')">Radios</div>
 </div>
 <div class="content">
   <div class="tab-content active" id="tc-tv"></div>
+  <div class="tab-content" id="tc-streaming"></div>
   <div class="tab-content" id="tc-cable"></div>
   <div class="tab-content" id="tc-radios"></div>
 </div>
 </div>
 <script>
-const DATA={"tv": [{"nombre": "CORTA POR LOZANO", "valor": 1304965, "unidad": "aviso", "ene_cant": 667, "ene_inv": 870411348, "feb_cant": 872, "feb_inv": 1137929078, "var": 30.7}, {"nombre": "LAM", "valor": 830769, "unidad": "aviso", "ene_cant": 1258, "ene_inv": 1045107692, "feb_cant": 1215, "feb_inv": 1009384615, "var": -3.4}, {"nombre": "A LA BARBARROSA", "valor": 1056180, "unidad": "aviso", "ene_cant": 657, "ene_inv": 693910112, "feb_cant": 771, "feb_inv": 814314607, "var": 17.4}, {"nombre": "BENDITA", "valor": 1000000, "unidad": "aviso", "ene_cant": 548, "ene_inv": 548000000, "feb_cant": 810, "feb_inv": 810000000, "var": 47.8}, {"nombre": "INTRUSOS", "valor": 647826, "unidad": "aviso", "ene_cant": 1246, "ene_inv": 807191304, "feb_cant": 1092, "feb_inv": 707426087, "var": -12.4}, {"nombre": "CUESTION DE PESO", "valor": 790698, "unidad": "aviso", "ene_cant": 975, "ene_inv": 770930233, "feb_cant": 863, "feb_inv": 682372093, "var": -11.5}, {"nombre": "PURO SHOW", "valor": 647727, "unidad": "aviso", "ene_cant": 814, "ene_inv": 527250000, "feb_cant": 879, "feb_inv": 569352273, "var": 8.0}, {"nombre": "ESCUELA DE COCINA", "valor": 367925, "unidad": "aviso", "ene_cant": 714, "ene_inv": 262698113, "feb_cant": 861, "feb_inv": 316783019, "var": 20.6}, {"nombre": "PASAPALABRA", "valor": 1022222, "unidad": "aviso", "ene_cant": 319, "ene_inv": 326088889, "feb_cant": 268, "feb_inv": 273955556, "var": -16.0}, {"nombre": "BIENVENIDOS A GANAR", "valor": 386555, "unidad": "aviso", "ene_cant": 518, "ene_inv": 200235294, "feb_cant": 460, "feb_inv": 177815126, "var": -11.2}, {"nombre": "LOS PROFESIONALES", "valor": 316667, "unidad": "aviso", "ene_cant": 565, "ene_inv": 178916667, "feb_cant": 482, "feb_inv": 152633333, "var": -14.7}, {"nombre": "OTRO DIA PERDIDO", "valor": 3333333, "unidad": "aviso", "ene_cant": 18, "ene_inv": 60000000, "feb_cant": 0, "feb_inv": 0, "var": 0}, {"nombre": "AHORA CAIGO", "valor": 1791667, "unidad": "aviso", "ene_cant": 22, "ene_inv": 39416667, "feb_cant": 0, "feb_inv": 0, "var": 0}, {"nombre": "LA PEÑA DE MORFI", "valor": 1000000, "unidad": "aviso", "ene_cant": 19, "ene_inv": 19000000, "feb_cant": 0, "feb_inv": 0, "var": 0}], "streaming": [{"nombre": "LUZU", "valor": 2181818, "unidad": "aviso"}, {"nombre": "OLGA", "valor": 2857143, "unidad": "aviso"}, {"nombre": "TELEFE STREAM", "valor": 2000000, "unidad": "aviso"}, {"nombre": "BONDI", "valor": 1000000, "unidad": "aviso"}, {"nombre": "CANAL 13", "valor": 630769, "unidad": "aviso"}, {"nombre": "RZ", "valor": 365385, "unidad": "aviso"}], "cable": [{"nombre": "TN", "valor": 15000.0, "unidad": "segundo", "ene_cant": 78253, "ene_inv": 1173795000, "feb_cant": 107012, "feb_inv": 1605180000, "var": 36.8}, {"nombre": "LA NACION +", "valor": 8142.22, "unidad": "segundo", "ene_cant": 141992, "ene_inv": 1156130418, "feb_cant": 146367, "feb_inv": 1191752640, "var": 3.1}, {"nombre": "C5N", "valor": 10000.0, "unidad": "segundo", "ene_cant": 78881, "ene_inv": 788810000, "feb_cant": 113297, "feb_inv": 1132970000, "var": 43.6}, {"nombre": "A 24", "valor": 7000.0, "unidad": "segundo", "ene_cant": 106627, "ene_inv": 746389000, "feb_cant": 118062, "feb_inv": 826434000, "var": 10.7}, {"nombre": "CRONICA", "valor": 4878.05, "unidad": "segundo", "ene_cant": 117799, "ene_inv": 574629268, "feb_cant": 115295, "feb_inv": 562414634, "var": -2.1}, {"nombre": "CINECANAL", "valor": 500.0, "unidad": "segundo", "ene_cant": 423615, "ene_inv": 211807500, "feb_cant": 396027, "feb_inv": 198013500, "var": -6.5}, {"nombre": "CIMEMAX", "valor": 747.75, "unidad": "segundo", "ene_cant": 156172, "ene_inv": 116777927, "feb_cant": 167812, "feb_inv": 125481761, "var": 7.5}, {"nombre": "CANAL 26", "valor": 1000.0, "unidad": "segundo", "ene_cant": 118389, "ene_inv": 118389000, "feb_cant": 116630, "feb_inv": 116630000, "var": -1.5}, {"nombre": "DISCOVERY CHANNEL", "valor": 750.0, "unidad": "segundo", "ene_cant": 98014, "ene_inv": 73510500, "feb_cant": 111488, "feb_inv": 83616000, "var": 13.7}, {"nombre": "AMC", "valor": 600.0, "unidad": "segundo", "ene_cant": 69265, "ene_inv": 41559000, "feb_cant": 71706, "feb_inv": 43023600, "var": 3.5}, {"nombre": "MAGAZINE", "valor": 349.65, "unidad": "segundo", "ene_cant": 44041, "ene_inv": 15398951, "feb_cant": 48124, "feb_inv": 16826573, "var": 9.3}], "radios": [{"nombre": "MITRE", "valor_ene": 5569, "valor_feb": 5569, "unidad": "segundo", "ene_cant": 186680, "ene_inv": 1039620920, "feb_cant": 208323, "feb_inv": 1160150787, "var": 11.6}, {"nombre": "LA 100", "valor_ene": 5909, "valor_feb": 5908, "unidad": "segundo", "ene_cant": 170197, "ene_inv": 1005694073, "feb_cant": 193143, "feb_inv": 1141153225, "var": 13.5}, {"nombre": "URBANA PLAY", "valor_ene": 3200, "valor_feb": 3580, "unidad": "segundo", "ene_cant": 132983, "ene_inv": 425545600, "feb_cant": 151956, "feb_inv": 544076605, "var": 27.9}, {"nombre": "RIVADAVIA", "valor_ene": 2312, "valor_feb": 2312, "unidad": "segundo", "ene_cant": 177022, "ene_inv": 409274864, "feb_cant": 192732, "feb_inv": 445596384, "var": 8.9}, {"nombre": "MEGA", "valor_ene": 2082, "valor_feb": 2082, "unidad": "segundo", "ene_cant": 131041, "ene_inv": 272827362, "feb_cant": 191741, "feb_inv": 399204762, "var": 46.3}, {"nombre": "RADIO 10", "valor_ene": 2448, "valor_feb": 2445, "unidad": "segundo", "ene_cant": 113237, "ene_inv": 277204176, "feb_cant": 139902, "feb_inv": 342060390, "var": 23.4}, {"nombre": "POP", "valor_ene": 2000, "valor_feb": 2000, "unidad": "segundo", "ene_cant": 110683, "ene_inv": 221366000, "feb_cant": 170706, "feb_inv": 341412000, "var": 54.2}, {"nombre": "ROCK AND POP", "valor_ene": 1500, "valor_feb": 1500, "unidad": "segundo", "ene_cant": 152091, "ene_inv": 228136500, "feb_cant": 168920, "feb_inv": 253380000, "var": 11.1}, {"nombre": "ASPEN", "valor_ene": 1462, "valor_feb": 1462, "unidad": "segundo", "ene_cant": 125481, "ene_inv": 183453222, "feb_cant": 167249, "feb_inv": 244518038, "var": 33.3}, {"nombre": "VALE", "valor_ene": 742, "valor_feb": 738, "unidad": "segundo", "ene_cant": 50846, "ene_inv": 37727732, "feb_cant": 76314, "feb_inv": 56314469, "var": 49.3}, {"nombre": "BLUE", "valor_ene": 294, "valor_feb": 294, "unidad": "segundo", "ene_cant": 50112, "ene_inv": 14732928, "feb_cant": 65124, "feb_inv": 19146456, "var": 30.0}]};
+const DATA={"tv": [{"nombre": "LA VOZ", "valor": 5750000, "unidad": "PNT", "ago_cant": 220, "ago_inv": 1265000000, "sep_cant": 197, "sep_inv": 1132750000, "var": -10.5}, {"nombre": "BUENAS NOCHES FAMILIA", "valor": 2411017, "unidad": "PNT", "ago_cant": 225, "ago_inv": 525000000, "sep_cant": 236, "sep_inv": 569000000, "var": 8.4}, {"nombre": "AHORA CAIGO", "valor": 1791667, "unidad": "PNT", "ago_cant": 240, "ago_inv": 430000000, "sep_cant": 225, "sep_inv": 403125000, "var": -6.2}, {"nombre": "CORTA POR LOZANO", "valor": 1304965, "unidad": "PNT", "ago_cant": 270, "ago_inv": 314000000, "sep_cant": 282, "sep_inv": 368000000, "var": 17.2}, {"nombre": "OTRO DIA PERDIDO", "valor": 3333333, "unidad": "PNT", "ago_cant": 90, "ago_inv": 300000000, "sep_cant": 88, "sep_inv": 293333333, "var": -2.2}, {"nombre": "LAM", "valor": 830769, "unidad": "PNT", "ago_cant": 390, "ago_inv": 324000000, "sep_cant": 320, "sep_inv": 265846154, "var": -17.9}, {"nombre": "BENDITA", "valor": 1000000, "unidad": "PNT", "ago_cant": 255, "ago_inv": 255000000, "sep_cant": 260, "sep_inv": 260000000, "var": 2.0}, {"nombre": "8 ESCALONES TARDE", "valor": 1845588, "unidad": "PNT", "ago_cant": 120, "ago_inv": 245000000, "sep_cant": 136, "sep_inv": 251000000, "var": 2.4}, {"nombre": "SQP", "valor": 762963, "unidad": "PNT", "ago_cant": 135, "ago_inv": 103000000, "sep_cant": 285, "sep_inv": 217444444, "var": 111.1}, {"nombre": "A LA BARBARROSA", "valor": 1056180, "unidad": "PNT", "ago_cant": 196, "ago_inv": 200000000, "sep_cant": 178, "sep_inv": 188000000, "var": -6.0}, {"nombre": "INTRUSOS", "valor": 647826, "unidad": "PNT", "ago_cant": 230, "ago_inv": 149000000, "sep_cant": 280, "sep_inv": 181391304, "var": 21.7}, {"nombre": "PASAPALABRA", "valor": 1022222, "unidad": "PNT", "ago_cant": 135, "ago_inv": 138000000, "sep_cant": 120, "sep_inv": 122666667, "var": -11.1}, {"nombre": "CUESTION DE PESO", "valor": 790698, "unidad": "PNT", "ago_cant": 104, "ago_inv": 83000000, "sep_cant": 129, "sep_inv": 102000000, "var": 22.9}, {"nombre": "POLICIAS EN ACCION", "valor": 10125000, "unidad": "PNT", "ago_cant": 8, "ago_inv": 81000000, "sep_cant": 8, "sep_inv": 81000000, "var": 0.0}, {"nombre": "LA PEÑA DE MORFI", "valor": 1000000, "unidad": "PNT", "ago_cant": 75, "ago_inv": 75000000, "sep_cant": 80, "sep_inv": 80000000, "var": 6.7}, {"nombre": "ESCUELA DE COCINA", "valor": 367925, "unidad": "PNT", "ago_cant": 255, "ago_inv": 86000000, "sep_cant": 212, "sep_inv": 78000000, "var": -9.3}, {"nombre": "PURO SHOW", "valor": 647727, "unidad": "PNT", "ago_cant": 88, "ago_inv": 57000000, "sep_cant": 75, "sep_inv": 48579545, "var": -14.8}, {"nombre": "BIENVENIDOS A GANAR", "valor": 386555, "unidad": "PNT", "ago_cant": 118, "ago_inv": 33000000, "sep_cant": 119, "sep_inv": 46000000, "var": 39.4}, {"nombre": "LOS PROFESIONALES", "valor": 316667, "unidad": "PNT", "ago_cant": 120, "ago_inv": 38000000, "sep_cant": 130, "sep_inv": 41166667, "var": 8.3}], "streaming": [{"nombre": "OLGA", "valor": 2857143, "unidad": "PNT", "ago_cant": 350, "ago_inv": 1000000000, "sep_cant": 355, "sep_inv": 1014285714, "var": 1.4}, {"nombre": "LUZU", "valor": 2181818, "unidad": "PNT", "ago_cant": 400, "ago_inv": 1187000000, "sep_cant": 330, "sep_inv": 720000000, "var": -39.3}, {"nombre": "TELEFE STREAM", "valor": 2000000, "unidad": "PNT", "ago_cant": 235, "ago_inv": 470000000, "sep_cant": 285, "sep_inv": 570000000, "var": 21.3}, {"nombre": "BONDI", "valor": 1000000, "unidad": "PNT", "ago_cant": 115, "ago_inv": 115000000, "sep_cant": 115, "sep_inv": 115000000, "var": 0.0}, {"nombre": "CANAL 13", "valor": 630769, "unidad": "PNT", "ago_cant": 70, "ago_inv": 45000000, "sep_cant": 65, "sep_inv": 41000000, "var": -8.9}, {"nombre": "RZ", "valor": 365385, "unidad": "PNT", "ago_cant": 61, "ago_inv": 26535000, "sep_cant": 52, "sep_inv": 19000000, "var": -28.4}], "cable": [{"nombre": "TN", "valor": 15000, "unidad": "segundo", "ago_cant": 109000, "ago_inv": 1635000000, "sep_cant": 130000, "sep_inv": 1950000000, "var": 19.3}, {"nombre": "C5N", "valor": 10000, "unidad": "segundo", "ago_cant": 193000, "ago_inv": 1930000000, "sep_cant": 188000, "sep_inv": 1880000000, "var": -2.6}, {"nombre": "LA NACION +", "valor": 8142, "unidad": "segundo", "ago_cant": 246000, "ago_inv": 1968000000, "sep_cant": 225000, "sep_inv": 1832000000, "var": -6.9}, {"nombre": "A 24", "valor": 7000, "unidad": "segundo", "ago_cant": 151000, "ago_inv": 1057000000, "sep_cant": 156000, "sep_inv": 1092000000, "var": 3.3}, {"nombre": "CRONICA", "valor": 4878, "unidad": "segundo", "ago_cant": 157000, "ago_inv": 251000000, "sep_cant": 164000, "sep_inv": 800000000, "var": 218.7}, {"nombre": "CANAL 26", "valor": 1000, "unidad": "segundo", "ago_cant": 140000, "ago_inv": 140000000, "sep_cant": 160000, "sep_inv": 160000000, "var": 14.3}, {"nombre": "CIMEMAX", "valor": 748, "unidad": "segundo", "ago_cant": 111000, "ago_inv": 83000000, "sep_cant": 105650, "sep_inv": 79000000, "var": -4.8}, {"nombre": "CINECANAL", "valor": 500, "unidad": "segundo", "ago_cant": 122000, "ago_inv": 61000000, "sep_cant": 134000, "sep_inv": 67000000, "var": 9.8}, {"nombre": "DISCOVERY CHANNEL", "valor": 750, "unidad": "segundo", "ago_cant": 67000, "ago_inv": 50250000, "sep_cant": 75000, "sep_inv": 56250000, "var": 11.9}, {"nombre": "MAGAZINE", "valor": 350, "unidad": "segundo", "ago_cant": 139000, "ago_inv": 27800000, "sep_cant": 143000, "sep_inv": 50000000, "var": 79.9}, {"nombre": "KZO", "valor": 549, "unidad": "segundo", "ago_cant": 75000, "ago_inv": 39000000, "sep_cant": 82000, "sep_inv": 45000000, "var": 15.4}, {"nombre": "AMC", "valor": 600, "unidad": "segundo", "ago_cant": 62500, "ago_inv": 37500000, "sep_cant": 55000, "sep_inv": 33000000, "var": -12.0}], "radios": [{"nombre": "LA 100", "unidad": "segundo", "ago_costo": 5909, "ago_cant": 220000, "ago_inv": 1300000000, "sep_costo": 5908, "sep_cant": 240000, "sep_inv": 1418000000, "var": 9.1}, {"nombre": "MITRE", "unidad": "segundo", "ago_costo": 5569, "ago_cant": 256000, "ago_inv": 1425664000, "sep_costo": 5569, "sep_cant": 233000, "sep_inv": 1297577000, "var": -9.0}, {"nombre": "URBANA PLAY", "unidad": "segundo", "ago_costo": 3200, "ago_cant": 213000, "ago_inv": 681600000, "sep_costo": 3580, "sep_cant": 205000, "sep_inv": 734000000, "var": 7.7}, {"nombre": "RIVADAVIA", "unidad": "segundo", "ago_costo": 2312, "ago_cant": 285000, "ago_inv": 658920000, "sep_costo": 2312, "sep_cant": 250000, "sep_inv": 578000000, "var": -12.3}, {"nombre": "RADIO 10", "unidad": "segundo", "ago_costo": 2448, "ago_cant": 241000, "ago_inv": 589968000, "sep_costo": 2445, "sep_cant": 200000, "sep_inv": 489000000, "var": -17.1}, {"nombre": "MEGA", "unidad": "segundo", "ago_costo": 2082, "ago_cant": 170000, "ago_inv": 353940000, "sep_costo": 2082, "sep_cant": 220000, "sep_inv": 458040000, "var": 29.4}, {"nombre": "POP", "unidad": "segundo", "ago_costo": 2000, "ago_cant": 195000, "ago_inv": 390000000, "sep_costo": 2000, "sep_cant": 175000, "sep_inv": 350000000, "var": -10.3}, {"nombre": "ROCK AND POP", "unidad": "segundo", "ago_costo": 1500, "ago_cant": 150000, "ago_inv": 225000000, "sep_costo": 1500, "sep_cant": 230000, "sep_inv": 345000000, "var": 53.3}, {"nombre": "ASPEN", "unidad": "segundo", "ago_costo": 1462, "ago_cant": 260000, "ago_inv": 380120000, "sep_costo": 1462, "sep_cant": 225000, "sep_inv": 328950000, "var": -13.5}, {"nombre": "RCV", "unidad": "segundo", "ago_costo": 767, "ago_cant": 159000, "ago_inv": 121953000, "sep_costo": 758, "sep_cant": 162000, "sep_inv": 122753000, "var": 0.7}, {"nombre": "VALE", "unidad": "segundo", "ago_costo": 742, "ago_cant": 155000, "ago_inv": 115010000, "sep_costo": 738, "sep_cant": 145000, "sep_inv": 107000000, "var": -7.0}, {"nombre": "ONE", "unidad": "segundo", "ago_costo": 541, "ago_cant": 148000, "ago_inv": 80068000, "sep_costo": 538, "sep_cant": 130000, "sep_inv": 70000000, "var": -12.6}, {"nombre": "BLUE", "unidad": "segundo", "ago_costo": 294, "ago_cant": 138000, "ago_inv": 40572000, "sep_costo": 294, "sep_cant": 125000, "sep_inv": 36750000, "var": -9.4}]};
 
-const fmt=n=>{if(n>=1e9)return '$'+(n/1e9).toFixed(1)+'B';if(n>=1e6)return '$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return '$'+(n/1e3).toFixed(0)+'K';return '$'+Math.round(n).toLocaleString('es-AR')};
-const fmtN=n=>n.toLocaleString('es-AR');
+const fmt=n=>{if(!n)return '-';if(n>=1e9)return '$'+(n/1e9).toFixed(1)+'B';if(n>=1e6)return '$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return '$'+(n/1e3).toFixed(0)+'K';return '$'+Math.round(n).toLocaleString('es-AR')};
+const fmtN=n=>n?n.toLocaleString('es-AR'):'-';
 const fmtVar=v=>{if(!v)return '-';const c=v>0?'var(--green)':v<0?'var(--red)':'var(--muted)';const s=v>0?'+':'';return `<span style="color:${c};font-weight:600">${s}${v}%</span>`};
 
 function switchTab(id){
@@ -111,64 +113,69 @@ function switchTab(id){
   ));
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.toggle('active',c.id==='tc-'+id));
 }
-function toggleMon(el){el.classList.toggle('open')}
 function filterT(id,q){const tb=document.getElementById(id);if(!tb)return;q=q.toLowerCase();Array.from(tb.rows).forEach(r=>{r.style.display=r.cells[1].textContent.toLowerCase().includes(q)?'':'none'})}
 
 function buildTV(){
   const d=DATA.tv;
-  let totalEne=0,totalFeb=0;
-  d.forEach(p=>{totalEne+=p.ene_inv;totalFeb+=p.feb_inv});
-  const varTotal=totalEne?((totalFeb-totalEne)/totalEne*100).toFixed(1):0;
+  let tAgo=0,tSep=0; d.forEach(p=>{tAgo+=p.ago_inv;tSep+=p.sep_inv});
+  const varT=tAgo?((tSep-tAgo)/tAgo*100).toFixed(1):0;
   
-  let h='<div class="section-title"><div class="icon tv">TV</div>TV por Programa — Comparación Enero vs Febrero 2026</div>';
+  let h='<div class="section-title"><div class="icon tv">TV</div>TV por Programa — Agosto vs Septiembre</div>';
   h+='<div class="kpi-grid">';
-  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Enero</div><div class="kpi-value">${fmt(totalEne)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Febrero</div><div class="kpi-value">${fmt(totalFeb)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">Variación</div><div class="kpi-value">${fmtVar(parseFloat(varTotal))}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Agosto</div><div class="kpi-value">${fmt(tAgo)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Septiembre</div><div class="kpi-value">${fmt(tSep)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Variación</div><div class="kpi-value">${fmtVar(parseFloat(varT))}</div></div>`;
   h+=`<div class="kpi-card"><div class="kpi-label">Programas</div><div class="kpi-value">${d.length}</div></div>`;
   h+='</div>';
-  
-  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Inversión estimada = PNTs del monitor × costo por salida</div><span class="card-cnt">'+d.length+' programas</span></div>';
-  h+='<div class="tw"><table><thead><tr><th>#</th><th>Programa</th><th>$/Salida</th><th>PNTs Ene</th><th>Inv. Enero</th><th>PNTs Feb</th><th>Inv. Febrero</th><th>Var.</th></tr></thead><tbody id="tb-tv">';
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Cantidad PNTs × Valor por salida = Inversión</div><span class="card-cnt">'+d.length+' programas</span></div>';
+  h+='<div class="tw"><table><thead><tr><th>#</th><th>Programa</th><th>$/Salida</th><th>PNTs Ago</th><th>Inv. Agosto</th><th>PNTs Sep</th><th>Inv. Sept.</th><th>Var.</th></tr></thead><tbody id="tb-tv">';
   d.forEach((p,i)=>{
     const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
-    const noData=p.ene_cant===0&&p.feb_cant===0;
-    const style=noData?' style="opacity:.5"':'';
-    h+=`<tr class="${rc}"${style}><td class="rank">${i+1}</td><td class="name">${p.nombre}${noData?' <span style="font-size:.65rem;color:var(--red)">(sin monitor)</span>':''}</td><td class="money">${fmt(p.valor_salida)}</td><td class="num">${p.ene_cant?fmtN(p.ene_cant):'-'}</td><td class="money">${p.ene_inv?fmt(p.ene_inv):'-'}</td><td class="num">${p.feb_cant?fmtN(p.feb_cant):'-'}</td><td class="money">${p.feb_inv?fmt(p.feb_inv):'-'}</td><td class="num">${fmtVar(p.var)}</td></tr>`;
+    h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}</td><td class="money">${fmt(p.valor)}</td><td class="num">${fmtN(p.ago_cant)}</td><td class="money">${fmt(p.ago_inv)}</td><td class="num">${fmtN(p.sep_cant)}</td><td class="money">${fmt(p.sep_inv)}</td><td class="num">${fmtVar(p.var)}</td></tr>`;
   });
   h+='</tbody></table></div></div>';
-  
-  // Streaming
-  h+='<div class="section-title"><div class="icon stream">S</div>Streaming — Costo por salida (sin datos de monitor)</div>';
-  h+='<div class="card"><div class="tw"><table><thead><tr><th>#</th><th>Plataforma</th><th>Valor/Salida</th></tr></thead><tbody>';
-  DATA.streaming.forEach((p,i)=>{
-    h+=`<tr><td class="rank">${i+1}</td><td class="name">${p.nombre}</td><td class="money">${fmt(p.valor_salida)}</td></tr>`;
-  });
-  h+='</tbody></table></div></div>';
-  
   document.getElementById('tc-tv').innerHTML=h;
+}
+
+function buildStreaming(){
+  const d=DATA.streaming;
+  let tAgo=0,tSep=0; d.forEach(p=>{tAgo+=p.ago_inv;tSep+=p.sep_inv});
+  const varT=tAgo?((tSep-tAgo)/tAgo*100).toFixed(1):0;
+  
+  let h='<div class="section-title"><div class="icon stream">S</div>Streaming — Agosto vs Septiembre</div>';
+  h+='<div class="kpi-grid">';
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Agosto</div><div class="kpi-value">${fmt(tAgo)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Septiembre</div><div class="kpi-value">${fmt(tSep)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Variación</div><div class="kpi-value">${fmtVar(parseFloat(varT))}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Plataformas</div><div class="kpi-value">${d.length}</div></div>`;
+  h+='</div>';
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Cantidad PNTs × Valor por salida = Inversión</div><span class="card-cnt">'+d.length+' plataformas</span></div>';
+  h+='<div class="tw"><table><thead><tr><th>#</th><th>Plataforma</th><th>$/Salida</th><th>PNTs Ago</th><th>Inv. Agosto</th><th>PNTs Sep</th><th>Inv. Sept.</th><th>Var.</th></tr></thead><tbody>';
+  d.forEach((p,i)=>{
+    const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
+    h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}</td><td class="money">${fmt(p.valor)}</td><td class="num">${fmtN(p.ago_cant)}</td><td class="money">${fmt(p.ago_inv)}</td><td class="num">${fmtN(p.sep_cant)}</td><td class="money">${fmt(p.sep_inv)}</td><td class="num">${fmtVar(p.var)}</td></tr>`;
+  });
+  h+='</tbody></table></div></div>';
+  document.getElementById('tc-streaming').innerHTML=h;
 }
 
 function buildCable(){
   const d=DATA.cable;
-  let totalEne=0,totalFeb=0;
-  d.forEach(p=>{totalEne+=p.ene_inv;totalFeb+=p.feb_inv});
-  const varTotal=totalEne?((totalFeb-totalEne)/totalEne*100).toFixed(1):0;
+  let tAgo=0,tSep=0; d.forEach(p=>{tAgo+=p.ago_inv;tSep+=p.sep_inv});
+  const varT=tAgo?((tSep-tAgo)/tAgo*100).toFixed(1):0;
   
-  let h='<div class="section-title"><div class="icon cable">C</div>TV Cable — Comparación Enero vs Febrero 2026</div>';
+  let h='<div class="section-title"><div class="icon cable">C</div>Cable — Agosto vs Septiembre</div>';
   h+='<div class="kpi-grid">';
-  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Enero</div><div class="kpi-value">${fmt(totalEne)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Febrero</div><div class="kpi-value">${fmt(totalFeb)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">Variación</div><div class="kpi-value">${fmtVar(parseFloat(varTotal))}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Agosto</div><div class="kpi-value">${fmt(tAgo)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Septiembre</div><div class="kpi-value">${fmt(tSep)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Variación</div><div class="kpi-value">${fmtVar(parseFloat(varT))}</div></div>`;
   h+=`<div class="kpi-card"><div class="kpi-label">Canales</div><div class="kpi-value">${d.length}</div></div>`;
   h+='</div>';
-  
-  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Inversión estimada = Segundos del monitor × costo por segundo</div></div>';
-  h+='<div class="tw"><table><thead><tr><th>#</th><th>Canal</th><th>$/Seg</th><th>Seg. Ene</th><th>Inv. Enero</th><th>Seg. Feb</th><th>Inv. Febrero</th><th>Var.</th></tr></thead><tbody>';
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Cantidad Segundos × Valor por segundo = Inversión</div><span class="card-cnt">'+d.length+' canales</span></div>';
+  h+='<div class="tw"><table><thead><tr><th>#</th><th>Canal</th><th>$/Seg</th><th>Seg. Ago</th><th>Inv. Agosto</th><th>Seg. Sep</th><th>Inv. Sept.</th><th>Var.</th></tr></thead><tbody>';
   d.forEach((p,i)=>{
     const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
-    const noData=p.ene_seg===0&&p.feb_seg===0;
-    h+=`<tr class="${rc}"${noData?' style="opacity:.5"':''}><td class="rank">${i+1}</td><td class="name">${p.nombre}${noData?' <span style="font-size:.65rem;color:var(--red)">(sin monitor)</span>':''}</td><td class="money">${fmt(p.valor_seg)}</td><td class="num">${p.ene_seg?fmtN(p.ene_seg):'-'}</td><td class="money">${p.ene_inv?fmt(p.ene_inv):'-'}</td><td class="num">${p.feb_seg?fmtN(p.feb_seg):'-'}</td><td class="money">${p.feb_inv?fmt(p.feb_inv):'-'}</td><td class="num">${fmtVar(p.var)}</td></tr>`;
+    h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}</td><td class="money">${fmt(p.valor)}</td><td class="num">${fmtN(p.ago_cant)}</td><td class="money">${fmt(p.ago_inv)}</td><td class="num">${fmtN(p.sep_cant)}</td><td class="money">${fmt(p.sep_inv)}</td><td class="num">${fmtVar(p.var)}</td></tr>`;
   });
   h+='</tbody></table></div></div>';
   document.getElementById('tc-cable').innerHTML=h;
@@ -176,33 +183,29 @@ function buildCable(){
 
 function buildRadios(){
   const d=DATA.radios;
-  let totalEne=0,totalFeb=0;
-  d.forEach(p=>{totalEne+=p.ene_inv;totalFeb+=p.feb_inv});
-  const varTotal=totalEne?((totalFeb-totalEne)/totalEne*100).toFixed(1):0;
+  let tAgo=0,tSep=0; d.forEach(p=>{tAgo+=p.ago_inv;tSep+=p.sep_inv});
+  const varT=tAgo?((tSep-tAgo)/tAgo*100).toFixed(1):0;
   
-  let h='<div class="section-title"><div class="icon radio">R</div>Radios — Comparación Enero vs Febrero 2026</div>';
+  let h='<div class="section-title"><div class="icon radio">R</div>Radios — Agosto vs Septiembre</div>';
   h+='<div class="kpi-grid">';
-  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Enero</div><div class="kpi-value">${fmt(totalEne)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Febrero</div><div class="kpi-value">${fmt(totalFeb)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">Variación</div><div class="kpi-value">${fmtVar(parseFloat(varTotal))}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Agosto</div><div class="kpi-value">${fmt(tAgo)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Inv. Septiembre</div><div class="kpi-value">${fmt(tSep)}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Variación</div><div class="kpi-value">${fmtVar(parseFloat(varT))}</div></div>`;
   h+=`<div class="kpi-card"><div class="kpi-label">Emisoras</div><div class="kpi-value">${d.length}</div></div>`;
   h+='</div>';
-  
-  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Inversión estimada = Segundos del monitor × costo por segundo</div></div>';
-  h+='<div class="tw"><table><thead><tr><th>#</th><th>Radio</th><th>$/Seg Ene</th><th>Seg. Ene</th><th>Inv. Enero</th><th>$/Seg Feb</th><th>Seg. Feb</th><th>Inv. Febrero</th><th>Var.</th></tr></thead><tbody>';
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Costo/seg × Cantidad Segundos = Inversión</div><span class="card-cnt">'+d.length+' emisoras</span></div>';
+  h+='<div class="tw"><table><thead><tr><th>#</th><th>Radio</th><th>$/Seg Ago</th><th>Seg. Ago</th><th>Inv. Agosto</th><th>$/Seg Sep</th><th>Seg. Sep</th><th>Inv. Sept.</th><th>Var.</th></tr></thead><tbody>';
   d.forEach((p,i)=>{
     const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
-    const noData=p.ene_seg===0&&p.feb_seg===0;
-    h+=`<tr class="${rc}"${noData?' style="opacity:.5"':''}><td class="rank">${i+1}</td><td class="name">${p.nombre}${noData?' <span style="font-size:.65rem;color:var(--red)">(sin monitor)</span>':''}</td><td class="money">${fmt(p.valor_seg_ene)}</td><td class="num">${p.ene_seg?fmtN(p.ene_seg):'-'}</td><td class="money">${p.ene_inv?fmt(p.ene_inv):'-'}</td><td class="money">${fmt(p.valor_seg_feb)}</td><td class="num">${p.feb_seg?fmtN(p.feb_seg):'-'}</td><td class="money">${p.feb_inv?fmt(p.feb_inv):'-'}</td><td class="num">${fmtVar(p.var)}</td></tr>`;
+    h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}</td><td class="money">${fmt(p.ago_costo)}</td><td class="num">${fmtN(p.ago_cant)}</td><td class="money">${fmt(p.ago_inv)}</td><td class="money">${fmt(p.sep_costo)}</td><td class="num">${fmtN(p.sep_cant)}</td><td class="money">${fmt(p.sep_inv)}</td><td class="num">${fmtVar(p.var)}</td></tr>`;
   });
   h+='</tbody></table></div></div>';
   document.getElementById('tc-radios').innerHTML=h;
 }
 
-// Auth
 const ALLOWED_EMAILS=['mburlet@kuarzo.com','ffalce@kuarzo.com','martink@kuarzo.com','matiask@kuarzo.com','hkweller@kuarzo.com'];
 function handleGoogleLogin(r){const p=JSON.parse(atob(r.credential.split('.')[1]));const e=p.email.toLowerCase();if(ALLOWED_EMAILS.includes(e)){sessionStorage.setItem('rkAuth',e);showContent()}else{document.getElementById('loginError').style.display='block'}}
-function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildCable();buildRadios()}
+function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios()}
 if(ALLOWED_EMAILS.includes(sessionStorage.getItem('rkAuth'))){showContent()}
 </script>
 </body>
