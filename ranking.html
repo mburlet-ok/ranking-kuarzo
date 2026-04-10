@@ -478,16 +478,16 @@ function initTabData(id){
   const v=views[id]||'con';
   let clients,total;
   if(hasGH){
-    clients=v==='con'?d.con_gh:(d.sin_gh||[]);
+    clients=(v==='con'?d.con_gh:(d.sin_gh||[])).sort((a,b)=>b.amount-a.amount);
     total=v==='con'?(d.total_con||0):(d.total_sin||0);
     const e1=document.getElementById(id+'-tc');if(e1)e1.textContent=fmtAuto(d.total_con);
     const e2=document.getElementById(id+'-ts');if(e2)e2.textContent=fmtAuto(d.total_sin);
   } else {
-    clients=d.general||d.con_gh||[];
+    clients=(d.general||d.con_gh||[]).sort((a,b)=>b.amount-a.amount);
     total=d.total||d.total_con||0;
     const e=document.getElementById(id+'-tt');if(e)e.textContent=fmtAuto(total);
   }
-  const sellers=d.sellers||[];
+  const sellers=(d.sellers||[]).sort((a,b)=>b.amount-a.amount);
   const programs=d.programs||d.programs_detail||{};
   const e=id=>document.getElementById(id);
   if(e(id+'-nc'))e(id+'-nc').textContent=clients.length;
