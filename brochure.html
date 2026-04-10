@@ -189,13 +189,22 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .prog-videos-title { font-size: 0.72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
 .prog-videos-grid { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
 .prog-video {
-  flex: 0 0 auto; width: 200px; border-radius: 10px; overflow: hidden;
+  flex: 0 0 auto; width: 220px; border-radius: 10px; overflow: hidden;
   border: 1px solid var(--border); cursor: pointer; position: relative;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.prog-video:hover { border-color: rgba(255,255,255,0.2); transform: scale(1.02); }
-.prog-video video { width: 100%; height: 120px; object-fit: cover; display: block; }
-.prog-video-label { padding: 6px 10px; font-size: 0.7rem; color: var(--muted); background: var(--surface); }
+.prog-video:hover { border-color: rgba(255,255,255,0.2); transform: scale(1.03); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.prog-video-thumb { width: 100%; height: 130px; object-fit: cover; display: block; }
+.prog-video-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -65%);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s; border: 2px solid rgba(255,255,255,0.3);
+}
+.prog-video:hover .prog-video-play { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.6); transform: translate(-50%, -65%) scale(1.1); }
+.prog-video-play svg { margin-left: 2px; }
+.prog-video-label { padding: 8px 12px; font-size: 0.72rem; color: var(--muted); background: var(--surface); font-weight: 500; }
 
 /* Video modal */
 .video-modal {
@@ -345,7 +354,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">KUARZO</div>
+  <div class="nav-logo"><img src="logo_kuarzo.png" style="height:24px;vertical-align:middle;margin-right:8px">KUARZO</div>
   <div class="nav-links">
     <a href="#tv">TV</a>
     <a href="#gh">Gran Hermano</a>
@@ -360,9 +369,9 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   <h1>Nuestros<br>Programas</h1>
   <p>Descubrí la grilla más completa de la televisión argentina. Entretenimiento, información y contenido de calidad para todas las audiencias.</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num">9</div><div class="label">Programas</div></div>
+    <div class="hero-stat"><div class="num">9</div><div class="label">Programas TV</div></div>
     <div class="hero-stat"><div class="num">4</div><div class="label">Canales</div></div>
-    <div class="hero-stat"><div class="num">1</div><div class="label">Radio</div></div>
+    <div class="hero-stat"><div class="num">3</div><div class="label">Radios</div></div>
   </div>
   <div class="scroll-hint">scroll para explorar ↓</div>
 </section>
@@ -387,8 +396,8 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div class="prog-videos">
         <div class="prog-videos-title">Ejemplos de PNT</div>
         <div class="prog-videos-grid">
-          <div class="prog-video" onclick="openVideo('videos/es-mi-sueno-saphirus.mov')"><video src="videos/es-mi-sueno-saphirus.mov" muted preload="metadata"></video><div class="prog-video-label">Saphirus</div></div>
-          <div class="prog-video" onclick="openVideo('videos/es-mi-sueno-mercadolibre.mov')"><video src="videos/es-mi-sueno-mercadolibre.mov" muted preload="metadata"></video><div class="prog-video-label">Mercado Libre</div></div>
+          <div class="prog-video" onclick="openVideo('videos/es-mi-sueno-saphirus.mov')"><img class="prog-video-thumb" src="videos/thumbs/es-mi-sueno-saphirus.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Saphirus</div></div>
+          <div class="prog-video" onclick="openVideo('videos/es-mi-sueno-mercadolibre.mov')"><img class="prog-video-thumb" src="videos/thumbs/es-mi-sueno-mercadolibre.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Mercado Libre</div></div>
         </div>
       </div>
     </div>
@@ -404,8 +413,8 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div class="prog-videos">
         <div class="prog-videos-title">Ejemplos de PNT</div>
         <div class="prog-videos-grid">
-          <div class="prog-video" onclick="openVideo('videos/cocina-rebelde-creditoarg.mov')"><video src="videos/cocina-rebelde-creditoarg.mov" muted preload="metadata"></video><div class="prog-video-label">Crédito Argentino</div></div>
-          <div class="prog-video" onclick="openVideo('videos/cocina-rebelde-cif.mov')"><video src="videos/cocina-rebelde-cif.mov" muted preload="metadata"></video><div class="prog-video-label">Cif</div></div>
+          <div class="prog-video" onclick="openVideo('videos/cocina-rebelde-creditoarg.mov')"><img class="prog-video-thumb" src="videos/thumbs/cocina-rebelde-creditoarg.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Crédito Argentino</div></div>
+          <div class="prog-video" onclick="openVideo('videos/cocina-rebelde-cif.mov')"><img class="prog-video-thumb" src="videos/thumbs/cocina-rebelde-cif.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Cif</div></div>
         </div>
       </div>
     </div>
@@ -421,7 +430,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div class="prog-videos">
         <div class="prog-videos-title">Ejemplos de PNT</div>
         <div class="prog-videos-grid">
-          <div class="prog-video" onclick="openVideo('videos/cuestion-peso-querubin.mov')"><video src="videos/cuestion-peso-querubin.mov" muted preload="metadata"></video><div class="prog-video-label">Querubín</div></div>
+          <div class="prog-video" onclick="openVideo('videos/cuestion-peso-querubin.mov')"><img class="prog-video-thumb" src="videos/thumbs/cuestion-peso-querubin.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Querubín</div></div>
         </div>
       </div>
     </div>
@@ -458,7 +467,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div class="prog-videos">
         <div class="prog-videos-title">Ejemplos de PNT</div>
         <div class="prog-videos-grid">
-          <div class="prog-video" onclick="openVideo('videos/corta-lozano-serenisima.mov')"><video src="videos/corta-lozano-serenisima.mov" muted preload="metadata"></video><div class="prog-video-label">La Serenísima</div></div>
+          <div class="prog-video" onclick="openVideo('videos/corta-lozano-serenisima.mov')"><img class="prog-video-thumb" src="videos/thumbs/corta-lozano-serenisima.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">La Serenísima</div></div>
         </div>
       </div>
     </div>
@@ -477,8 +486,8 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <div style="margin-top:24px">
       <div class="prog-videos-title" style="color:var(--gh)">Ejemplos de PNT</div>
       <div class="prog-videos-grid">
-        <div class="prog-video" onclick="openVideo('videos/gh-travelrock.mov')"><video src="videos/gh-travelrock.mov" muted preload="metadata"></video><div class="prog-video-label">Travel Rock</div></div>
-        <div class="prog-video" onclick="openVideo('videos/gh-mercadopago.mov')"><video src="videos/gh-mercadopago.mov" muted preload="metadata"></video><div class="prog-video-label">Mercado Pago</div></div>
+        <div class="prog-video" onclick="openVideo('videos/gh-travelrock.mov')"><img class="prog-video-thumb" src="videos/thumbs/gh-travelrock.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Travel Rock</div></div>
+        <div class="prog-video" onclick="openVideo('videos/gh-mercadopago.mov')"><img class="prog-video-thumb" src="videos/thumbs/gh-mercadopago.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Mercado Pago</div></div>
       </div>
     </div>
   </div>
@@ -504,7 +513,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div class="prog-videos">
         <div class="prog-videos-title">Ejemplos de PNT</div>
         <div class="prog-videos-grid">
-          <div class="prog-video" onclick="openVideo('videos/bienvenidos-querubin.mov')"><video src="videos/bienvenidos-querubin.mov" muted preload="metadata"></video><div class="prog-video-label">Querubín</div></div>
+          <div class="prog-video" onclick="openVideo('videos/bienvenidos-querubin.mov')"><img class="prog-video-thumb" src="videos/thumbs/bienvenidos-querubin.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Querubín</div></div>
         </div>
       </div>
     </div>
@@ -520,7 +529,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div class="prog-videos">
         <div class="prog-videos-title">Ejemplos de PNT</div>
         <div class="prog-videos-grid">
-          <div class="prog-video" onclick="openVideo('videos/todo-cocinado-dia.mov')"><video src="videos/todo-cocinado-dia.mov" muted preload="metadata"></video><div class="prog-video-label">Día</div></div>
+          <div class="prog-video" onclick="openVideo('videos/todo-cocinado-dia.mov')"><img class="prog-video-thumb" src="videos/thumbs/todo-cocinado-dia.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Día</div></div>
         </div>
       </div>
     </div>
@@ -547,7 +556,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div class="prog-videos">
         <div class="prog-videos-title">Ejemplos de PNT</div>
         <div class="prog-videos-grid">
-          <div class="prog-video" onclick="openVideo('videos/polemica-sahirus.mov')"><video src="videos/polemica-sahirus.mov" muted preload="metadata"></video><div class="prog-video-label">Sahirus</div></div>
+          <div class="prog-video" onclick="openVideo('videos/polemica-sahirus.mov')"><img class="prog-video-thumb" src="videos/thumbs/polemica-sahirus.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Sahirus</div></div>
         </div>
       </div>
     </div>
@@ -571,6 +580,38 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   </div>
 </section>
 
+<!-- URBANA PLAY -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag radio">Urbana Play 104.3</div>
+    <h2 class="section-title">Urbana Play</h2>
+    <p class="section-sub">La radio que se ve. Contenido premium que combina radio tradicional con streaming visual.</p>
+  </div>
+  <div class="radio-grid">
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 09hs</div><div><div class="radio-name">Perros de la Calle</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">09 — 13hs</div><div><div class="radio-name">Todo Pasa</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Andy Kusnetzoff, Sofi Martínez</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">13 — 16hs</div><div><div class="radio-name">Vuelta y Media</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Sebastián Wainraich, Julieta Pink</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">16 — 19hs</div><div><div class="radio-name">Olvidate de Todo</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">00 — 06hs</div><div><div class="radio-name">De Acá en Más</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">María O'Donnell</div></div></div>
+  </div>
+</section>
+
+<!-- RADIO NOW -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag radio">Radio Now 97.9</div>
+    <h2 class="section-title">Radio Now</h2>
+    <p class="section-sub">La nueva apuesta 100% periodística. Relanzada en marzo 2026 con las figuras más destacadas del periodismo.</p>
+  </div>
+  <div class="radio-grid">
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">07 — 10hs</div><div><div class="radio-name">Donde Estamos</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Paulino Rodrigues, Julieta Tarrés</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">10 — 14hs</div><div><div class="radio-name">No Somos Nadie</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Juan Pablo Varsky, Eleonora Pérez Caressi</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">14 — 17hs</div><div><div class="radio-name">Coworker</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Agustina Casanova, Mariano Almada</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">17 — 20hs</div><div><div class="radio-name">After Office Now</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Diego Sehinkman, Sofía Diamante</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">20hs +</div><div><div class="radio-name">Modo Offline</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Pablo Rojas</div></div></div>
+  </div>
+</section>
+
 <!-- NUESTROS MEDIOS -->
 <section class="section" style="text-align:center">
   <div class="section-header reveal" style="text-align:center">
@@ -583,11 +624,14 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">Canal 9</div></div>
     <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">América</div></div>
     <div class="medio-item"><div class="medio-icon">📻</div><div class="medio-name">Radio Con Vos</div></div>
+    <div class="medio-item"><div class="medio-icon">📻</div><div class="medio-name">Urbana Play</div></div>
+    <div class="medio-item"><div class="medio-icon">📻</div><div class="medio-name">Radio Now</div></div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
+  <img src="logo_kuarzo.png" style="height:40px;margin-bottom:12px;filter:invert(1) brightness(2)">
   <div class="footer-logo">KUARZO</div>
   <p class="footer-text">La productora independiente más grande de Latinoamérica  |  Marzo 2026</p>
 </footer>
