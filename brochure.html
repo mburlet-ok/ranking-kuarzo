@@ -194,7 +194,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .prog-video:hover { border-color: rgba(255,255,255,0.2); transform: scale(1.03); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
-.prog-video-thumb { width: 100%; height: 130px; object-fit: contain; background: #0a0a12; display: block; }
+.prog-video-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
 .prog-video-play {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -65%);
   width: 44px; height: 44px; border-radius: 50%;
@@ -354,10 +354,11 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo"><img src="logo_kuarzo.png" style="height:24px;vertical-align:middle;margin-right:8px">KUARZO</div>
+  <div class="nav-logo"><img src="logo_kuarzo_white.png" style="height:28px;vertical-align:middle" alt="Kuarzo"></div>
   <div class="nav-links">
     <a href="#tv">TV</a>
     <a href="#gh">Gran Hermano</a>
+    <a href="#kzo">KZO</a>
     <a href="#radio">Radio</a>
     <a href="index.html" class="nav-back">← Volver</a>
   </div>
@@ -365,7 +366,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 
 <!-- HERO -->
 <section class="hero">
-  <img src="logo_kuarzo.png" style="height:80px;margin-bottom:30px;filter:invert(1) brightness(2);animation:fadeIn 1s ease" alt="Kuarzo">
+  <img src="logo_kuarzo_white.png" style="height:120px;margin-bottom:30px;animation:fadeIn 1s ease" alt="Kuarzo Entertainment Argentina">
   <div class="hero-tag">Marzo 2026</div>
   <h1>Nuestros<br>Programas</h1>
   <p>La grilla mas completa de la television argentina. Entretenimiento, informacion y contenido de calidad para todas las audiencias.</p>
@@ -571,6 +572,73 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   </div>
 </section>
 
+<!-- KZO CABLE -->
+<section class="section" id="kzo">
+  <div class="section-header reveal">
+    <div class="section-tag" style="background:rgba(255,255,255,0.08);color:#fff">KZO Entertainment</div>
+    <h2 class="section-title">KZO</h2>
+    <p class="section-sub">El canal de cable de Kuarzo. Entretenimiento, talk shows y contenido exclusivo las 24 horas.</p>
+  </div>
+
+  <div class="programs-grid">
+    <div class="prog-card reveal reveal-delay-1" style="--card-accent:#fff">
+      <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#aaa">KZO Entertainment</div>
+        <div class="prog-name">Perros de la Calle</div>
+        <div class="prog-host">Andy Kusnetzoff</div>
+        <div class="prog-schedule">Lunes a Viernes — Mañanas</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">El programa mas escuchado de la radio argentina, ahora tambien en pantalla. Andy Kusnetzoff junto a su equipo en la version televisiva desde Urbana Play.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal reveal-delay-2" style="--card-accent:#fff">
+      <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#aaa">KZO Entertainment</div>
+        <div class="prog-name">Todo Pasa</div>
+        <div class="prog-host">Andy Kusnetzoff, Sofi Martinez</div>
+        <div class="prog-schedule">Lunes a Viernes — Mediodias</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Actualidad, entrevistas y lo mejor del entretenimiento. El magazine que cubre todos los temas con un equipo de primera.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal reveal-delay-3" style="--card-accent:#fff">
+      <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#aaa">KZO Entertainment</div>
+        <div class="prog-name">Vuelta y Media</div>
+        <div class="prog-host">Sebastian Wainraich, Julieta Pink</div>
+        <div class="prog-schedule">Lunes a Viernes — Tardes</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Humor, actualidad y conversaciones con los mejores invitados. Wainraich y su equipo en el programa mas divertido de la tarde.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal reveal-delay-4" style="--card-accent:#fff">
+      <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#aaa">KZO Entertainment</div>
+        <div class="prog-name">Las Rubias</div>
+        <div class="prog-host">Marcela Tinayre</div>
+        <div class="prog-schedule">KZO</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Marcela Tinayre al frente de un ciclo de entrevistas y lifestyle premium. Elegancia, personalidad y contenido de alto nivel.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:30px" class="reveal">
+    <div style="font-size:0.85rem;font-weight:700;margin-bottom:14px;color:var(--text)">Donde ver KZO</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">Cablevision / Flow</span> <span style="color:var(--muted);margin-left:6px">Ch. 30</span></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">DirecTV</span> <span style="color:var(--muted);margin-left:6px">Ch. 199 / HD 1199</span></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">Telecentro</span> <span style="color:var(--muted);margin-left:6px">Ch. 15</span></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">TDA Digital</span> <span style="color:var(--muted);margin-left:6px">Ch. 35.2</span></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">DirecTV DGO</span> <span style="color:var(--muted);margin-left:6px">Streaming</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- RADIO -->
 <section class="section" id="radio">
   <div class="section-header reveal">
@@ -631,6 +699,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <div class="medio-item"><div class="medio-icon" style="color:var(--eltrece)">TV</div><div class="medio-name">Eltrece</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--canal9)">TV</div><div class="medio-name">Canal 9</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--america)">TV</div><div class="medio-name">America</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:#fff">CABLE</div><div class="medio-name">KZO</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Radio Con Vos</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Urbana Play</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Radio Now</div></div>
@@ -639,7 +708,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 
 <!-- FOOTER -->
 <footer class="footer">
-  <img src="logo_kuarzo.png" style="height:50px;margin-bottom:16px;filter:invert(1) brightness(2)" alt="Kuarzo">
+  <img src="logo_kuarzo_white.png" style="height:60px;margin-bottom:16px" alt="Kuarzo Entertainment Argentina">
   <p class="footer-text">La productora independiente más grande de Latinoamérica  |  Marzo 2026</p>
 </footer>
 
