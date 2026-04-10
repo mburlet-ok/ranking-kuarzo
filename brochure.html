@@ -187,9 +187,9 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .prog-body { padding: 28px; }
 .prog-videos { padding: 0 28px 28px; }
 .prog-videos-title { font-size: 0.72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-.prog-videos-grid { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.prog-videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
 .prog-video {
-  flex: 0 0 auto; width: 220px; border-radius: 10px; overflow: hidden;
+  border-radius: 10px; overflow: hidden;
   border: 1px solid var(--border); cursor: pointer; position: relative;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
