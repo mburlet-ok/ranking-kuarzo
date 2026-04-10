@@ -185,6 +185,29 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .prog-card.gh::before { background: linear-gradient(90deg, var(--gh), #c2185b); }
 
 .prog-body { padding: 28px; }
+.prog-videos { padding: 0 28px 28px; }
+.prog-videos-title { font-size: 0.72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.prog-videos-grid { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.prog-video {
+  flex: 0 0 auto; width: 200px; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border); cursor: pointer; position: relative;
+  transition: all 0.3s;
+}
+.prog-video:hover { border-color: rgba(255,255,255,0.2); transform: scale(1.02); }
+.prog-video video { width: 100%; height: 120px; object-fit: cover; display: block; }
+.prog-video-label { padding: 6px 10px; font-size: 0.7rem; color: var(--muted); background: var(--surface); }
+
+/* Video modal */
+.video-modal {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
+}
+.video-modal.show { display: flex; }
+.video-modal video { max-width: 90vw; max-height: 85vh; border-radius: 12px; }
+.video-modal-close {
+  position: absolute; top: 20px; right: 30px;
+  background: none; border: none; color: white; font-size: 2rem; cursor: pointer;
+}
 .prog-channel {
   font-size: 0.68rem;
   font-weight: 700;
@@ -361,6 +384,13 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-divider"></div>
         <div class="prog-desc">El big show de Eltrece. Un casting federal para buscar talentos en todo el país. Con un jurado de lujo: Abel Pintos, La Mona Jiménez, Joaquín Levinton y Jimena Barón. El camino culmina en la calle Corrientes.</div>
       </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/es-mi-sueno-saphirus.mov')"><video src="videos/es-mi-sueno-saphirus.mov" muted preload="metadata"></video><div class="prog-video-label">Saphirus</div></div>
+          <div class="prog-video" onclick="openVideo('videos/es-mi-sueno-mercadolibre.mov')"><video src="videos/es-mi-sueno-mercadolibre.mov" muted preload="metadata"></video><div class="prog-video-label">Mercado Libre</div></div>
+        </div>
+      </div>
     </div>
     <div class="prog-card eltrece reveal reveal-delay-2">
       <div class="prog-body">
@@ -371,6 +401,13 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-divider"></div>
         <div class="prog-desc">Cocina con mucho sabor. Recetas prácticas para todos los días, tips reales y un gran equipo. Con la co-conducción de Coco Carreño. Entretenimiento y contenido diario con alto potencial de afinidad.</div>
       </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/cocina-rebelde-creditoarg.mov')"><video src="videos/cocina-rebelde-creditoarg.mov" muted preload="metadata"></video><div class="prog-video-label">Crédito Argentino</div></div>
+          <div class="prog-video" onclick="openVideo('videos/cocina-rebelde-cif.mov')"><video src="videos/cocina-rebelde-cif.mov" muted preload="metadata"></video><div class="prog-video-label">Cif</div></div>
+        </div>
+      </div>
     </div>
     <div class="prog-card eltrece reveal reveal-delay-3">
       <div class="prog-body">
@@ -380,6 +417,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-schedule">Lunes a Viernes — 16:45hs</div>
         <div class="prog-divider"></div>
         <div class="prog-desc">El más legendario y saludable de los reality shows. Regresa para mejorar la vida de los participantes y de todos los argentinos. Con la familia Cormillot y el profe Sergio Verón.</div>
+      </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/cuestion-peso-querubin.mov')"><video src="videos/cuestion-peso-querubin.mov" muted preload="metadata"></video><div class="prog-video-label">Querubín</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -412,6 +455,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-divider"></div>
         <div class="prog-desc">Programa de actualidad y espectáculo. Verónica Lozano analiza los temas del día junto a un panel de reconocidos especialistas. Entrevistas, sketches, servicios y terapia con famosos.</div>
       </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/corta-lozano-serenisima.mov')"><video src="videos/corta-lozano-serenisima.mov" muted preload="metadata"></video><div class="prog-video-label">La Serenísima</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -425,6 +474,13 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <div class="gh-host">Santiago del Moro</div>
     <div class="gh-schedule">Lunes a Jueves 22:15hs  |  Sábados y Domingos 22:15hs</div>
     <div class="gh-desc">A 25 años de la primera temporada de Gran Hermano en Argentina, se viene una edición muy especial. Van a participar desde famosos hasta gente desconocida. El programa que domina la conversación en redes, en la calle y en cada rincón del país. La máxima exposición para tu marca.</div>
+    <div style="margin-top:24px">
+      <div class="prog-videos-title" style="color:var(--gh)">Ejemplos de PNT</div>
+      <div class="prog-videos-grid">
+        <div class="prog-video" onclick="openVideo('videos/gh-travelrock.mov')"><video src="videos/gh-travelrock.mov" muted preload="metadata"></video><div class="prog-video-label">Travel Rock</div></div>
+        <div class="prog-video" onclick="openVideo('videos/gh-mercadopago.mov')"><video src="videos/gh-mercadopago.mov" muted preload="metadata"></video><div class="prog-video-label">Mercado Pago</div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -445,6 +501,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-divider"></div>
         <div class="prog-desc">Con la conducción de Hernán Drago y la participación de los jurados: Rodrigo Vagoneta y La Locomotora Olivera. Un programa de entretenimiento para toda la familia donde los participantes muestran sus cualidades y participan por diferentes premios.</div>
       </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/bienvenidos-querubin.mov')"><video src="videos/bienvenidos-querubin.mov" muted preload="metadata"></video><div class="prog-video-label">Querubín</div></div>
+        </div>
+      </div>
     </div>
     <div class="prog-card canal9 reveal reveal-delay-2">
       <div class="prog-body">
@@ -454,6 +516,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-schedule">Canal 9</div>
         <div class="prog-divider"></div>
         <div class="prog-desc">Cocina, entretenimiento y diversión. Un formato que combina recetas accesibles con momentos de humor y la energía de Rocío Marengo. Ideal para marcas que buscan integración orgánica en contenido familiar y distendido.</div>
+      </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/todo-cocinado-dia.mov')"><video src="videos/todo-cocinado-dia.mov" muted preload="metadata"></video><div class="prog-video-label">Día</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -475,6 +543,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-schedule">Lunes a Viernes — 19:00hs</div>
         <div class="prog-divider"></div>
         <div class="prog-desc">Uno de los programas más icónicos de la TV argentina. Debate, humor y actualidad con los panelistas más reconocidos del medio. Alta audiencia y un público fiel que sigue la conversación del día.</div>
+      </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/polemica-sahirus.mov')"><video src="videos/polemica-sahirus.mov" muted preload="metadata"></video><div class="prog-video-label">Sahirus</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -521,6 +595,31 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 </div><!-- /mainContent -->
 
 <script>
+// VIDEO MODAL
+function openVideo(src) {
+  let modal = document.getElementById('videoModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'videoModal';
+    modal.className = 'video-modal';
+    modal.innerHTML = '<button class="video-modal-close" onclick="closeVideo()">&times;</button><video controls autoplay></video>';
+    modal.onclick = function(e) { if (e.target === modal) closeVideo(); };
+    document.body.appendChild(modal);
+  }
+  modal.querySelector('video').src = src;
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideo() {
+  const modal = document.getElementById('videoModal');
+  if (modal) {
+    modal.querySelector('video').pause();
+    modal.querySelector('video').src = '';
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+
 // AUTH
 const ALLOWED_EMAILS=['mburlet@kuarzo.com','ffalce@kuarzo.com','martink@kuarzo.com','matiask@kuarzo.com','hkweller@kuarzo.com'];
 function handleGoogleLogin(r){const p=JSON.parse(atob(r.credential.split('.')[1]));const e=p.email.toLowerCase();if(ALLOWED_EMAILS.includes(e)){sessionStorage.setItem('rkAuth',e);show()}else{document.getElementById('loginError').style.display='block'}}
