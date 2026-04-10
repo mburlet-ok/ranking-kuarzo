@@ -184,6 +184,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .prog-card.america::before { background: linear-gradient(90deg, var(--america), #27ae60); }
 .prog-card.gh::before { background: linear-gradient(90deg, var(--gh), #c2185b); }
 
+.prog-img { width: 100%; height: 160px; object-fit: cover; display: block; }
 .prog-body { padding: 28px; }
 .prog-videos { padding: 0 28px 28px; }
 .prog-videos-title { font-size: 0.72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
@@ -293,6 +294,9 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
   border: 2px solid var(--border); flex-shrink: 0;
 }
+.radio-card .radio-avatar.prog-thumb {
+  width: 70px; height: 70px; border-radius: 10px;
+}
 .radio-name { font-size: 0.92rem; font-weight: 700; }
 .radio-host { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
@@ -364,6 +368,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <a href="#tv">TV</a>
     <a href="#gh">Gran Hermano</a>
     <a href="#kzo">KZO</a>
+    <a href="#mixtv">Mix TV</a>
     <a href="#radio">Radio</a>
     <a href="index.html" class="nav-back">← Volver</a>
   </div>
@@ -588,6 +593,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   <div class="programs-grid">
     <div class="prog-card reveal reveal-delay-1" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-deaca.png" alt="De Aca en Mas">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Lunes a Viernes 6:00hs</div>
         <div class="prog-name">De Aca en Mas</div>
@@ -599,6 +605,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     </div>
     <div class="prog-card reveal reveal-delay-2" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-perros.png" alt="Perros de la Calle">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Lunes a Viernes 9:00hs</div>
         <div class="prog-name">Perros de la Calle</div>
@@ -610,6 +617,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     </div>
     <div class="prog-card reveal reveal-delay-3" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-todopasa.png" alt="Todo Pasa">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Lunes a Viernes 13:00hs</div>
         <div class="prog-name">Todo Pasa</div>
@@ -621,6 +629,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     </div>
     <div class="prog-card reveal reveal-delay-1" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-vuelta.png" alt="Vuelta y Media">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Lunes a Viernes 16:00hs</div>
         <div class="prog-name">Vuelta y Media</div>
@@ -632,6 +641,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     </div>
     <div class="prog-card reveal reveal-delay-2" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-olvidate.png" alt="Olvidate de Todo">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Lunes a Viernes 19:00hs</div>
         <div class="prog-name">Olvidate de Todo</div>
@@ -643,6 +653,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     </div>
     <div class="prog-card reveal reveal-delay-3" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-musica.png" alt="Musica es Todo">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Miercoles 22:00hs</div>
         <div class="prog-name">Musica es Todo</div>
@@ -654,6 +665,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     </div>
     <div class="prog-card reveal reveal-delay-1" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-caramelo.png" alt="Punto Caramelo">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Sabados 10:00hs</div>
         <div class="prog-name">Punto Caramelo</div>
@@ -665,6 +677,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     </div>
     <div class="prog-card reveal reveal-delay-2" style="--card-accent:#fff">
       <div style="height:3px;background:linear-gradient(90deg,#fff,#888)"></div>
+      <img class="prog-img" src="img/programs/kzo-pink.png" alt="Las Tardes con Pink">
       <div class="prog-body">
         <div class="prog-channel" style="color:#aaa">KZO | Sabados y Domingos</div>
         <div class="prog-name">Las Tardes con Pink</div>
@@ -684,6 +697,71 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
       <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">Telecentro</span> <span style="color:var(--muted);margin-left:6px">Ch. 15</span></div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">TDA Digital</span> <span style="color:var(--muted);margin-left:6px">Ch. 35.2</span></div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">DirecTV DGO</span> <span style="color:var(--muted);margin-left:6px">Streaming</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MIX TV -->
+<section class="section" id="mixtv">
+  <div class="section-header reveal">
+    <div class="section-tag" style="background:rgba(255,23,68,0.12);color:#ff1744">Mix TV</div>
+    <h2 class="section-title">Mix TV</h2>
+    <p class="section-sub">El nuevo canal de Kuarzo. Periodismo, actualidad, entretenimiento y humor con las voces mas relevantes.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card reveal reveal-delay-1">
+      <div style="height:3px;background:linear-gradient(90deg,#ff1744,#ff5252)"></div>
+      <img class="prog-img" src="img/programs/mix-spoiler.png" alt="El Spoiler de la TV">
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#ff1744">Mix TV</div>
+        <div class="prog-name">El Spoiler de la TV</div>
+        <div class="prog-host">Pia Shaw</div>
+        <div class="prog-schedule">Mix TV</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Todo lo que pasa en el mundo del espectaculo. Pia Shaw al frente del magazine de entretenimiento con las novedades, escandalos y primicias del dia.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal reveal-delay-2">
+      <div style="height:3px;background:linear-gradient(90deg,#1565c0,#42a5f5)"></div>
+      <img class="prog-img" src="img/programs/mix-policias.png" alt="Policias en Accion">
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#42a5f5">Mix TV | L a V 21:00hs</div>
+        <div class="prog-name">Policias en Accion</div>
+        <div class="prog-schedule">Lunes a Viernes — 21:00hs</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">El clasico de la TV argentina regresa. Camaras en vivo acompanando operativos policiales reales en todo el pais. Accion, adrenalina y realidad.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal reveal-delay-3">
+      <div style="height:3px;background:linear-gradient(90deg,#00c853,#69f0ae)"></div>
+      <img class="prog-img" src="img/programs/mix-losbro.png" alt="Los Bro">
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#69f0ae">Mix TV | Streaming</div>
+        <div class="prog-name">Los Bro</div>
+        <div class="prog-host">Martin Ku, Nicolas Grosman, El Negro Onty</div>
+        <div class="prog-schedule">Mix TV</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">Los ex Gran Hermano juntos en un formato fresco y directo. Contenido joven, humor y la conexion con la audiencia digital.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal reveal-delay-4">
+      <div style="height:3px;background:linear-gradient(90deg,#ff6d00,#ffab40)"></div>
+      <img class="prog-img" src="img/programs/mix-sepico.png" alt="Se Pico">
+      <div class="prog-body">
+        <div class="prog-channel" style="color:#ffab40">Mix TV | Streaming</div>
+        <div class="prog-name">Se Pico</div>
+        <div class="prog-host">Gaston Trezeguet, Laura Ubfal, Emma Vich</div>
+        <div class="prog-schedule">Mix TV</div>
+        <div class="prog-divider"></div>
+        <div class="prog-desc">El debate mas picante de la TV. Ex participantes de Gran Hermano y periodistas de espectaculos analizan todo lo que pasa en la casa y en el mundo del show.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:30px" class="reveal">
+    <div style="font-size:0.85rem;font-weight:700;margin-bottom:14px;color:var(--text)">Donde ver Mix TV</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:0.82rem"><span style="font-weight:700">Flow</span> <span style="color:var(--muted);margin-left:6px">Ch. 85</span></div>
     </div>
   </div>
 </section>
@@ -722,11 +800,11 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <p class="section-sub">La radio que se ve. Contenido premium que combina radio tradicional con streaming visual.</p>
   </div>
   <div class="radio-grid">
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 09</div><img class="radio-avatar" src="img/avatars/up-perros.png"><div><div class="radio-name">Perros de la Calle</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">09 — 13</div><img class="radio-avatar" src="img/avatars/up-todopasa.png"><div><div class="radio-name">Todo Pasa</div><div class="radio-host">Andy Kusnetzoff, Sofi Martinez</div></div></div>
-    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">13 — 16</div><img class="radio-avatar" src="img/avatars/up-vuelta.png"><div><div class="radio-name">Vuelta y Media</div><div class="radio-host">Sebastian Wainraich, Julieta Pink</div></div></div>
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">16 — 19</div><img class="radio-avatar" src="img/avatars/up-olvidate.png"><div><div class="radio-name">Olvidate de Todo</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">00 — 06</div><img class="radio-avatar" src="img/avatars/up-deaca.png"><div><div class="radio-name">De Aca en Mas</div><div class="radio-host">Maria O'Donnell</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 09</div><img class="radio-avatar" src="img/programs/up-perros.png"><div><div class="radio-name">Perros de la Calle</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">09 — 13</div><img class="radio-avatar" src="img/programs/up-todopasa.png"><div><div class="radio-name">Todo Pasa</div><div class="radio-host">Andy Kusnetzoff, Sofi Martinez</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">13 — 16</div><img class="radio-avatar" src="img/programs/up-vuelta.png"><div><div class="radio-name">Vuelta y Media</div><div class="radio-host">Sebastian Wainraich, Julieta Pink</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">16 — 19</div><img class="radio-avatar" src="img/programs/up-olvidate.png"><div><div class="radio-name">Olvidate de Todo</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">00 — 06</div><img class="radio-avatar" src="img/programs/up-deaca.png"><div><div class="radio-name">De Aca en Mas</div><div class="radio-host">Maria O'Donnell</div></div></div>
   </div>
 </section>
 
@@ -738,11 +816,11 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <p class="section-sub">La nueva apuesta 100% periodística. Relanzada en marzo 2026 con las figuras más destacadas del periodismo.</p>
   </div>
   <div class="radio-grid">
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">07 — 10</div><img class="radio-avatar" src="img/avatars/now-donde.png"><div><div class="radio-name">Donde Estamos</div><div class="radio-host">Paulino Rodrigues, Julieta Tarres</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">10 — 14</div><img class="radio-avatar" src="img/avatars/now-nosomos.png"><div><div class="radio-name">No Somos Nadie</div><div class="radio-host">Juan Pablo Varsky, Eleonora Perez Caressi</div></div></div>
-    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">14 — 17</div><img class="radio-avatar" src="img/avatars/now-coworker.png"><div><div class="radio-name">Coworker</div><div class="radio-host">Agustina Casanova, Mariano Almada</div></div></div>
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">17 — 20</div><img class="radio-avatar" src="img/avatars/now-after.png"><div><div class="radio-name">After Office Now</div><div class="radio-host">Diego Sehinkman, Sofia Diamante</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">20hs +</div><img class="radio-avatar" src="img/avatars/now-offline.png"><div><div class="radio-name">Modo Offline</div><div class="radio-host">Pablo Rojas</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">07 — 10</div><img class="radio-avatar" src="img/programs/now-donde.png"><div><div class="radio-name">Donde Estamos</div><div class="radio-host">Paulino Rodrigues, Julieta Tarres</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">10 — 14</div><img class="radio-avatar" src="img/programs/now-nosomos.png"><div><div class="radio-name">No Somos Nadie</div><div class="radio-host">Juan Pablo Varsky, Eleonora Perez Caressi</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">14 — 17</div><img class="radio-avatar" src="img/programs/now-coworker.png"><div><div class="radio-name">Coworker</div><div class="radio-host">Agustina Casanova, Mariano Almada</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">17 — 20</div><img class="radio-avatar" src="img/programs/now-after.png"><div><div class="radio-name">After Office Now</div><div class="radio-host">Diego Sehinkman, Sofia Diamante</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">20hs +</div><img class="radio-avatar" src="img/programs/now-offline.png"><div><div class="radio-name">Modo Offline</div><div class="radio-host">Pablo Rojas</div></div></div>
   </div>
 </section>
 
@@ -758,6 +836,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <div class="medio-item"><div class="medio-icon" style="color:var(--canal9)">TV</div><div class="medio-name">Canal 9</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--america)">TV</div><div class="medio-name">America</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:#fff">CABLE</div><div class="medio-name">KZO</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:#ff1744">CABLE</div><div class="medio-name">Mix TV</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Radio Con Vos</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Urbana Play</div></div>
     <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Radio Now</div></div>
