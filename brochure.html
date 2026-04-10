@@ -194,7 +194,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .prog-video:hover { border-color: rgba(255,255,255,0.2); transform: scale(1.03); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
-.prog-video-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.prog-video-thumb { width: 100%; display: block; height: auto; }
 .prog-video-play {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -65%);
   width: 44px; height: 44px; border-radius: 50%;
@@ -282,14 +282,19 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 }
 .radio-card:hover { border-color: rgba(155,89,182,0.3); transform: translateX(4px); }
 .radio-time {
-  font-size: 0.75rem; font-weight: 700; color: var(--radio);
-  min-width: 80px;
+  font-size: 0.72rem; font-weight: 700; color: var(--radio);
+  min-width: 75px;
   text-align: center;
   padding: 6px 10px;
   background: rgba(155,89,182,0.1);
   border-radius: 8px;
 }
-.radio-name { font-size: 0.95rem; font-weight: 700; }
+.radio-avatar {
+  width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--border); flex-shrink: 0;
+}
+.radio-name { font-size: 0.92rem; font-weight: 700; }
+.radio-host { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
 /* MEDIOS SECTION */
 .medios-grid {
@@ -647,12 +652,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <p class="section-sub">Programación completa con los conductores más escuchados.</p>
   </div>
   <div class="radio-grid">
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 08hs</div><div><div class="radio-name">Vamo a Calmarno</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">08 — 12hs</div><div><div class="radio-name">¿Y Ahora Quién Podrá Ayudarnos?</div></div></div>
-    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">12 — 14hs</div><div><div class="radio-name">La Inmensa Minoría</div></div></div>
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">14 — 17hs</div><div><div class="radio-name">Pasaron Cosas</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">17 — 19hs</div><div><div class="radio-name">No Dejes Para Mañana</div></div></div>
-    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">19 — 22hs</div><div><div class="radio-name">Radio Con Vos</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 08</div><img class="radio-avatar" src="img/avatars/rcv-vamo.png"><div><div class="radio-name">Vamo a Calmarno</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">08 — 12</div><img class="radio-avatar" src="img/avatars/rcv-ahora.png"><div><div class="radio-name">Y Ahora Quien Podra Ayudarnos?</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">12 — 14</div><img class="radio-avatar" src="img/avatars/rcv-inmensa.png"><div><div class="radio-name">La Inmensa Minoria</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">14 — 17</div><img class="radio-avatar" src="img/avatars/rcv-pasaron.png"><div><div class="radio-name">Pasaron Cosas</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">17 — 19</div><img class="radio-avatar" src="img/avatars/rcv-nodejes.png"><div><div class="radio-name">No Dejes Para Manana</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">19 — 22</div><img class="radio-avatar" src="img/avatars/rcv-radio.png"><div><div class="radio-name">Radio Con Vos</div></div></div>
   </div>
 </section>
 
@@ -664,11 +669,11 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <p class="section-sub">La radio que se ve. Contenido premium que combina radio tradicional con streaming visual.</p>
   </div>
   <div class="radio-grid">
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 09hs</div><div><div class="radio-name">Perros de la Calle</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">09 — 13hs</div><div><div class="radio-name">Todo Pasa</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Andy Kusnetzoff, Sofi Martínez</div></div></div>
-    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">13 — 16hs</div><div><div class="radio-name">Vuelta y Media</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Sebastián Wainraich, Julieta Pink</div></div></div>
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">16 — 19hs</div><div><div class="radio-name">Olvidate de Todo</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">00 — 06hs</div><div><div class="radio-name">De Acá en Más</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">María O'Donnell</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">06 — 09</div><img class="radio-avatar" src="img/avatars/up-perros.png"><div><div class="radio-name">Perros de la Calle</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">09 — 13</div><img class="radio-avatar" src="img/avatars/up-todopasa.png"><div><div class="radio-name">Todo Pasa</div><div class="radio-host">Andy Kusnetzoff, Sofi Martinez</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">13 — 16</div><img class="radio-avatar" src="img/avatars/up-vuelta.png"><div><div class="radio-name">Vuelta y Media</div><div class="radio-host">Sebastian Wainraich, Julieta Pink</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">16 — 19</div><img class="radio-avatar" src="img/avatars/up-olvidate.png"><div><div class="radio-name">Olvidate de Todo</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">00 — 06</div><img class="radio-avatar" src="img/avatars/up-deaca.png"><div><div class="radio-name">De Aca en Mas</div><div class="radio-host">Maria O'Donnell</div></div></div>
   </div>
 </section>
 
@@ -680,11 +685,11 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <p class="section-sub">La nueva apuesta 100% periodística. Relanzada en marzo 2026 con las figuras más destacadas del periodismo.</p>
   </div>
   <div class="radio-grid">
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">07 — 10hs</div><div><div class="radio-name">Donde Estamos</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Paulino Rodrigues, Julieta Tarrés</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">10 — 14hs</div><div><div class="radio-name">No Somos Nadie</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Juan Pablo Varsky, Eleonora Pérez Caressi</div></div></div>
-    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">14 — 17hs</div><div><div class="radio-name">Coworker</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Agustina Casanova, Mariano Almada</div></div></div>
-    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">17 — 20hs</div><div><div class="radio-name">After Office Now</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Diego Sehinkman, Sofía Diamante</div></div></div>
-    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">20hs +</div><div><div class="radio-name">Modo Offline</div><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Pablo Rojas</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">07 — 10</div><img class="radio-avatar" src="img/avatars/now-donde.png"><div><div class="radio-name">Donde Estamos</div><div class="radio-host">Paulino Rodrigues, Julieta Tarres</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">10 — 14</div><img class="radio-avatar" src="img/avatars/now-nosomos.png"><div><div class="radio-name">No Somos Nadie</div><div class="radio-host">Juan Pablo Varsky, Eleonora Perez Caressi</div></div></div>
+    <div class="radio-card reveal reveal-delay-3"><div class="radio-time">14 — 17</div><img class="radio-avatar" src="img/avatars/now-coworker.png"><div><div class="radio-name">Coworker</div><div class="radio-host">Agustina Casanova, Mariano Almada</div></div></div>
+    <div class="radio-card reveal reveal-delay-1"><div class="radio-time">17 — 20</div><img class="radio-avatar" src="img/avatars/now-after.png"><div><div class="radio-name">After Office Now</div><div class="radio-host">Diego Sehinkman, Sofia Diamante</div></div></div>
+    <div class="radio-card reveal reveal-delay-2"><div class="radio-time">20hs +</div><img class="radio-avatar" src="img/avatars/now-offline.png"><div><div class="radio-name">Modo Offline</div><div class="radio-host">Pablo Rojas</div></div></div>
   </div>
 </section>
 
