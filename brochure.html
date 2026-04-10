@@ -194,7 +194,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .prog-video:hover { border-color: rgba(255,255,255,0.2); transform: scale(1.03); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
-.prog-video-thumb { width: 100%; height: 130px; object-fit: cover; display: block; }
+.prog-video-thumb { width: 100%; height: 130px; object-fit: contain; background: #0a0a12; display: block; }
 .prog-video-play {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -65%);
   width: 44px; height: 44px; border-radius: 50%;
@@ -306,7 +306,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   transition: all 0.3s;
 }
 .medio-item:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.1); }
-.medio-icon { font-size: 2rem; margin-bottom: 10px; }
+.medio-icon { font-size: 0.85rem; font-weight: 800; margin-bottom: 10px; letter-spacing: 1px; }
 .medio-name { font-size: 0.85rem; font-weight: 700; }
 
 /* FOOTER */
@@ -365,15 +365,16 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 
 <!-- HERO -->
 <section class="hero">
+  <img src="logo_kuarzo.png" style="height:80px;margin-bottom:30px;filter:invert(1) brightness(2);animation:fadeIn 1s ease" alt="Kuarzo">
   <div class="hero-tag">Marzo 2026</div>
   <h1>Nuestros<br>Programas</h1>
-  <p>Descubrí la grilla más completa de la televisión argentina. Entretenimiento, información y contenido de calidad para todas las audiencias.</p>
+  <p>La grilla mas completa de la television argentina. Entretenimiento, informacion y contenido de calidad para todas las audiencias.</p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="num">9</div><div class="label">Programas TV</div></div>
     <div class="hero-stat"><div class="num">4</div><div class="label">Canales</div></div>
     <div class="hero-stat"><div class="num">3</div><div class="label">Radios</div></div>
   </div>
-  <div class="scroll-hint">scroll para explorar ↓</div>
+  <div class="scroll-hint">scroll para explorar</div>
 </section>
 
 <!-- ELTRECE -->
@@ -453,6 +454,13 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
         <div class="prog-schedule">Lunes a Viernes — 9:30hs</div>
         <div class="prog-divider"></div>
         <div class="prog-desc">Un programa para divertirte en las mañanas de Telefe. Actualidad, cocina y humor con Nancy Pazos, Pía Shaw, Noe Antonelli, Rodrigo Gascón, Analía Franchin y Pablo Kablan.</div>
+      </div>
+      <div class="prog-videos">
+        <div class="prog-videos-title">Ejemplos de PNT</div>
+        <div class="prog-videos-grid">
+          <div class="prog-video" onclick="openVideo('videos/barbarossa-despegar.mov')"><img class="prog-video-thumb" src="videos/thumbs/barbarossa-despegar.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Despegar</div></div>
+          <div class="prog-video" onclick="openVideo('videos/barbarossa-creditoarg.mov')"><img class="prog-video-thumb" src="videos/thumbs/barbarossa-creditoarg.png" alt=""><div class="prog-video-play"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="prog-video-label">Credito Argentino</div></div>
+        </div>
       </div>
     </div>
     <div class="prog-card telefe reveal reveal-delay-2">
@@ -619,20 +627,19 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
     <p class="section-sub">Presencia en las principales pantallas y frecuencias del país.</p>
   </div>
   <div class="medios-grid reveal">
-    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">Telefe</div></div>
-    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">Eltrece</div></div>
-    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">Canal 9</div></div>
-    <div class="medio-item"><div class="medio-icon">📺</div><div class="medio-name">América</div></div>
-    <div class="medio-item"><div class="medio-icon">📻</div><div class="medio-name">Radio Con Vos</div></div>
-    <div class="medio-item"><div class="medio-icon">📻</div><div class="medio-name">Urbana Play</div></div>
-    <div class="medio-item"><div class="medio-icon">📻</div><div class="medio-name">Radio Now</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:var(--telefe)">TV</div><div class="medio-name">Telefe</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:var(--eltrece)">TV</div><div class="medio-name">Eltrece</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:var(--canal9)">TV</div><div class="medio-name">Canal 9</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:var(--america)">TV</div><div class="medio-name">America</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Radio Con Vos</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Urbana Play</div></div>
+    <div class="medio-item"><div class="medio-icon" style="color:var(--radio)">FM</div><div class="medio-name">Radio Now</div></div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <img src="logo_kuarzo.png" style="height:40px;margin-bottom:12px;filter:invert(1) brightness(2)">
-  <div class="footer-logo">KUARZO</div>
+  <img src="logo_kuarzo.png" style="height:50px;margin-bottom:16px;filter:invert(1) brightness(2)" alt="Kuarzo">
   <p class="footer-text">La productora independiente más grande de Latinoamérica  |  Marzo 2026</p>
 </footer>
 
