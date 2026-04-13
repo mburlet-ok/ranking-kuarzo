@@ -224,7 +224,7 @@ function buildRows(data,tbodyId,total,drilldownType){
   const tb=document.getElementById(tbodyId);if(!tb)return;tb.innerHTML='';
   const d=currentTabData||{};
   const drillMap=drilldownType==='client_programs'?(d.client_programs||{}):drilldownType==='vendor_clients'?(d.vendor_clients||{}):{};
-  data.forEach((item,i)=>{const r=item.rank||(i+1);const rc=r==1?'r1':r==2?'r2':r==3?'r3':'';
+  data.forEach((item,i)=>{const r=i+1;const rc=r==1?'r1':r==2?'r2':r==3?'r3':'';
     const hasDrill=drilldownType&&drillMap[item.name]&&drillMap[item.name].length>0;
     const click=hasDrill?`class="${rc} clickable" onclick="drilldown('${drilldownType}','${escape(item.name)}')"`:` class="${rc}"`;
     const seller=SELLER_MAP[item.name];
