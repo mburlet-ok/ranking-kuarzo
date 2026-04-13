@@ -92,12 +92,14 @@ tr.r1 td.rank{color:var(--gold)}tr.r2 td.rank{color:var(--muted)}tr.r3 td.rank{c
   <div class="tab" onclick="switchTab('streaming')">Streaming</div>
   <div class="tab" onclick="switchTab('cable')">TV Cable</div>
   <div class="tab" onclick="switchTab('radios')">Radios</div>
+  <div class="tab" onclick="switchTab('digital')">Digital</div>
 </div>
 <div class="content">
   <div class="tab-content active" id="tc-tv"></div>
   <div class="tab-content" id="tc-streaming"></div>
   <div class="tab-content" id="tc-cable"></div>
   <div class="tab-content" id="tc-radios"></div>
+  <div class="tab-content" id="tc-digital"></div>
 </div>
 </div>
 <script>
@@ -109,7 +111,7 @@ const fmtVar=v=>{if(!v)return '-';const c=v>0?'var(--green)':v<0?'var(--red)':'v
 
 function switchTab(id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',
-    (id==='tv'&&t.textContent.includes('TV Aire'))||(id==='streaming'&&t.textContent.includes('Streaming'))||(id==='cable'&&t.textContent.includes('Cable'))||(id==='radios'&&t.textContent.includes('Radios'))
+    (id==='tv'&&t.textContent.includes('TV Aire'))||(id==='streaming'&&t.textContent.includes('Streaming'))||(id==='cable'&&t.textContent.includes('Cable'))||(id==='radios'&&t.textContent.includes('Radios'))||(id==='digital'&&t.textContent.includes('Digital'))
   ));
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.toggle('active',c.id==='tc-'+id));
 }
@@ -205,7 +207,45 @@ function buildRadios(){
 
 const ALLOWED_EMAILS=['mburlet@kuarzo.com','ffalce@kuarzo.com','martink@kuarzo.com','matiask@kuarzo.com','hkweller@kuarzo.com'];
 function handleGoogleLogin(r){const p=JSON.parse(atob(r.credential.split('.')[1]));const e=p.email.toLowerCase();if(ALLOWED_EMAILS.includes(e)){sessionStorage.setItem('rkAuth',e);showContent()}else{document.getElementById('loginError').style.display='block'}}
-function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios()}
+function buildDigital(){
+  const sitios=[{n:'FACEBOOK.COM',s:29.12},{n:'INFOBAE.COM',s:26.62},{n:'LANACION.COM.AR',s:10.26},{n:'CLARIN.COM',s:8.45},{n:'MERCADOLIBRE.COM.AR',s:5.30},{n:'CRONISTA.COM',s:5.11},{n:'TN.COM.AR',s:4.09},{n:'AMBITO.COM',s:4.01},{n:'OLE.COM.AR',s:3.57},{n:'YOUTUBE.COM',s:3.47}];
+  const anunciantes=[{n:'GRUPO TELEFONICA',s:18.75},{n:'YPF',s:18.21},{n:'COTO',s:17.95},{n:"L'OREAL",s:12.96},{n:'RENAULT',s:6.50},{n:'CARREFOUR',s:5.87},{n:'BANCO SANTANDER',s:5.81},{n:'BETSSON',s:4.82},{n:'CENCOSUD',s:4.68},{n:'GOB CIUDAD BUENOS AIRES',s:4.46}];
+  const mediaMix=[{n:'Televisión',s:84.91},{n:'Radio',s:6.31},{n:'Diarios',s:4.93},{n:'Internet',s:3.57},{n:'Revistas',s:0.28}];
+
+  function buildBar(items,title,subtitle,color){
+    let h=`<div class="card" style="margin-bottom:18px"><div class="card-hdr"><div><div class="card-ttl">${title}</div><div style="font-size:.7rem;color:var(--muted);margin-top:2px">${subtitle}</div></div><span class="card-cnt">${items.length} items</span></div>`;
+    h+='<div style="padding:16px">';
+    items.forEach((item,i)=>{
+      const w=Math.max(item.s/items[0].s*100,3);
+      const rc=i===0?'var(--gold)':i===1?'#94a3b8':i===2?'#b45309':'var(--accent)';
+      h+=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">`;
+      h+=`<div style="min-width:30px;font-weight:700;color:${rc};font-size:.82rem;text-align:right">${i+1}</div>`;
+      h+=`<div style="min-width:180px;font-size:.82rem;font-weight:500">${item.n}</div>`;
+      h+=`<div style="flex:1;background:#f1f5f9;border-radius:6px;height:24px;overflow:hidden"><div style="width:${w}%;height:100%;background:${color};border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px"><span style="font-size:.7rem;color:#fff;font-weight:700">${item.s.toFixed(2).replace('.',',')}%</span></div></div>`;
+      h+=`</div>`;
+    });
+    h+='</div></div>';
+    return h;
+  }
+
+  let h='<div class="section-title"><div class="icon" style="background:#2563eb">🌐</div>Mercado Digital — Febrero 2026</div>';
+  h+='<div class="kpi-grid">';
+  h+='<div class="kpi-card"><div class="kpi-label">TV Share</div><div class="kpi-value" style="color:var(--accent)">84,91%</div></div>';
+  h+='<div class="kpi-card"><div class="kpi-label">Radio Share</div><div class="kpi-value">6,31%</div></div>';
+  h+='<div class="kpi-card"><div class="kpi-label">Internet Share</div><div class="kpi-value">3,57%</div></div>';
+  h+='<div class="kpi-card"><div class="kpi-label">Top Sitio</div><div class="kpi-value" style="font-size:.9rem">Facebook</div></div>';
+  h+='<div class="kpi-card"><div class="kpi-label">Top Anunciante</div><div class="kpi-value" style="font-size:.9rem">Gr. Telefónica</div></div>';
+  h+='</div>';
+  h+=buildBar(mediaMix,'Media Mix — Inversión Publicitaria Multimedios','Febrero 2026 — Fuente: IBOPE / Ad Intelligence Admetricks','linear-gradient(90deg,#2563eb,#3b82f6)');
+  h+='<div class="grid2">';
+  h+=buildBar(sitios,'Top 10 Sitios — Share Inversión','Datos de Internet — Febrero 2026','linear-gradient(90deg,#2563eb,#60a5fa)');
+  h+=buildBar(anunciantes,'Top 10 Anunciantes — Share Inversión','Datos de Internet — Febrero 2026','linear-gradient(90deg,#7c3aed,#a78bfa)');
+  h+='</div>';
+  h+='<div style="margin-top:8px;padding:12px 16px;background:#f0f4ff;border:1px solid #e2e8f0;border-radius:10px;font-size:.72rem;color:var(--muted);line-height:1.6">';
+  h+='<strong>Nota:</strong> La inversión de Internet son cifras netas estimadas por Ad Intelligence de Admetricks. La inversión del resto de los Sistemas de Comunicación contempla la aplicación de las tarifas brutas publicadas por los Medios (sin descuentos) a la actividad publicitaria relevada por IBOPE. Se excluyen del análisis: Asociaciones políticas y civiles, Colectas Agrupadas, Espectáculos y discográficas, Medios y Varios GG. Segmento: venta directa.</div>';
+  document.getElementById('tc-digital').innerHTML=h;
+}
+function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios();buildDigital()}
 if(ALLOWED_EMAILS.includes(sessionStorage.getItem('rkAuth'))){showContent()}
 </script>
 </body>
