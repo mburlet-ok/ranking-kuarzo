@@ -541,10 +541,9 @@ function checkPassword(e) {
   return false;
 }
 
-if (sessionStorage.getItem('rkAuth') === 'ok') {
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('dashboardContent').style.display = 'block';
-}
+// Acceso libre
+document.getElementById('loginScreen').style.display = 'none';
+document.getElementById('dashboardContent').style.display = 'block';
 </script>
 </body>
 </html>

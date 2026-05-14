@@ -303,7 +303,7 @@ tr.r1 td.rank{color:#f59e0b}tr.r2 td.rank{color:#94a3b8}tr.r3 td.rank{color:#b45
 const PASSWORD='5870.K';
 function checkPassword(e){e.preventDefault();const v=document.getElementById('pwInput').value;if(v===PASSWORD){sessionStorage.setItem('rkAuth','ok');showContent()}else{document.getElementById('loginError').style.display='block'}return false;}
 function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildPrograms()}
-if(sessionStorage.getItem('rkAuth')==='ok'){showContent()}
+showContent()
 
 const USD_RATE=1200;
 const PROGRAMS=[

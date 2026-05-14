@@ -245,7 +245,7 @@ function buildDigital(){
   document.getElementById('tc-digital').innerHTML=h;
 }
 function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios();buildDigital()}
-if(sessionStorage.getItem('rkAuth')==='ok'){showContent()}
+showContent()
 </script>
 </body>
 </html>
