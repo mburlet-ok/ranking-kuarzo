@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Con Vos · Streaming en Vivo — Kuarzo</title>
+<style>
+:root{--bg:#0a0a14;--surface:#11111e;--card:#181826;--border:#252535;--accent:#ff3366;--accent2:#ff6b35;--accent3:#ffa500;--text:#f5f5f7;--muted:#9ca3af;--green:#10b981;--gold:#fbbf24;--rcv:#ff3366;--yt:#ff0000}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;background:
+  radial-gradient(circle at 15% 10%,rgba(255,51,102,.18),transparent 45%),
+  radial-gradient(circle at 85% 90%,rgba(255,107,53,.12),transparent 45%),
+  radial-gradient(circle at 50% 50%,rgba(255,165,0,.06),transparent 60%);
+  pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:28px 24px 80px}
+
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:14px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#ff3366,#ff6b35,#ffa500);display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:1.15rem;letter-spacing:-1px;box-shadow:0 4px 20px rgba(255,51,102,.4)}
+.brand-text .t1{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,#ff3366,#ff6b35,#ffa500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.5px;line-height:1}
+.brand-text .t2{font-size:.78rem;color:var(--muted);margin-top:4px;letter-spacing:.5px}
+.back{color:var(--accent);text-decoration:none;font-size:.84rem;font-weight:600;padding:8px 16px;border:1px solid var(--border);border-radius:10px;transition:all .2s}
+.back:hover{border-color:var(--accent);background:rgba(255,51,102,.08)}
+
+.live-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(255,0,0,.15);border:1px solid rgba(255,0,0,.4);border-radius:6px;font-size:.68rem;font-weight:800;color:#ff5252;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#ff0000;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+.kpi:hover{transform:translateY(-3px);border-color:rgba(255,51,102,.4)}
+.kpi::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+.kpi-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,51,102,.12);display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--accent)}
+.kpi-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-weight:700;margin-bottom:4px}
+.kpi-value{font-size:1.7rem;font-weight:900;color:var(--text);letter-spacing:-1px;line-height:1.1}
+.kpi-sub{font-size:.74rem;color:var(--muted);margin-top:6px}
+.kpi-sub strong{color:var(--gold);font-weight:700}
+
+.section-title{font-size:1rem;font-weight:800;margin:28px 0 14px;display:flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:1px}
+.section-title::before{content:'';width:4px;height:18px;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:2px}
+.section-title .badge{font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:8px;background:rgba(255,51,102,.12);color:var(--accent);letter-spacing:.5px;text-transform:none}
+
+.grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:1024px){.grid-2{grid-template-columns:1fr}}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;position:relative;overflow:hidden}
+.card-title{font-size:.9rem;font-weight:700;margin-bottom:4px}
+.card-sub{font-size:.72rem;color:var(--muted);margin-bottom:18px}
+
+/* PROGRAM BARS */
+.prog-bar{display:flex;align-items:center;gap:14px;margin-bottom:12px;animation:slideIn .5s ease-out backwards}
+.prog-bar:nth-child(1){animation-delay:.05s}
+.prog-bar:nth-child(2){animation-delay:.1s}
+.prog-bar:nth-child(3){animation-delay:.15s}
+.prog-bar:nth-child(4){animation-delay:.2s}
+.prog-bar:nth-child(5){animation-delay:.25s}
+.prog-bar:nth-child(n+6){animation-delay:.3s}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.prog-rank{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;background:rgba(255,255,255,.04);color:var(--muted)}
+.prog-bar.r1 .prog-rank{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#000}
+.prog-bar.r2 .prog-rank{background:linear-gradient(135deg,#cbd5e1,#94a3b8);color:#000}
+.prog-bar.r3 .prog-rank{background:linear-gradient(135deg,#b45309,#92400e);color:#fff}
+.prog-info{flex:1;min-width:0}
+.prog-name{font-size:.85rem;font-weight:700;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog-track{height:12px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative}
+.prog-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));position:relative;animation:grow 1.1s ease-out}
+@keyframes grow{from{width:0}}
+.prog-stats{text-align:right;flex-shrink:0;min-width:130px}
+.prog-avg{font-size:1rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
+.prog-peak{font-size:.7rem;color:var(--muted);margin-top:2px}
+.prog-peak strong{color:var(--gold)}
+
+/* HOURLY CHART */
+.hourly-chart{position:relative;height:220px;display:flex;align-items:flex-end;gap:3px;padding:8px 0}
+.hour-bar{flex:1;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:4px 4px 0 0;min-height:2px;position:relative;cursor:pointer;transition:all .2s;animation:rise 1s ease-out}
+@keyframes rise{from{transform:scaleY(0);transform-origin:bottom}}
+.hour-bar:hover{filter:brightness(1.2)}
+.hour-bar:hover .hour-tip{display:block}
+.hour-tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:6px 10px;border-radius:6px;font-size:.7rem;white-space:nowrap;z-index:10;font-weight:600}
+.hour-tip strong{color:var(--gold)}
+.hour-axis{display:flex;gap:3px;margin-top:6px}
+.hour-axis div{flex:1;text-align:center;font-size:.62rem;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* DAILY CHART */
+.daily-wrap{height:260px;position:relative;padding:8px 0}
+.daily-svg{width:100%;height:100%}
+
+/* HEATMAP */
+.heatmap-wrap{overflow-x:auto;margin-top:8px}
+.heatmap{display:grid;grid-template-columns:130px repeat(19,1fr);gap:2px;min-width:900px}
+.heatmap-cell{height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;color:#fff;transition:transform .15s;cursor:pointer;font-variant-numeric:tabular-nums}
+.heatmap-cell:hover{transform:scale(1.15);z-index:5;position:relative}
+.heatmap-cell.empty{background:rgba(255,255,255,.03)}
+.heatmap-label{font-size:.74rem;font-weight:700;display:flex;align-items:center;color:var(--text);padding:0 8px}
+.heatmap-hour{font-size:.62rem;color:var(--muted);text-align:center;padding:4px 0;font-weight:600}
+
+.legend{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:.7rem;color:var(--muted);flex-wrap:wrap}
+.legend-grad{width:160px;height:10px;border-radius:5px;background:linear-gradient(90deg,#1f2937,#fbbf24,#ff6b35,#ff3366)}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:6px}
+thead th{background:rgba(255,255,255,.02);padding:10px 12px;text-align:left;font-size:.66rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+tbody tr:last-child{border:none}
+tbody tr:hover{background:rgba(255,51,102,.05)}
+tbody td{padding:8px 12px;font-variant-numeric:tabular-nums}
+td.name{font-weight:600}
+td.num{text-align:right;font-weight:700}
+td.rank-cell{font-weight:800;color:var(--accent);width:32px}
+tr.r1 td.rank-cell{color:#fbbf24}
+tr.r2 td.rank-cell{color:#94a3b8}
+tr.r3 td.rank-cell{color:#b45309}
+
+.notes{background:rgba(255,165,0,.06);border:1px solid rgba(255,165,0,.18);border-radius:12px;padding:14px 18px;margin-top:22px;font-size:.78rem;color:var(--muted);line-height:1.6}
+.notes strong{color:var(--accent3);display:block;margin-bottom:4px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">
+      <div class="brand-logo">RCV</div>
+      <div class="brand-text">
+        <div class="t1">Radio Con Vos · YouTube Live</div>
+        <div class="t2">Análisis de audiencia en streaming · YouTube en vivo</div>
+      </div>
+    </div>
+    <a href="index.html" class="back">← Volver</a>
+  </div>
+
+  <div class="live-badge"><div class="live-dot"></div>Datos del 1 al 29 de Abril 2026</div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-icon">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+      </div>
+      <div class="kpi-label">Promedio · Espectadores</div>
+      <div class="kpi-value" id="kpi-avg">—</div>
+      <div class="kpi-sub">en vivo · simultáneos</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon" style="background:rgba(251,191,36,.12);color:var(--gold)">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 17 14 19 22 12 17 5 22 7 14 2 9 9 9 12 2"/></svg>
+      </div>
+      <div class="kpi-label">Peak Máximo</div>
+      <div class="kpi-value" id="kpi-peak" style="background:linear-gradient(135deg,#fbbf24,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent">—</div>
+      <div class="kpi-sub" id="kpi-peak-info">—</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon" style="background:rgba(16,185,129,.12);color:var(--green)">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+      </div>
+      <div class="kpi-label">Programas Trackeados</div>
+      <div class="kpi-value" id="kpi-progs">—</div>
+      <div class="kpi-sub" id="kpi-days">—</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon" style="background:rgba(255,107,53,.12);color:var(--accent2)">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="kpi-label">Muestras / Mediciones</div>
+      <div class="kpi-value" id="kpi-samples">—</div>
+      <div class="kpi-sub">cada ~10 minutos en YouTube</div>
+    </div>
+  </div>
+
+  <!-- Top Programs + Hourly -->
+  <div class="section-title">Top Programas <span class="badge">Por audiencia promedio</span></div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Ranking · Espectadores Promedio en Vivo</div>
+      <div class="card-sub">YouTube Live · período completo</div>
+      <div id="programs-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Distribución por Hora del Día</div>
+      <div class="card-sub">Promedio total · todas las franjas</div>
+      <div class="hourly-chart" id="hourly-chart"></div>
+      <div class="hour-axis" id="hourly-axis"></div>
+    </div>
+  </div>
+
+  <!-- Daily evolution -->
+  <div class="section-title">Evolución Diaria <span class="badge">Promedio + Peak</span></div>
+  <div class="card">
+    <div class="card-title">Audiencia día por día</div>
+    <div class="card-sub">Promedio (línea sólida) y peak máximo (línea punteada)</div>
+    <div class="daily-wrap"><svg class="daily-svg" id="daily-svg" preserveAspectRatio="none"></svg></div>
+  </div>
+
+  <!-- Heatmap top programs by hour -->
+  <div class="section-title" style="margin-top:24px">Heatmap · Top Programas × Hora</div>
+  <div class="card">
+    <div class="card-title">Concentración de audiencia</div>
+    <div class="card-sub">Color más intenso = más espectadores promedio en esa franja</div>
+    <div class="heatmap-wrap"><div class="heatmap" id="heatmap"></div></div>
+    <div class="legend">
+      <span>Menor</span><div class="legend-grad"></div><span>Mayor</span>
+    </div>
+  </div>
+
+  <!-- Full Table -->
+  <div class="section-title" style="margin-top:24px">Detalle · Todos los Programas</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Programa</th><th style="text-align:right">Avg Live</th><th style="text-align:right">Peak</th><th style="text-align:right">Muestras</th></tr>
+      </thead>
+      <tbody id="full-table"></tbody>
+    </table>
+  </div>
+
+  <div class="notes">
+    <strong>📺 Sobre los datos</strong>
+    Fuente: Data Trip Streaming · Análisis del canal de YouTube de Radio Con Vos. Cada muestra es una medición tomada cada ~10 minutos durante la transmisión en vivo. El "Promedio" es el avg de espectadores simultáneos en YouTube Live; el "Peak" es el máximo registrado en cualquier momento. Período: 01–29 Abril 2026.
+  </div>
+</div>
+
+<script>
+const DATA = {"programs": [{"name": "YAQPA", "avg": 14982, "peak": 23136, "samples": 460}, {"name": "LIM", "avg": 10329, "peak": 16194, "samples": 214}, {"name": "PASARON COSAS", "avg": 9801, "peak": 14598, "samples": 349}, {"name": "NO DEJES PARA MAÑANA", "avg": 3777, "peak": 7829, "samples": 222}, {"name": "TARDE PARA NADA", "avg": 2157, "peak": 2728, "samples": 36}, {"name": "VAMO A CALMARNO", "avg": 2054, "peak": 10028, "samples": 251}, {"name": "AL FIN SUCEDE", "avg": 1989, "peak": 2588, "samples": 18}, {"name": "¿QUIÉN SOS?", "avg": 1986, "peak": 3081, "samples": 25}, {"name": "NO HAY PLATA", "avg": 1744, "peak": 2476, "samples": 23}, {"name": "CÓDIGO ABIERTO", "avg": 1593, "peak": 2532, "samples": 30}, {"name": "EL CÍRCULO ROJO", "avg": 1253, "peak": 1577, "samples": 48}, {"name": "UN DÍA CASI PERFECTO", "avg": 1209, "peak": 1548, "samples": 47}, {"name": "ESTO TAMBIÉN PASARÁ", "avg": 1182, "peak": 1614, "samples": 23}, {"name": "FUTURO IMPERFECTO", "avg": 1177, "peak": 1427, "samples": 24}, {"name": "SALIDA DE EMERGENCIA", "avg": 1058, "peak": 1423, "samples": 18}, {"name": "FUERA DE TIEMPO", "avg": 990, "peak": 1553, "samples": 30}, {"name": "ARGENTINA MACONDO", "avg": 849, "peak": 1352, "samples": 24}, {"name": "ESTILO VIERNES", "avg": 846, "peak": 1306, "samples": 18}, {"name": "EL QUE LAS HACE LAS PAGA", "avg": 751, "peak": 1051, "samples": 24}, {"name": "LAS COSAS COMO SON", "avg": 682, "peak": 898, "samples": 24}, {"name": "MÁS DE LO ESPERADO", "avg": 650, "peak": 878, "samples": 30}, {"name": "SPOILERS", "avg": 646, "peak": 804, "samples": 18}, {"name": "DICEN QUE DICEN", "avg": 524, "peak": 726, "samples": 23}, {"name": "YO NO FUI", "avg": 489, "peak": 744, "samples": 48}, {"name": "HUEVOS REVUELTOS", "avg": 469, "peak": 994, "samples": 48}, {"name": "SIBERIA", "avg": 454, "peak": 793, "samples": 48}, {"name": "CIUDAD HUMANA", "avg": 446, "peak": 543, "samples": 18}, {"name": "Y AHORA QUE?", "avg": 411, "peak": 480, "samples": 18}, {"name": "EL ANTÍDOTO", "avg": 403, "peak": 539, "samples": 30}, {"name": "UN GRAN PLAN", "avg": 402, "peak": 650, "samples": 48}, {"name": "LA QUE SE NOS VIENE", "avg": 355, "peak": 517, "samples": 34}, {"name": "OTRO PLAN", "avg": 330, "peak": 445, "samples": 48}, {"name": "UN PAÍS EN SERIO", "avg": 305, "peak": 376, "samples": 20}, {"name": "CATA DE NOTICIAS", "avg": 290, "peak": 345, "samples": 24}, {"name": "ASUNTOS PÚBLICOS", "avg": 289, "peak": 330, "samples": 18}, {"name": "LIBROS SIN TIEMPO", "avg": 271, "peak": 346, "samples": 33}, {"name": "NO TAN ALIADOS", "avg": 248, "peak": 299, "samples": 26}, {"name": "MÁS O MENOS BIEN", "avg": 220, "peak": 309, "samples": 49}, {"name": "EL ÚLTIMO GRITO", "avg": 208, "peak": 276, "samples": 29}, {"name": "MUNDO EN CLAVE", "avg": 139, "peak": 179, "samples": 24}, {"name": "ANIMALES POLÍTICOS", "avg": 63, "peak": 88, "samples": 24}, {"name": "PONÉ NOTICIAS", "avg": 55, "peak": 65, "samples": 24}, {"name": "GAMBITO DE DATOS", "avg": 45, "peak": 54, "samples": 26}, {"name": "MIRÁ QUE TE COMO", "avg": 41, "peak": 62, "samples": 23}], "daily": [{"date": "2026-04-01", "avg": 7155, "peak": 19597, "samples": 109}, {"date": "2026-04-02", "avg": 1559, "peak": 2443, "samples": 55}, {"date": "2026-04-04", "avg": 627, "peak": 1401, "samples": 84}, {"date": "2026-04-05", "avg": 240, "peak": 635, "samples": 63}, {"date": "2026-04-06", "avg": 8008, "peak": 21171, "samples": 104}, {"date": "2026-04-07", "avg": 7627, "peak": 23136, "samples": 109}, {"date": "2026-04-08", "avg": 6932, "peak": 21871, "samples": 109}, {"date": "2026-04-09", "avg": 6653, "peak": 22044, "samples": 110}, {"date": "2026-04-10", "avg": 6867, "peak": 22523, "samples": 109}, {"date": "2026-04-11", "avg": 686, "peak": 1548, "samples": 85}, {"date": "2026-04-12", "avg": 249, "peak": 608, "samples": 60}, {"date": "2026-04-13", "avg": 8012, "peak": 22647, "samples": 104}, {"date": "2026-04-14", "avg": 5043, "peak": 15546, "samples": 109}, {"date": "2026-04-15", "avg": 6587, "peak": 20237, "samples": 110}, {"date": "2026-04-16", "avg": 7313, "peak": 20666, "samples": 109}, {"date": "2026-04-17", "avg": 6786, "peak": 17297, "samples": 109}, {"date": "2026-04-18", "avg": 669, "peak": 1412, "samples": 83}, {"date": "2026-04-19", "avg": 247, "peak": 621, "samples": 61}, {"date": "2026-04-20", "avg": 7609, "peak": 21843, "samples": 103}, {"date": "2026-04-21", "avg": 6361, "peak": 19628, "samples": 115}, {"date": "2026-04-22", "avg": 7535, "peak": 20403, "samples": 107}, {"date": "2026-04-23", "avg": 6682, "peak": 19851, "samples": 110}, {"date": "2026-04-24", "avg": 6636, "peak": 19454, "samples": 108}, {"date": "2026-04-25", "avg": 698, "peak": 1577, "samples": 86}, {"date": "2026-04-26", "avg": 283, "peak": 744, "samples": 61}, {"date": "2026-04-27", "avg": 7816, "peak": 21724, "samples": 103}, {"date": "2026-04-28", "avg": 7173, "peak": 20971, "samples": 109}, {"date": "2026-04-29", "avg": 6326, "peak": 20617, "samples": 109}], "subs_trend": [{"date": "2026-04-01", "subs": 310, "likes": 37000}, {"date": "2026-04-06", "subs": 310, "likes": 39000}, {"date": "2026-04-09", "subs": 310, "likes": 23000}, {"date": "2026-04-13", "subs": 310, "likes": 53000}, {"date": "2026-04-14", "subs": 310, "likes": 40000}, {"date": "2026-04-15", "subs": 310, "likes": 83000}, {"date": "2026-04-17", "subs": 340, "likes": 86000}, {"date": "2026-04-18", "subs": 340, "likes": 98000}, {"date": "2026-04-19", "subs": 340, "likes": 98000}, {"date": "2026-04-20", "subs": 340, "likes": 82000}, {"date": "2026-04-21", "subs": 340, "likes": 96000}, {"date": "2026-04-22", "subs": 341, "likes": 29000}, {"date": "2026-04-23", "subs": 341, "likes": 60000}, {"date": "2026-04-24", "subs": 341, "likes": 39000}, {"date": "2026-04-25", "subs": 341, "likes": 99000}, {"date": "2026-04-26", "subs": 342, "likes": 99000}, {"date": "2026-04-27", "subs": 342, "likes": 98000}, {"date": "2026-04-28", "subs": 342, "likes": 99000}, {"date": "2026-04-29", "subs": 342, "likes": 79000}], "hourly": [{"hour": 0, "avg": 220, "samples": 7}, {"hour": 5, "avg": 35, "samples": 16}, {"hour": 6, "avg": 953, "samples": 119}, {"hour": 7, "avg": 2446, "samples": 138}, {"hour": 8, "avg": 11483, "samples": 144}, {"hour": 9, "avg": 13317, "samples": 144}, {"hour": 10, "avg": 10912, "samples": 167}, {"hour": 11, "avg": 9386, "samples": 168}, {"hour": 12, "avg": 8250, "samples": 168}, {"hour": 13, "avg": 6557, "samples": 168}, {"hour": 14, "avg": 7440, "samples": 168}, {"hour": 15, "avg": 7138, "samples": 168}, {"hour": 16, "avg": 6661, "samples": 148}, {"hour": 17, "avg": 4021, "samples": 137}, {"hour": 18, "avg": 2469, "samples": 138}, {"hour": 19, "avg": 1384, "samples": 161}, {"hour": 20, "avg": 849, "samples": 162}, {"hour": 21, "avg": 559, "samples": 139}, {"hour": 22, "avg": 340, "samples": 138}, {"hour": 23, "avg": 276, "samples": 95}], "heatmap": {"YAQPA": {"10": 15515, "11": 13420, "12": 12111, "8": 14845, "9": 16486}, "LIM": {"13": 9239, "12": 11606, "11": 8706}, "PASARON COSAS": {"17": 7111, "16": 8537, "15": 10333, "14": 10668, "13": 10461}, "NO DEJES PARA MAÑANA": {"18": 2937, "17": 4684, "19": 2429}, "TARDE PARA NADA": {"20": 1935, "19": 2380}, "VAMO A CALMARNO": {"8": 7850, "7": 2912, "6": 993, "5": 36}, "AL FIN SUCEDE": {"19": 1989}, "¿QUIÉN SOS?": {"19": 2008, "20": 1455}}, "top_progs": ["YAQPA", "LIM", "PASARON COSAS", "NO DEJES PARA MAÑANA", "TARDE PARA NADA", "VAMO A CALMARNO", "AL FIN SUCEDE", "¿QUIÉN SOS?"], "totals": {"samples": 2693, "peak": 23136, "peak_prog": "YAQPA", "peak_fecha": "2026-04-07 08:52", "avg": 5477, "days": 28, "date_from": "2026-04-01", "date_to": "2026-04-29", "programs_count": 44, "max_subs": 342}};
+
+function fmt(n){return n.toLocaleString('es-AR')}
+
+function buildKPIs(){
+  const t = DATA.totals;
+  document.getElementById('kpi-avg').textContent = fmt(t.avg);
+  document.getElementById('kpi-peak').textContent = fmt(t.peak);
+  document.getElementById('kpi-peak-info').innerHTML = `en <strong>${t.peak_prog}</strong> · ${t.peak_fecha}`;
+  document.getElementById('kpi-progs').textContent = t.programs_count;
+  document.getElementById('kpi-days').innerHTML = `<strong>${t.days}</strong> días · ${t.date_from} → ${t.date_to}`;
+  document.getElementById('kpi-samples').textContent = fmt(t.samples);
+}
+
+function buildPrograms(){
+  const top = DATA.programs.slice(0, 10);
+  const max = top[0].avg;
+  let h = '';
+  top.forEach((p, i) => {
+    const w = (p.avg / max * 100).toFixed(1);
+    const rc = i===0?'r1':i===1?'r2':i===2?'r3':'';
+    h += `<div class="prog-bar ${rc}">
+      <div class="prog-rank">${i+1}</div>
+      <div class="prog-info">
+        <div class="prog-name">${p.name}</div>
+        <div class="prog-track"><div class="prog-fill" style="width:${w}%"></div></div>
+      </div>
+      <div class="prog-stats">
+        <div class="prog-avg">${fmt(p.avg)}</div>
+        <div class="prog-peak">peak <strong>${fmt(p.peak)}</strong></div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('programs-list').innerHTML = h;
+}
+
+function buildHourly(){
+  const h = DATA.hourly;
+  const max = Math.max(...h.map(x => x.avg));
+  const allHours = Array.from({length:24},(_,i)=>i);
+  let bars = '';
+  let axis = '';
+  allHours.forEach(hr => {
+    const d = h.find(x => x.hour === hr);
+    const v = d ? d.avg : 0;
+    const pct = (v / max * 100).toFixed(1);
+    bars += `<div class="hour-bar" style="height:${pct}%">
+      <div class="hour-tip">${hr}:00 hs · <strong>${fmt(v)}</strong> espectadores</div>
+    </div>`;
+    axis += `<div>${hr}h</div>`;
+  });
+  document.getElementById('hourly-chart').innerHTML = bars;
+  document.getElementById('hourly-axis').innerHTML = axis;
+}
+
+function buildDaily(){
+  const d = DATA.daily;
+  if (!d.length) return;
+  const w = 1200, ht = 240, pad = 30;
+  const maxAvg = Math.max(...d.map(x => x.avg));
+  const maxPeak = Math.max(...d.map(x => x.peak));
+  const maxY = Math.max(maxAvg, maxPeak) * 1.05;
+  const xs = (i) => pad + (w - 2*pad) * (i / (d.length - 1 || 1));
+  const ys = (v) => ht - pad - (ht - 2*pad) * (v / maxY);
+
+  let avgPath = '';
+  let peakPath = '';
+  let avgPoints = '';
+  let peakPoints = '';
+  d.forEach((x, i) => {
+    const X = xs(i), Yavg = ys(x.avg), Ypeak = ys(x.peak);
+    avgPath += (i===0 ? 'M' : 'L') + X + ',' + Yavg + ' ';
+    peakPath += (i===0 ? 'M' : 'L') + X + ',' + Ypeak + ' ';
+    avgPoints += `<circle cx="${X}" cy="${Yavg}" r="3" fill="#ff3366" />`;
+    peakPoints += `<circle cx="${X}" cy="${Ypeak}" r="2.5" fill="#ffa500" />`;
+  });
+  // Y axis gridlines
+  let grid = '';
+  let yLabels = '';
+  for (let i=0; i<=4; i++) {
+    const yv = maxY * (1 - i/4);
+    const yp = pad + (ht - 2*pad) * (i/4);
+    grid += `<line x1="${pad}" y1="${yp}" x2="${w-pad}" y2="${yp}" stroke="rgba(255,255,255,.05)" />`;
+    yLabels += `<text x="${pad-6}" y="${yp+3}" font-size="9" fill="#9ca3af" text-anchor="end">${Math.round(yv).toLocaleString('es-AR')}</text>`;
+  }
+  // X labels (every nth)
+  let xLabels = '';
+  const step = Math.ceil(d.length / 10);
+  d.forEach((x, i) => {
+    if (i % step === 0 || i === d.length-1) {
+      xLabels += `<text x="${xs(i)}" y="${ht-10}" font-size="9" fill="#9ca3af" text-anchor="middle">${x.date.slice(5)}</text>`;
+    }
+  });
+  // Legend
+  const legend = `<g>
+    <circle cx="${w-160}" cy="18" r="4" fill="#ff3366" />
+    <text x="${w-150}" y="22" font-size="11" fill="#f5f5f7">Promedio</text>
+    <circle cx="${w-80}" cy="18" r="4" fill="#ffa500" />
+    <text x="${w-70}" y="22" font-size="11" fill="#f5f5f7">Peak</text>
+  </g>`;
+  document.getElementById('daily-svg').innerHTML = `<svg width="${w}" height="${ht}" viewBox="0 0 ${w} ${ht}" preserveAspectRatio="none" style="overflow:visible">
+    ${grid}
+    ${yLabels}
+    <path d="${peakPath}" fill="none" stroke="#ffa500" stroke-width="1.5" stroke-dasharray="4,3" opacity=".8" />
+    <path d="${avgPath}" fill="none" stroke="#ff3366" stroke-width="2.5" />
+    ${peakPoints}
+    ${avgPoints}
+    ${xLabels}
+    ${legend}
+  </svg>`;
+  document.getElementById('daily-svg').setAttribute('viewBox', `0 0 ${w} ${ht}`);
+}
+
+function colorForValue(v, max){
+  const t = Math.min(v/max, 1);
+  // gradient: #1f2937 → #fbbf24 → #ff6b35 → #ff3366
+  if (t < 0.33) {
+    const k = t/0.33;
+    return mix('#1f2937', '#fbbf24', k);
+  } else if (t < 0.66) {
+    const k = (t-0.33)/0.33;
+    return mix('#fbbf24', '#ff6b35', k);
+  } else {
+    const k = (t-0.66)/0.34;
+    return mix('#ff6b35', '#ff3366', k);
+  }
+}
+function mix(a, b, t){
+  const ah = parseInt(a.slice(1),16), bh = parseInt(b.slice(1),16);
+  const ar=(ah>>16)&255, ag=(ah>>8)&255, ab=ah&255;
+  const br=(bh>>16)&255, bg=(bh>>8)&255, bb=bh&255;
+  const r = Math.round(ar+(br-ar)*t), g=Math.round(ag+(bg-ag)*t), bl=Math.round(ab+(bb-ab)*t);
+  return `rgb(${r},${g},${bl})`;
+}
+
+function buildHeatmap(){
+  const hours = Array.from({length:19},(_,i)=>i+5); // 5h - 23h
+  const progs = DATA.top_progs;
+  const heatmap = DATA.heatmap;
+  // Find max across heatmap
+  let maxV = 0;
+  Object.values(heatmap).forEach(p => Object.values(p).forEach(v => { if (v > maxV) maxV = v; }));
+
+  let h = '<div class="heatmap-label"></div>';
+  hours.forEach(hr => h += `<div class="heatmap-hour">${hr}h</div>`);
+  progs.forEach(p => {
+    h += `<div class="heatmap-label">${p}</div>`;
+    hours.forEach(hr => {
+      const v = heatmap[p][hr];
+      if (v && v > 0) {
+        h += `<div class="heatmap-cell" style="background:${colorForValue(v, maxV)}" title="${p} ${hr}h: ${v.toLocaleString('es-AR')}">${v >= 1000 ? Math.round(v/100)/10+'k' : v}</div>`;
+      } else {
+        h += `<div class="heatmap-cell empty"></div>`;
+      }
+    });
+  });
+  document.getElementById('heatmap').innerHTML = h;
+}
+
+function buildTable(){
+  let h = '';
+  DATA.programs.forEach((p, i) => {
+    const rc = i===0?'r1':i===1?'r2':i===2?'r3':'';
+    h += `<tr class="${rc}">
+      <td class="rank-cell">${i+1}</td>
+      <td class="name">${p.name}</td>
+      <td class="num" style="color:#ff3366">${fmt(p.avg)}</td>
+      <td class="num" style="color:#fbbf24">${fmt(p.peak)}</td>
+      <td class="num" style="color:#9ca3af">${fmt(p.samples)}</td>
+    </tr>`;
+  });
+  document.getElementById('full-table').innerHTML = h;
+}
+
+buildKPIs();
+buildPrograms();
+buildHourly();
+buildDaily();
+buildHeatmap();
+buildTable();
+</script>
+</body>
+</html>
