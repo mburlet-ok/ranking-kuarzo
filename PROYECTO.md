@@ -24,8 +24,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
 
 ## Notas
 - (acá vamos anotando cambios y pendientes)
-- 2026-08: Agregados MAY 2026 y JUN 2026 (ranking clientes/vendedores/programas + Con/Sin GH),
+- 2026-08: Agregados MAY, JUN y JUL 2026 (ranking clientes/vendedores/programas + Con/Sin GH),
   reconstruidos desde las grillas de facturación (`COSTO MENSUAL` = cant × costo neto por cliente).
-  Acumulado 2026 y Evolución actualizados a Ene–Jun. Tanda de Gran Hermano sin vendedor → TELEFE (como Abril).
-- PENDIENTE Julio 2026: el archivo recibido solo trae la hoja resumen (directo), faltan las grillas por
-  programa (GH, CDP, LCR, etc.). Esperar archivo completo para cargarlo consistente con May/Jun.
+  Acumulado 2026 (Ene–Jul, $18.11B) y Evolución actualizados. Tanda de Gran Hermano sin vendedor → TELEFE (como Abril).
+  Julio salió de `GRILLA JULIO 2026 30.xlsx` (el archivo completo con grillas); el primer archivo de Julio
+  venía incompleto (solo hoja resumen).
