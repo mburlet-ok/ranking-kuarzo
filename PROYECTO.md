@@ -43,3 +43,13 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   `buildSection()` ahora muestra la columna de un mes solo si algún medio tiene dato (`s/d` si falta) y
   marca el KPI como "(parcial x/y)" cuando el mes está incompleto. Para cargar el resto de Julio: agregar
   `jul_costo`/`jul_cant`/`jul_inv` a cada fila del `DATA`.
+- 2026-08-18 (3): en `facturacion.html` **nuestros programas y medios pasan a facturación real de las
+  grillas** (fuente: `DATA.<mes>.programs` de `ranking.html`, Mar–Jul 2026): GH, ES MI SUEÑO, CORTA POR
+  LOZANO, LA COCINA REBELDE, A LA BARBARROSA, CUESTION DE PESO, TODO COCINADO, BIENVENIDOS A GANAR,
+  POLEMICA EN EL BAR y KZO (en Canales) + altas MIX TV y ARRIBA AMERICA. Esas filas llevan badge KUARZO
+  y NO usan la proyección +10%/−25%; el resto del mercado (monitor) sigue proyectado y se ve con fondo
+  violeta. PNTs de May–Jul derivados del precio efectivo de Abril (grilla da plata, no PNTs); en Canales
+  los segundos se recalculan como plata ÷ costo/seg. Última columna pasó a "Var. vs Marzo" (contra el
+  último mes con dato de cada fila, con el mes indicado al lado). **Sin dato de grilla 2026:** RCV,
+  URBANA PLAY y ESCUELA DE COCINA (siguen proyectados / en cero); el bucket MEDIOS de las grillas no
+  tiene fila en este informe.
