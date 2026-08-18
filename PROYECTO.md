@@ -36,3 +36,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   marcadas ("proy.") + banner de aviso arriba. Tablas unificadas en `buildSection()`; se agregó columna
   "Var. Mar→Jun" y buscador por fila. Fix: en Cable el `$/Seg` mostraba "-" (usaba `p.valor`, que no
   existe en esas filas) — ahora usa `abr_costo`.
+- 2026-08-18 (2): pestaña "TV Cable" renombrada a **"Canales"** (ahora mezcla cable y aire) y se sumó
+  **Julio 2026 con datos reales**, por ahora solo dos canales: TN $3.000M (200.000 seg @ $15.000/seg) y
+  CANAL 13 $3.500M (175.000 seg @ $20.000/seg) — segundos calculados como facturación ÷ costo por segundo.
+  CANAL 13 es alta nueva en la tabla de Canales (no tiene Mar–Jun; el CANAL 13 de Streaming es otra fila).
+  `buildSection()` ahora muestra la columna de un mes solo si algún medio tiene dato (`s/d` si falta) y
+  marca el KPI como "(parcial x/y)" cuando el mes está incompleto. Para cargar el resto de Julio: agregar
+  `jul_costo`/`jul_cant`/`jul_inv` a cada fila del `DATA`.
