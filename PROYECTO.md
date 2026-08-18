@@ -29,3 +29,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Acumulado 2026 (Ene–Jul, $18.11B) y Evolución actualizados. Tanda de Gran Hermano sin vendedor → TELEFE (como Abril).
   Julio salió de `GRILLA JULIO 2026 30.xlsx` (el archivo completo con grillas); el primer archivo de Julio
   venía incompleto (solo hoja resumen).
+- 2026-08-18: `facturacion.html` pasa de "Marzo vs Abril" a 4 meses (Marzo · Abril · Mayo · Junio 2026)
+  en TV Aire, Streaming, Cable y Radios. **Mayo y Junio son proyección**, no datos reales:
+  Mayo = Abril +10% y Junio = Mayo −25%, aplicado a inversión y cantidades (PNTs / segundos) de cada
+  medio; los costos por salida/segundo quedan iguales a Abril. Las columnas de meses proyectados van
+  marcadas ("proy.") + banner de aviso arriba. Tablas unificadas en `buildSection()`; se agregó columna
+  "Var. Mar→Jun" y buscador por fila. Fix: en Cable el `$/Seg` mostraba "-" (usaba `p.valor`, que no
+  existe en esas filas) — ahora usa `abr_costo`.
