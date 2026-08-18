@@ -94,3 +94,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   s/d (el dato llega hasta junio). Antes el informe las tenía en $1,2–1,6B/mes (monitor) y con La 100 arriba
   de Mitre; ahora Mitre queda primera, como corresponde al 55/45. Si aparece el desglose mes a mes, cambiar
   el plano por los valores reales.
+- 2026-08-18 (9): **Rankings reordenados.** Antes las tablas iban fijas por Abril, así que con 5 meses
+  cargados el orden no se correspondía con lo que se ve (ej. Canal 26 debajo de Cinecanal). Ahora
+  `buildSection()` ordena por **promedio mensual** (no por total, porque las filas no tienen los mismos
+  meses cargados: ordenar por total castigaba a Mitre/La 100, que no tienen Julio). Se agregó columna
+  "Prom. mes" (promedio + subtítulo "N meses · total") y **todas las columnas son clickeables para
+  reordenar** (`ordenar(cat,key)` + estado en `SORT`); las filas sin dato en la columna elegida van
+  siempre al final. Se sacó la columna "Var. Mar→Abr" de la tabla (queda en los KPIs).

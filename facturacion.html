@@ -39,6 +39,9 @@ td.money{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;colo
 td.money span.sub{display:block;font-size:.64rem;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
 td.proj,th.proj{background:rgba(124,58,237,.05)}
 td.nod{color:var(--muted);font-weight:500}
+td.tot{color:var(--accent2);background:rgba(124,58,237,.04)}
+th .ord{color:var(--accent2);font-size:.6rem}
+thead th:hover{color:var(--text);background:#eef2ff}
 .kzo{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:5px;font-size:.6rem;font-weight:700;background:#ede9fe;color:#6d28d9;vertical-align:middle}
 th .pj{font-size:.6rem;color:var(--accent2);font-weight:700;letter-spacing:0}
 .tw{overflow-x:auto}
@@ -141,9 +144,36 @@ function varTot(p,mons){
   const v=+((p[ult.k+'_inv']-p.mar_inv)/p.mar_inv*100).toFixed(1);
   return `${fmtVar(v)} <span class="sub" style="display:inline">${ult.ab}</span>`;
 }
+const SECCFG={}, SORT={};
+const totalRow=(p,mons)=>{const v=mons.filter(m=>p[m.k+'_inv']!=null);return v.length?v.reduce((a,m)=>a+p[m.k+'_inv'],0):null};
+const promRow=(p,mons)=>{const v=mons.filter(m=>p[m.k+'_inv']!=null);return v.length?v.reduce((a,m)=>a+p[m.k+'_inv'],0)/v.length:null};
+function sortVal(p,key,mons,cfg){
+  if(key==='nom') return p.nombre;
+  if(key==='price') return cfg.price(p);
+  if(key==='prom') return promRow(p,mons);
+  if(key==='vartot'){const u=[...mons].reverse().find(m=>p[m.k+'_inv']!=null);return (!u||!p.mar_inv||u.k==='mar')?null:(p[u.k+'_inv']-p.mar_inv)/p.mar_inv}
+  return p[key+'_inv'];
+}
+function ordenar(cat,key){
+  const st=SORT[cat];
+  SORT[cat]= st && st.key===key ? {key,asc:!st.asc} : {key,asc:key==='nom'};
+  renderSection(cat);
+}
+function renderSection(cat){ document.getElementById('tc-'+cat).innerHTML=buildSection(cat,SECCFG[cat]); }
+
 function buildSection(cat,cfg){
-  const d=DATA[cat];
+  SECCFG[cat]=cfg;
+  const d=DATA[cat].slice();
   const mons=MONTHS.filter(m=>d.some(p=>p[m.k+'_inv']!=null));
+  const st=SORT[cat]||(SORT[cat]={key:'prom',asc:false});
+  d.sort((a,b)=>{
+    const x=sortVal(a,st.key,mons,cfg), y=sortVal(b,st.key,mons,cfg);
+    if(typeof x==='string'||typeof y==='string') return st.asc?String(x).localeCompare(y):String(y).localeCompare(x);
+    if(x==null&&y==null) return 0;
+    if(x==null) return 1;            // los sin dato siempre al final
+    if(y==null) return -1;
+    return st.asc?x-y:y-x;
+  });
   const tot={},cnt={}; mons.forEach(m=>{
     const con=d.filter(p=>p[m.k+'_inv']!=null);
     tot[m.k]=con.reduce((s,p)=>s+p[m.k+'_inv'],0); cnt[m.k]=con.length;
@@ -166,16 +196,18 @@ function buildSection(cat,cfg){
   h+=`<div class="kpi-card"><div class="kpi-label">Var. Mar → Jun</div><div class="kpi-value">${fmtVar(vJun)}</div></div>`;
   h+=`<div class="kpi-card"><div class="kpi-label">${cfg.countLbl}</div><div class="kpi-value">${d.length}</div></div>`;
   h+='</div>';
-  h+=`<div class="card"><div class="card-hdr"><div class="card-ttl">${cfg.cardTtl}</div><span class="card-cnt">${d.length} ${cfg.countLbl.toLowerCase()}</span></div>`;
+  h+=`<div class="card"><div class="card-hdr"><div class="card-ttl">${cfg.cardTtl}</div><span class="card-cnt">Ordenado por ${st.key==='prom'?'promedio mensual':st.key==='nom'?'nombre':st.key==='price'?cfg.priceLbl:st.key==='vartot'?'variación':MONTHS.find(m=>m.k===st.key).lbl} · clic en cualquier columna para reordenar</span></div>`;
   h+=`<div class="search-w"><input placeholder="Buscar ${cfg.nameLbl.toLowerCase()}..." oninput="filterT('tb-${cat}',this.value)"/></div>`;
-  h+=`<div class="tw"><table><thead><tr><th>#</th><th>${cfg.nameLbl}</th><th>${cfg.priceLbl}</th>`;
-  mons.forEach(m=>{h+=`<th class="${proyMes[m.k]?'proj':''}">${m.lbl}${proyMes[m.k]?' <span class="pj">proy.</span>':''}</th>`});
-  h+=`<th>Var. Mar→Abr</th><th>Var. vs Marzo</th></tr></thead><tbody id="tb-${cat}">`;
+  const fl=k=>st.key===k?` <span class="ord">${st.asc?'▲':'▼'}</span>`:'';
+  h+=`<div class="tw"><table><thead><tr><th>#</th><th onclick="ordenar('${cat}','nom')">${cfg.nameLbl}${fl('nom')}</th><th onclick="ordenar('${cat}','price')">${cfg.priceLbl}${fl('price')}</th>`;
+  mons.forEach(m=>{h+=`<th class="${proyMes[m.k]?'proj':''}" onclick="ordenar('${cat}','${m.k}')">${m.lbl}${proyMes[m.k]?' <span class="pj">proy.</span>':''}${fl(m.k)}</th>`});
+  h+=`<th onclick="ordenar('${cat}','prom')">Prom. mes${fl('prom')}</th><th onclick="ordenar('${cat}','vartot')">Var. vs Marzo${fl('vartot')}</th></tr></thead><tbody id="tb-${cat}">`;
   d.forEach((p,i)=>{
     const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
     h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}${p.kuarzo?' <span class="kzo">KUARZO</span>':''}</td><td class="money">${fmt(cfg.price(p))}</td>`;
     mons.forEach(m=>{h+=monthCell(p,m,p.unidad)});
-    h+=`<td class="num">${fmtVar(p.var)}</td><td class="num">${varTot(p,mons)}</td></tr>`;
+    const t=totalRow(p,mons), pr=promRow(p,mons), nm=mons.filter(m=>p[m.k+'_inv']!=null).length;
+    h+=`<td class="money tot">${pr==null?'-':fmt(pr)}${pr!=null?`<span class="sub">${nm} ${nm===1?'mes':'meses'} · ${fmt(t)}</span>`:''}</td><td class="num">${varTot(p,mons)}</td></tr>`;
   });
   h+='</tbody></table></div></div>';
   return h;
