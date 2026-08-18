@@ -82,3 +82,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   que es exactamente los "3 mil millones" que el usuario había pasado para TN (los había cargado en Julio;
   Julio real da $1,90B con 126.741 seg). La etiqueta "proy." del encabezado ahora sale sola solo si más de
   la mitad de las filas de ese mes siguen proyectadas.
+- 2026-08-18 (7): **RCV corregido**: el usuario pasó la facturación total de Radio con Vos —
+  May $173.129.278,78 · Jun $176.632.584,61 · Jul $170.584.051,34. Mar/Abr vuelven a la serie original
+  ($84,0M / $160,0M). O sea que el total de la hoja RCV de la grilla ($12–22M/mes) es solo la parte que
+  factura Kuarzo, NO la facturación de la radio: para este informe NO sirve. Segundos de May–Jul derivados
+  del $/seg efectivo de Abril ($1.006).
