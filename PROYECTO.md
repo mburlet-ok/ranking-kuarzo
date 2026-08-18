@@ -61,3 +61,14 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   $19,3M/$21,7M para Mar–Jun, muy por debajo de los $84M/$160M que muestra el informe). El archivo
   `07- Facturacion Julio 2026.xlsx` de esa carpeta NO tiene hoja FC (solo `Hoja1` con el detalle), así que
   Julio de Urbana quedó sin dato.
+- 2026-08-18 (5): **RCV no figura en la hoja FC de ningún mes** (verificado Ene a Jul 2026: la FC lista
+  ES MI SUEÑO, LCR, TC, BAG, CORTA, CDP, GEORGINA, GH, PB, ARRIBA AMERICA, KZO, MIXTV, URBANA PLAY y
+  SEG+MEDIOS; en la primera solapa "Facturacion" solo aparecen filas `RCV - TANDA` / `RCV - PNT`).
+  RCV se toma entonces de su **hoja RCV** (total TANDA + PNT) y los segundos de la columna
+  "Total Segundos": Mar $12,6M/20.282s · Abr $12,9M/16.134s · May $19,3M/27.308s · Jun $21,7M/26.072s ·
+  Jul $16,3M/43.092s. Antes el informe mostraba $84M/$160M para Mar/Abr (venían del monitor, no de las
+  grillas). URBANA PLAY: FC + segundos "Seg. c/ Cargo" de la hoja URBANA; Jul $997,5M.
+  **Julio completo está en `/Users/maxiburlet/Desktop/varios/GRILLA JULIO PARA EL CIERRE.xlsx`** (el
+  `07- Facturacion Julio 2026.xlsx` de la carpeta comercial solo tiene `Hoja1`, sin FC ni hojas de programa).
+  PENDIENTE: la FC y las grillas por programa no coinciden en GH, POLEMICA y BIENVENIDOS (la FC de
+  BIENVENIDOS es "segs + tanda"); definir con el usuario cuál manda para el informe.
