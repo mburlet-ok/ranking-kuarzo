@@ -87,3 +87,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   ($84,0M / $160,0M). O sea que el total de la hoja RCV de la grilla ($12–22M/mes) es solo la parte que
   factura Kuarzo, NO la facturación de la radio: para este informe NO sirve. Segundos de May–Jul derivados
   del $/seg efectivo de Abril ($1.006).
+- 2026-08-18 (8): **MITRE y LA 100 con dato real** pasado por el usuario: AM (Mitre) $6.300M y FM (La 100)
+  $5.184M de **enero a junio** — el reparto entre ambas da 54,9% / 45,1%, que confirma el "55 y 45" que
+  mencionó. Como el dato es un total de 6 meses y no un mes a mes, se cargó el **promedio mensual plano**:
+  Mitre $1.050M/mes (188.544 seg a $5.569) y La 100 $864M/mes (146.242 seg a $5.908), Mar–Jun. Julio queda
+  s/d (el dato llega hasta junio). Antes el informe las tenía en $1,2–1,6B/mes (monitor) y con La 100 arriba
+  de Mitre; ahora Mitre queda primera, como corresponde al 55/45. Si aparece el desglose mes a mes, cambiar
+  el plano por los valores reales.
