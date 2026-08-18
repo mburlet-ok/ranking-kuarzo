@@ -53,3 +53,11 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   último mes con dato de cada fila, con el mes indicado al lado). **Sin dato de grilla 2026:** RCV,
   URBANA PLAY y ESCUELA DE COCINA (siguen proyectados / en cero); el bucket MEDIOS de las grillas no
   tiene fila en este informe.
+- 2026-08-18 (4): URBANA PLAY pasa a facturación real de la **hoja FC** (columna INGRESOS) de
+  `\\Volumes\comercial\Facturacion\2026\0X- Facturacion <Mes> 2026.xlsx` — la hoja FC es el resumen del mes
+  por programa/medio y es la fuente original de los valores Mar/Abr que ya tenía el informe. Urbana:
+  Mar $939,4M · Abr $684,5M · May $732,0M · Jun $1.068,3M. Segundos de May/Jun derivados del $/seg efectivo
+  de Abril ($4.183). Ojo: **RCV no tiene línea en FC** (sí una hoja RCV propia, cuyo TOTAL da $12,6M/$12,9M/
+  $19,3M/$21,7M para Mar–Jun, muy por debajo de los $84M/$160M que muestra el informe). El archivo
+  `07- Facturacion Julio 2026.xlsx` de esa carpeta NO tiene hoja FC (solo `Hoja1` con el detalle), así que
+  Julio de Urbana quedó sin dato.
