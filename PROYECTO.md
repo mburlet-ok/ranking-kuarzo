@@ -72,3 +72,13 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   `07- Facturacion Julio 2026.xlsx` de la carpeta comercial solo tiene `Hoja1`, sin FC ni hojas de programa).
   PENDIENTE: la FC y las grillas por programa no coinciden en GH, POLEMICA y BIENVENIDOS (la FC de
   BIENVENIDOS es "segs + tanda"); definir con el usuario cuál manda para el informe.
+- 2026-08-18 (6): **Canales May–Jul con segundos reales** de `/Volumes/comercial/canales a hoy.xlsx`
+  (hoja "Parte Control": un spot por fila, 01/05 a 31/07/2026, todos "Corte Comercial"; agrupar por
+  Vehículo + mes sumando `Dur.Av.`). Inversión = segundos reales × el $/seg promedio que ya tenía cada
+  canal. Cubre TN, LN+, C5N, A24, Canal 26, Cinecanal, Discovery, AMC y Magazine. **No cubre** CRONICA ni
+  CIMEMAX (no están en el export → siguen proyectados) ni CANAL 13 (es aire; queda con los $3.500M de Julio
+  que pasó el usuario). **KZO queda con FC**, NO con el monitor: el parte de control le da 175.127 seg ×
+  $627 = $109,8M en Mayo contra $59,4M reales de FC. Validación: TN Mayo = 201.364 seg × $15.000 = **$3,02B**,
+  que es exactamente los "3 mil millones" que el usuario había pasado para TN (los había cargado en Julio;
+  Julio real da $1,90B con 126.741 seg). La etiqueta "proy." del encabezado ahora sale sola solo si más de
+  la mitad de las filas de ese mes siguen proyectadas.
