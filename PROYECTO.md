@@ -140,7 +140,11 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Marzo**: $377,0M y $149,2M. Ninguna fila nuestra (programas, KZO, Urbana, RCV) se calcula como
   segundos × valor promedio: la plata siempre sale de la grilla o del dato del usuario, y la cantidad se
   deriva de esa plata (por eso va con ≈).
-- 2026-08-19 (9): **KZO sin nada estimado**: plata de la grilla y segundos MEDIDOS — Mar/Abr del monitor
+- 2026-08-19 (9): **KZO 100% real** (plata de la hoja FC de cada mes: $46,1M · $45,8M · $59,4M · $58,2M · $72,1M): plata de la grilla y segundos MEDIDOS — Mar/Abr del monitor
   original (70.000 y 75.000) y May–Jul del parte de control de `canales a hoy.xlsx` (175.127 / 137.633 /
   84.638). El $/seg pasa a ser el efectivo real de cada mes ($658, $587, $341, $421, $825) en vez del
   $627 fijo. Se le sacó el marcador `est`.
+- 2026-08-19 (10): KZO pasó de la suma de la hoja KZO TANDA a los **INGRESOS de la hoja FC** de cada mes
+  (diferencias chicas salvo Julio: $69,8M → $72,1M). Ojo: FC y las hojas de programa siguen sin coincidir
+  en GH, POLEMICA y BIENVENIDOS (la línea de FC es "segs + tanda") — esos tres siguen con la suma de la
+  grilla por programa; falta que el usuario defina cuál manda.
