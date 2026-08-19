@@ -140,3 +140,7 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Marzo**: $377,0M y $149,2M. Ninguna fila nuestra (programas, KZO, Urbana, RCV) se calcula como
   segundos × valor promedio: la plata siempre sale de la grilla o del dato del usuario, y la cantidad se
   deriva de esa plata (por eso va con ≈).
+- 2026-08-19 (9): **KZO sin nada estimado**: plata de la grilla y segundos MEDIDOS — Mar/Abr del monitor
+  original (70.000 y 75.000) y May–Jul del parte de control de `canales a hoy.xlsx` (175.127 / 137.633 /
+  84.638). El $/seg pasa a ser el efectivo real de cada mes ($658, $587, $341, $421, $825) en vez del
+  $627 fijo. Se le sacó el marcador `est`.
