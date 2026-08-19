@@ -125,3 +125,7 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   el sitio — sin eso Vercel/el navegador servían la versión vieja después de cada deploy y parecía que los
   cambios no se habían aplicado. Además el encabezado muestra "actualizado dd/mm hh:mm" tomado de
   `document.lastModified`, para poder confirmar de un vistazo si se está viendo la última versión.
+- 2026-08-19 (6): alta de **CANAL 9** en Canales con $1.200M de facturación, cargado en **Julio** (mismo
+  criterio que CANAL 13, que también es aire y no está en el parte de control). Queda sin `$/seg` ni
+  segundos: falta que el usuario pase el valor por segundo para completarlos, igual que hizo con los
+  $20.000 de Canal 13.
