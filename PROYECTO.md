@@ -129,3 +129,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   criterio que CANAL 13, que también es aire y no está en el parte de control). Queda sin `$/seg` ni
   segundos: falta que el usuario pase el valor por segundo para completarlos, igual que hizo con los
   $20.000 de Canal 13.
+- 2026-08-19 (7): **LA NACION + recalculada a $6.000/seg** (antes $8.142) en los cinco meses, con los mismos
+  segundos. Baja de $4,9B a $4,9B de total... (Mar $852,0M · Abr $878,2M · May $1.272,3M · Jun $997,4M ·
+  Jul $856,2M) y cae del 4º al 6º puesto del ranking de Canales. Con esto queda en 3,4% de la tarifa de
+  lista del monitor, dentro de la banda de TN/C5N/A24 (2,3–2,8%); antes estaba en 4,7%, que era el desvío
+  que se había marcado.
