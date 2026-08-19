@@ -113,3 +113,6 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Mientras tanto, las cantidades **derivadas** (calculadas como plata ÷ $/seg o ÷ precio efectivo de Abril,
   no medidas por el monitor) se muestran con **≈** en cursiva: campo `est:[meses]` por fila. Hoy están
   marcadas: los 9 programas Kuarzo de TV (May–Jul), KZO y CANAL 13 en Canales, y MITRE, LA 100 y RCV en Radios.
+- 2026-08-19 (3): sacada la solapa **Digital** completa (pestaña, contenedor, `buildDigital()` y su llamada
+  en `showContent`). Eran datos sueltos de Febrero 2026 (share de sitios, anunciantes y media mix) que no
+  seguían el formato mes a mes del resto del informe. Quedan cuatro solapas: TV Aire, Streaming, Canales y Radios.
