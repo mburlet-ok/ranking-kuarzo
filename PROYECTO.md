@@ -134,3 +134,9 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Jul $856,2M) y cae del 4º al 6º puesto del ranking de Canales. Con esto queda en 3,4% de la tarifa de
   lista del monitor, dentro de la banda de TN/C5N/A24 (2,3–2,8%); antes estaba en 4,7%, que era el desvío
   que se había marcado.
+- 2026-08-19 (8): auditadas TODAS nuestras filas contra las grillas: coinciden exacto con la suma por
+  programa, salvo **CORTA POR LOZANO y CUESTION DE PESO en Marzo**, que seguían con el número del monitor
+  ($471,1M y $159,7M) porque las hojas de programa de Marzo no los tienen. Corregidos con la **hoja FC de
+  Marzo**: $377,0M y $149,2M. Ninguna fila nuestra (programas, KZO, Urbana, RCV) se calcula como
+  segundos × valor promedio: la plata siempre sale de la grilla o del dato del usuario, y la cantidad se
+  deriva de esa plata (por eso va con ≈).
