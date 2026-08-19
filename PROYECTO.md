@@ -121,3 +121,7 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   las que no tienen Julio comparan Jun contra May en vez de quedar sin dato. En los KPIs quedó una sola
   tarjeta "Var. <mes ant.> → <último>", calculada **solo sobre las filas que tienen los dos meses**
   (indica cuántas son) — si no, Julio parcial contra Junio completo mostraría una caída falsa.
+- 2026-08-19 (5): agregado `vercel.json` con `Cache-Control: public, max-age=0, must-revalidate` para todo
+  el sitio — sin eso Vercel/el navegador servían la versión vieja después de cada deploy y parecía que los
+  cambios no se habían aplicado. Además el encabezado muestra "actualizado dd/mm hh:mm" tomado de
+  `document.lastModified`, para poder confirmar de un vistazo si se está viendo la última versión.

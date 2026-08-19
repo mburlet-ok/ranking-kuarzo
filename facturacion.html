@@ -94,7 +94,7 @@ tr.r1 td.rank{color:var(--gold)}tr.r2 td.rank{color:var(--muted)}tr.r3 td.rank{c
 </div>
 <div id="mainContent" style="display:none">
 <div class="header">
-  <div><h1>FACTURACION MEDIOS</h1><p style="color:var(--muted);font-size:.78rem">Marzo · Abril · Mayo · Junio · Julio 2026</p></div>
+  <div><h1>FACTURACION MEDIOS</h1><p style="color:var(--muted);font-size:.78rem">Marzo · Abril · Mayo · Junio · Julio 2026 <span id="upd" style="opacity:.7"></span></p></div>
   <a href="index.html">← Volver al inicio</a>
 </div>
 <div class="tabs">
@@ -291,7 +291,12 @@ function buildRadios(){
 
 const PASSWORD='5870.K';
 function checkPassword(e){e.preventDefault();const v=document.getElementById('pwInput').value;if(v===PASSWORD){sessionStorage.setItem('rkAuth','ok');showContent()}else{document.getElementById('loginError').style.display='block'}return false;}
-function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios()}
+function sello(){
+  const e=document.getElementById('upd'); if(!e) return;
+  const d=new Date(document.lastModified);
+  if(!isNaN(d)) e.textContent='· actualizado '+d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+}
+function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios();sello()}
 showContent()
 </script>
 </body>
