@@ -101,3 +101,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   "Prom. mes" (promedio + subtítulo "N meses · total") y **todas las columnas son clickeables para
   reordenar** (`ordenar(cat,key)` + estado en `SORT`); las filas sin dato en la columna elegida van
   siempre al final. Se sacó la columna "Var. Mar→Abr" de la tabla (queda en los KPIs).
+- 2026-08-19: **Radios May–Jul con segundos reales** de `radios a hoy.xlsx` (mismo formato "Parte Control"
+  que el de canales; vehículos con prefijo AM-/FM-). Inversión = segundos reales × el $/seg de cada emisora.
+  Cubre RADIO 10, RIVADAVIA, ASPEN, POP (FM-POP RADIO), VALE y BLUE. **No cubre MEGA ni ROCK AND POP**
+  (siguen proyectados y en s/d en Julio) ni MITRE/LA 100 (van con el dato del usuario: $6.300M y $5.184M
+  ene–jun). Con esto la solapa Radios queda 10 de 12 emisoras con dato real.
