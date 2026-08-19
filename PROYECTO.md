@@ -116,3 +116,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
 - 2026-08-19 (3): sacada la solapa **Digital** completa (pestaña, contenedor, `buildDigital()` y su llamada
   en `showContent`). Eran datos sueltos de Febrero 2026 (share de sitios, anunciantes y media mix) que no
   seguían el formato mes a mes del resto del informe. Quedan cuatro solapas: TV Aire, Streaming, Canales y Radios.
+- 2026-08-19 (4): la variación ahora es **último mes contra el anterior**, no contra Marzo. Por fila,
+  `varTot()` toma los dos últimos meses **con dato de esa fila** (muestra "Jul/Jun", "Jun/May", etc.), así
+  las que no tienen Julio comparan Jun contra May en vez de quedar sin dato. En los KPIs quedó una sola
+  tarjeta "Var. <mes ant.> → <último>", calculada **solo sobre las filas que tienen los dos meses**
+  (indica cuántas son) — si no, Julio parcial contra Junio completo mostraría una caída falsa.

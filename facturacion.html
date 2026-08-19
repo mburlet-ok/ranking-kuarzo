@@ -137,11 +137,15 @@ function monthCell(p,m,unidad){
   const c=p[m.k+'_cant'], est=(p.est||[]).includes(m.k);
   return `<td class="${cl}">${fmt(p[m.k+'_inv'])}${c!=null?`<span class="sub${est?' est':''}" ${est?'title="Cantidad estimada a partir de la facturación, no medida"':''}>${est?'≈':''}${fmtN(c)} ${uSuf(unidad)}</span>`:''}</td>`;
 }
+function ultimos(p,mons){
+  const con=mons.filter(m=>p[m.k+'_inv']!=null);
+  return con.length<2?null:[con[con.length-2],con[con.length-1]];
+}
 function varTot(p,mons){
-  const ult=[...mons].reverse().find(m=>p[m.k+'_inv']!=null);
-  if(!ult||!p.mar_inv||ult.k==='mar') return '-';
-  const v=+((p[ult.k+'_inv']-p.mar_inv)/p.mar_inv*100).toFixed(1);
-  return `${fmtVar(v)} <span class="sub" style="display:inline">${ult.ab}</span>`;
+  const u=ultimos(p,mons);
+  if(!u||!p[u[0].k+'_inv']) return '-';
+  const v=+((p[u[1].k+'_inv']-p[u[0].k+'_inv'])/p[u[0].k+'_inv']*100).toFixed(1);
+  return `${fmtVar(v)} <span class="sub" style="display:inline">${u[1].ab}/${u[0].ab}</span>`;
 }
 const SECCFG={}, SORT={};
 const totalRow=(p,mons)=>{const v=mons.filter(m=>p[m.k+'_inv']!=null);return v.length?v.reduce((a,m)=>a+p[m.k+'_inv'],0):null};
@@ -150,7 +154,7 @@ function sortVal(p,key,mons,cfg){
   if(key==='nom') return p.nombre;
   if(key==='price') return cfg.price(p);
   if(key==='prom') return promRow(p,mons);
-  if(key==='vartot'){const u=[...mons].reverse().find(m=>p[m.k+'_inv']!=null);return (!u||!p.mar_inv||u.k==='mar')?null:(p[u.k+'_inv']-p.mar_inv)/p.mar_inv}
+  if(key==='vartot'){const u=ultimos(p,mons);return (!u||!p[u[0].k+'_inv'])?null:(p[u[1].k+'_inv']-p[u[0].k+'_inv'])/p[u[0].k+'_inv']}
   return p[key+'_inv'];
 }
 function ordenar(cat,key){
@@ -177,8 +181,14 @@ function buildSection(cat,cfg){
     const con=d.filter(p=>p[m.k+'_inv']!=null);
     tot[m.k]=con.reduce((s,p)=>s+p[m.k+'_inv'],0); cnt[m.k]=con.length;
   });
-  const vAbr=tot.mar?+((tot.abr-tot.mar)/tot.mar*100).toFixed(1):0;
-  const vJun=tot.mar?+((tot.jun-tot.mar)/tot.mar*100).toFixed(1):0;
+  const uS=mons.length>1?[mons[mons.length-2],mons[mons.length-1]]:null;
+  let vUlt=0, comunes=0;
+  if(uS){                                   // solo filas con dato en los dos meses
+    const cmp=d.filter(p=>p[uS[0].k+'_inv']!=null&&p[uS[1].k+'_inv']!=null);
+    comunes=cmp.length;
+    const a=cmp.reduce((x,p)=>x+p[uS[0].k+'_inv'],0), b=cmp.reduce((x,p)=>x+p[uS[1].k+'_inv'],0);
+    vUlt=a?+((b-a)/a*100).toFixed(1):0;
+  }
 
   let h=`<div class="section-title"><div class="icon ${cfg.icon}">${cfg.iconTxt}</div>${cfg.title} — ${mons[0].lbl} a ${mons[mons.length-1].lbl} 2026</div>`;
   h+='<div class="kpi-grid">';
@@ -191,16 +201,15 @@ function buildSection(cat,cfg){
     const par=cnt[m.k]<maxCnt*0.8?` (parcial ${cnt[m.k]}/${d.length})`:'';
     h+=`<div class="kpi-card"><div class="kpi-label">Inv. ${m.lbl}${proyMes[m.k]?' (proy.)':''}${par}</div><div class="kpi-value">${fmt(tot[m.k])}</div></div>`;
   });
-  h+=`<div class="kpi-card"><div class="kpi-label">Var. Mar → Abr</div><div class="kpi-value">${fmtVar(vAbr)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">Var. Mar → Jun</div><div class="kpi-value">${fmtVar(vJun)}</div></div>`;
+  if(uS) h+=`<div class="kpi-card"><div class="kpi-label">Var. ${uS[0].lbl} → ${uS[1].lbl}${comunes<d.length?` (${comunes} comparables)`:''}</div><div class="kpi-value">${fmtVar(vUlt)}</div></div>`;
   h+=`<div class="kpi-card"><div class="kpi-label">${cfg.countLbl}</div><div class="kpi-value">${d.length}</div></div>`;
   h+='</div>';
-  h+=`<div class="card"><div class="card-hdr"><div class="card-ttl">${cfg.cardTtl}</div><span class="card-cnt">Ordenado por ${st.key==='prom'?'promedio mensual':st.key==='nom'?'nombre':st.key==='price'?cfg.priceLbl:st.key==='vartot'?'variación':MONTHS.find(m=>m.k===st.key).lbl} · clic en cualquier columna para reordenar</span></div>`;
+  h+=`<div class="card"><div class="card-hdr"><div class="card-ttl">${cfg.cardTtl}</div><span class="card-cnt">Ordenado por ${st.key==='prom'?'promedio mensual':st.key==='nom'?'nombre':st.key==='price'?cfg.priceLbl:st.key==='vartot'?'variación del último mes':MONTHS.find(m=>m.k===st.key).lbl} · clic en cualquier columna para reordenar</span></div>`;
   h+=`<div class="search-w"><input placeholder="Buscar ${cfg.nameLbl.toLowerCase()}..." oninput="filterT('tb-${cat}',this.value)"/></div>`;
   const fl=k=>st.key===k?` <span class="ord">${st.asc?'▲':'▼'}</span>`:'';
   h+=`<div class="tw"><table><thead><tr><th>#</th><th onclick="ordenar('${cat}','nom')">${cfg.nameLbl}${fl('nom')}</th><th onclick="ordenar('${cat}','price')">${cfg.priceLbl}${fl('price')}</th>`;
   mons.forEach(m=>{h+=`<th class="${proyMes[m.k]?'proj':''}" onclick="ordenar('${cat}','${m.k}')">${m.lbl}${proyMes[m.k]?' <span class="pj">proy.</span>':''}${fl(m.k)}</th>`});
-  h+=`<th onclick="ordenar('${cat}','prom')">Prom. mes${fl('prom')}</th><th onclick="ordenar('${cat}','vartot')">Var. vs Marzo${fl('vartot')}</th></tr></thead><tbody id="tb-${cat}">`;
+  h+=`<th onclick="ordenar('${cat}','prom')">Prom. mes${fl('prom')}</th><th onclick="ordenar('${cat}','vartot')">Var. último mes${fl('vartot')}</th></tr></thead><tbody id="tb-${cat}">`;
   d.forEach((p,i)=>{
     const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
     h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}${p.kuarzo?' <span class="kzo">KUARZO</span>':''}</td><td class="money">${fmt(cfg.price(p))}</td>`;
