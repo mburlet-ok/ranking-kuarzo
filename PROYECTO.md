@@ -106,3 +106,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Cubre RADIO 10, RIVADAVIA, ASPEN, POP (FM-POP RADIO), VALE y BLUE. **No cubre MEGA ni ROCK AND POP**
   (siguen proyectados y en s/d en Julio) ni MITRE/LA 100 (van con el dato del usuario: $6.300M y $5.184M
   ene–jun). Con esto la solapa Radios queda 10 de 12 emisoras con dato real.
+- 2026-08-19 (2): `radios a hoy.xlsx` se generó con **solo 6 vehículos en el filtro** (hoja "Resumen":
+  AM-RIVADAVIA, FM-ASPEN, AM-RADIO 10, FM-POP RADIO, FM-VALE, FM-BLUE). **No hay forma de sacar los
+  segundos reales de MITRE ni LA 100 de ese archivo**: hay que pedir el export de nuevo agregando
+  "RA / AM-MITRE" y "RA / FM-LA 100" (y de paso MEGA y ROCK AND POP, que tampoco están).
+  Mientras tanto, las cantidades **derivadas** (calculadas como plata ÷ $/seg o ÷ precio efectivo de Abril,
+  no medidas por el monitor) se muestran con **≈** en cursiva: campo `est:[meses]` por fila. Hoy están
+  marcadas: los 9 programas Kuarzo de TV (May–Jul), KZO y CANAL 13 en Canales, y MITRE, LA 100 y RCV en Radios.
