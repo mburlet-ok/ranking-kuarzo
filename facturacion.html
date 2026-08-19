@@ -41,6 +41,13 @@ td.proj,th.proj{background:rgba(124,58,237,.05)}
 td.nod{color:var(--muted);font-weight:500}
 td.tot{color:var(--accent2);background:rgba(124,58,237,.04)}
 th .ord{color:var(--accent2);font-size:.6rem}
+.info-item{display:flex;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);align-items:baseline}
+.info-item:last-child{border:none}
+.info-tag{flex:0 0 168px;font-size:.72rem;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.4px}
+.info-txt{font-size:.85rem;line-height:1.5}
+.info-txt b{color:var(--red)}
+.quote{background:#fffbeb;border:1px solid #fde68a;border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-size:.85rem;line-height:1.55}
+@media(max-width:760px){.info-item{flex-direction:column;gap:2px}.info-tag{flex:none}}
 td.money span.sub.est{color:#a16207;font-style:italic}
 thead th:hover{color:var(--text);background:#eef2ff}
 .kzo{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:5px;font-size:.6rem;font-weight:700;background:#ede9fe;color:#6d28d9;vertical-align:middle}
@@ -102,6 +109,7 @@ tr.r1 td.rank{color:var(--gold)}tr.r2 td.rank{color:var(--muted)}tr.r3 td.rank{c
   <div class="tab" onclick="switchTab('streaming')">Streaming</div>
   <div class="tab" onclick="switchTab('cable')">Canales</div>
   <div class="tab" onclick="switchTab('radios')">Radios</div>
+  <div class="tab" onclick="switchTab('info')">Información</div>
 </div>
 <div class="content">
   <div class="proj-note"><b>Marzo a Julio 2026.</b> Las filas <span class="kzo">KUARZO</span> son nuestros programas y medios: van con la <b>facturación real</b> de las grillas (hoja FC / hojas de programa). Los canales de <b>Canales</b> y las emisoras de <b>Radios</b> van con los <b>segundos reales del parte de control</b> (Mayo a Julio) × el valor promedio por segundo de cada uno. Solo queda <b>proyectado</b> lo que todavía no tiene dato real — celdas con fondo violeta: TV Aire de terceros, Streaming, Mega y Rock and Pop, y Crónica/Cinemax (Mayo = Abril +10%, Junio = Mayo −25%). <i>s/d</i> = sin dato para ese mes. Las cantidades con <b style="color:#a16207">≈</b> están estimadas a partir de la facturación (la grilla da plata, no salidas ni segundos); el resto son medidas.</div>
@@ -109,6 +117,7 @@ tr.r1 td.rank{color:var(--gold)}tr.r2 td.rank{color:var(--muted)}tr.r3 td.rank{c
   <div class="tab-content" id="tc-streaming"></div>
   <div class="tab-content" id="tc-cable"></div>
   <div class="tab-content" id="tc-radios"></div>
+  <div class="tab-content" id="tc-info"></div>
 </div>
 </div>
 <script>
@@ -121,9 +130,10 @@ const fmtVar=v=>{if(!v)return '-';const c=v>0?'var(--green)':v<0?'var(--red)':'v
 
 function switchTab(id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',
-    (id==='tv'&&t.textContent.includes('TV Aire'))||(id==='streaming'&&t.textContent.includes('Streaming'))||(id==='cable'&&t.textContent.includes('Canales'))||(id==='radios'&&t.textContent.includes('Radios'))
+    (id==='tv'&&t.textContent.includes('TV Aire'))||(id==='streaming'&&t.textContent.includes('Streaming'))||(id==='cable'&&t.textContent.includes('Canales'))||(id==='radios'&&t.textContent.includes('Radios'))||(id==='info'&&t.textContent.includes('Información'))
   ));
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.toggle('active',c.id==='tc-'+id));
+  const nota=document.querySelector('.proj-note'); if(nota) nota.style.display = id==='info'?'none':'';
 }
 function filterT(id,q){const tb=document.getElementById(id);if(!tb)return;q=q.toLowerCase();Array.from(tb.rows).forEach(r=>{r.style.display=r.cells[1].textContent.toLowerCase().includes(q)?'':'none'})}
 
@@ -296,7 +306,74 @@ function sello(){
   const d=new Date(document.lastModified);
   if(!isNaN(d)) e.textContent='· actualizado '+d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
 }
-function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios();sello()}
+const INFO={
+  titulares:[
+    {k:'Caída nominal',v:'−10%',d:'vs. el año pasado'},
+    {k:'Caída real',v:'−40%',d:'sumando inflación'},
+    {k:'Rubros en baja',v:'15 de 18',d:'peor que hace un año'},
+    {k:'Presupuestos',v:'Reforecast',d:'todos revisados para abajo'}
+  ],
+  mercado:[
+    ['Laboratorios','Muy golpeados. No le venden nada a nadie.'],
+    ['Consumo masivo','Muy golpeado y <b>sin señales de mejora</b>.'],
+    ['Bancos','Se achican. No quieren venderle nada a nadie.'],
+    ['Pauta pública','No está como en los años anteriores.'],
+    ['Rubros','De 18 rubros, <b>15 están peor que hace un año</b>.'],
+    ['Nivel general','Todo por abajo un <b>10%</b> contra el año pasado. Sumando inflación, <b>40% abajo</b> en total.'],
+    ['Presupuestos','Se reforecastearon todos para abajo.']
+  ],
+  canales:[
+    {n:'Canal 13',tanda:null,total:3500,prom:5000},
+    {n:'TN',tanda:3000,total:null,prom:4500,nota:'lo prometido era solo tanda, sin PNTs'},
+    {n:'América',tanda:1500,total:2300},
+    {n:'Canal 9',tanda:1200,total:2000},
+    {n:'Magazine',tanda:50,total:null}
+  ],
+  radios:[
+    {n:'AM — Mitre',sem:6300,share:55},
+    {n:'FM — La 100',sem:5184,share:45}
+  ],
+  notas:[
+    ['Telefe','Aprovechó muy bien el Mundial y cerró paquetes que <b>siguen hasta septiembre</b> pautando producto del Mundial.']
+  ]
+};
+const mm=n=>n==null?'-':'$'+n.toLocaleString('es-AR')+'M';
+function buildInfo(){
+  let h='<div class="section-title"><div class="icon" style="background:#0f766e">i</div>Cómo viene el mercado — 2026</div>';
+  h+='<div class="kpi-grid">';
+  INFO.titulares.forEach(t=>{h+=`<div class="kpi-card"><div class="kpi-label">${t.k}</div><div class="kpi-value">${t.v}</div><div style="font-size:.68rem;color:var(--muted);margin-top:2px">${t.d}</div></div>`});
+  h+='</div>';
+
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Situación por rubro</div><span class="card-cnt">'+INFO.mercado.length+' puntos</span></div>';
+  INFO.mercado.forEach(([t,d])=>{h+=`<div class="info-item"><div class="info-tag">${t}</div><div class="info-txt">${d}</div></div>`});
+  h+='</div>';
+
+  h+='<div class="section-title"><div class="icon cable">C</div>Canales — lo que facturan contra lo que prometieron</div>';
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Cifras mensuales</div><span class="card-cnt">en millones de pesos</span></div>';
+  h+='<div class="tw"><table><thead><tr><th>Canal</th><th>Solo tanda</th><th>Tanda + PNTs</th><th>Prometido</th><th>Brecha</th><th>Nota</th></tr></thead><tbody>';
+  INFO.canales.forEach((c,i)=>{
+    const base=c.total!=null?c.total:c.tanda;
+    const br=c.prom?+((base-c.prom)/c.prom*100).toFixed(1):null;
+    h+=`<tr class="${i===0?'r1':''}"><td class="name">${c.n}</td><td class="money">${mm(c.tanda)}</td><td class="money">${mm(c.total)}</td>`+
+       `<td class="num" style="color:var(--muted)">${mm(c.prom)}</td><td class="num">${br==null?'-':fmtVar(br)}</td>`+
+       `<td style="font-size:.74rem;color:var(--muted)">${c.nota||''}</td></tr>`;
+  });
+  h+='</tbody></table></div></div>';
+
+  h+='<div class="section-title"><div class="icon radio">R</div>Radios — Mitre y La 100</div>';
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Enero a Junio 2026</div><span class="card-cnt">la pauta se reparte 55% / 45%</span></div>';
+  h+='<div class="tw"><table><thead><tr><th>Emisora</th><th>Enero a Junio</th><th>Promedio por mes</th><th>Share</th></tr></thead><tbody>';
+  INFO.radios.forEach((r,i)=>{
+    h+=`<tr class="${i===0?'r1':''}"><td class="name">${r.n}</td><td class="money">${mm(r.sem)}</td><td class="money">${mm(+(r.sem/6).toFixed(0))}</td><td class="num">${r.share}%</td></tr>`;
+  });
+  h+='</tbody></table></div></div>';
+
+  h+='<div class="section-title"><div class="icon stream">!</div>Para tener en cuenta</div>';
+  INFO.notas.forEach(([t,d])=>{h+=`<div class="quote"><b>${t}.</b> ${d}</div>`});
+
+  document.getElementById('tc-info').innerHTML=h;
+}
+function showContent(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainContent').style.display='block';buildTV();buildStreaming();buildCable();buildRadios();buildInfo();sello()}
 showContent()
 </script>
 </body>

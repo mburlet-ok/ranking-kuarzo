@@ -154,3 +154,11 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   y sobre todo **BIENVENIDOS A GANAR**, que en FC es "segs + tanda" y sube de ~$60M a ~$120M por mes.
   A LA BARBARROSA sale de la línea **GEORGINA** de la FC. Mapeo de fila→línea FC en el commit.
   Las cantidades estimadas se recalcularon con el nuevo precio efectivo de Abril.
+- 2026-08-19 (12): nueva solapa **Información** (`buildInfo()`), pensada para ir acumulando los datos de
+  contexto que pasa el usuario. Todo el contenido vive en la constante `INFO` (titulares, mercado, canales,
+  radios, notas) — para agregar algo nuevo se toca solo ese objeto. Contiene: caída −10% nominal / −40% real,
+  15 de 18 rubros peor que hace un año, situación de laboratorios / consumo masivo / bancos / pauta pública,
+  presupuestos reforecasteados; tabla de canales facturación vs prometido (Canal 13 $3.500M vs $5.000M
+  prometidos, TN $3.000M vs $4.500M, América $1.500M tanda y $2.300M con PNTs, Canal 9 $1.200M y $2.000M,
+  Magazine $50M); Mitre/La 100 ene–jun con el reparto 55/45; y la nota de Telefe con los paquetes del Mundial
+  hasta septiembre. El banner de proyección se oculta en esta solapa.
