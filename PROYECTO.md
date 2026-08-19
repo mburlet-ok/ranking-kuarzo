@@ -148,3 +148,9 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   (diferencias chicas salvo Julio: $69,8M → $72,1M). Ojo: FC y las hojas de programa siguen sin coincidir
   en GH, POLEMICA y BIENVENIDOS (la línea de FC es "segs + tanda") — esos tres siguen con la suma de la
   grilla por programa; falta que el usuario defina cuál manda.
+- 2026-08-19 (11): **TODOS nuestros programas pasan a la hoja FC** (INGRESOS del mes, decisión del usuario),
+  dejando de usar la suma de las hojas de programa. Los que cambian: GRAN HERMANO (Mar $1.244,7→$1.265,6M,
+  Abr $1.168,6→$1.214,0M, Jul $1.007,8→$1.016,8M), ES MI SUEÑO, TODO COCINADO, POLEMICA (Abr $40,8→$50,8M)
+  y sobre todo **BIENVENIDOS A GANAR**, que en FC es "segs + tanda" y sube de ~$60M a ~$120M por mes.
+  A LA BARBARROSA sale de la línea **GEORGINA** de la FC. Mapeo de fila→línea FC en el commit.
+  Las cantidades estimadas se recalcularon con el nuevo precio efectivo de Abril.
