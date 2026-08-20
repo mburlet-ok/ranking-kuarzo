@@ -162,3 +162,11 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   prometidos, TN $3.000M vs $4.500M, América $1.500M tanda y $2.300M con PNTs, Canal 9 $1.200M y $2.000M,
   Magazine $50M); Mitre/La 100 ene–jun con el reparto 55/45; y la nota de Telefe con los paquetes del Mundial
   hasta septiembre. El banner de proyección se oculta en esta solapa.
+- 2026-08-20: **tablas rearmadas para que se lean mejor.** `buildSection()` ahora tiene **tres vistas**
+  conmutables (`VISTA[cat]` + `verVista()`): **Facturación** (todo en millones de $, unidad pareja para poder
+  comparar de un vistazo), **Cantidad** (PNTs / segundos) y **Costo unitario** ($ por PNT o por segundo, mes a
+  mes — antes había una sola columna `$/seg` con el valor del último mes, que mentía cuando el costo variaba,
+  ej. KZO de $658 a $339 a $852). Una métrica por celda, sin sub-líneas. Se agregó **fila TOTAL** al pie
+  (en la vista de costo unitario no va: ahí el total es el promedio ponderado). Encabezados fijos con fondo
+  sólido (con `rgba` se transparentaban al scrollear), zebra, hover, y **# y nombre fijos al scrollear en
+  horizontal** para mobile. Los KPI muestran "parcial · N de M" y la tarjeta de variación va en verde.

@@ -37,7 +37,8 @@ tbody td{padding:6px 12px}
 td.name{font-weight:500}td.num{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
 td.money{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;color:var(--green)}
 td.money span.sub{display:block;font-size:.64rem;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
-td.proj,th.proj{background:rgba(124,58,237,.05)}
+td.proj{background:rgba(124,58,237,.05)}
+th.proj{background:#efeafc}
 td.nod{color:var(--muted);font-weight:500}
 td.tot{color:var(--accent2);background:rgba(124,58,237,.04)}
 th .ord{color:var(--accent2);font-size:.6rem}
@@ -75,9 +76,34 @@ tr.r1 td.rank{color:var(--gold)}tr.r2 td.rank{color:var(--muted)}tr.r3 td.rank{c
 .mon-tbl td{padding:5px 14px}
 .mon-tbl td.pr{width:24px;color:var(--accent);font-weight:700}
 .mon-tbl td.pa{text-align:right;color:var(--muted);font-weight:600}
-.toggle-group{display:flex;gap:8px;margin-bottom:14px;align-items:center}
+/* --- ajustes de prolijidad de tablas --- */
+.toggle-group{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+/* en pantallas chicas la tabla scrollea al costado: el # y el nombre quedan fijos */
+th.th-rank,td.rank{position:sticky;left:0;z-index:3;background:var(--card);width:34px}
+thead th.th-rank{background:#f8fafc;z-index:5}
+tbody tr:nth-child(even) td.rank,tbody tr:nth-child(even) td.name{background:#f7f8fb}
+td.name,thead th:nth-child(2){position:sticky;left:34px;z-index:3;background:var(--card);box-shadow:1px 0 0 var(--border)}
+thead th:nth-child(2){background:#f8fafc;z-index:5}
+tbody tr.tfoot td.rank,tbody tr.tfoot td.name{background:#eef2ff}
+.card-sub{font-size:.7rem;color:var(--muted);margin-top:3px}
+.kpi-nota{display:block;font-size:.62rem;color:var(--muted);margin-top:3px;letter-spacing:.2px}
+.kpi-card.acc::before{background:linear-gradient(90deg,#0f766e,#14b8a6)}
+.card-hdr{align-items:flex-start;gap:14px;flex-wrap:wrap}
+table{font-variant-numeric:tabular-nums}
+thead th{white-space:nowrap;user-select:none}
+th.th-rank{width:34px}
+td.tot{background:rgba(124,58,237,.045)}
+th.th-tot{background:#efeafc}
+tbody tr:nth-child(even){background:rgba(15,23,42,.018)}
+tbody tr:hover{background:rgba(79,110,247,.06)}
+tbody tr.tfoot{background:#eef2ff!important;border-top:2px solid var(--accent)}
+tbody tr.tfoot td{font-weight:800;color:var(--text);padding-top:10px;padding-bottom:10px}
+td.est{color:#a16207;font-style:italic}
+td.money span.sub{font-style:normal}
 .toggle-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-size:.78rem;font-weight:600;background:var(--card);color:var(--muted);transition:all .2s}
 .toggle-btn.active{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.toggle-btn:hover{border-color:var(--accent2);color:var(--accent2)}
+.toggle-btn.active:hover{color:#fff}
 .login-wrap{display:flex;justify-content:center;align-items:center;min-height:100vh}
 .login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;width:90%;max-width:420px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.08)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -139,61 +165,88 @@ function filterT(id,q){const tb=document.getElementById(id);if(!tb)return;q=q.to
 
 const MONTHS=[{k:'mar',lbl:'Marzo',ab:'Mar'},{k:'abr',lbl:'Abril',ab:'Abr'},{k:'may',lbl:'Mayo',ab:'May',proy:true},{k:'jun',lbl:'Junio',ab:'Jun',proy:true},{k:'jul',lbl:'Julio',ab:'Jul'}];
 const uSuf=u=>u==='segundo'?'seg':'PNT';
-function esReal(p,m){return !m.proy||(p.real||[]).includes(m.k)}
-function monthCell(p,m,unidad){
-  const cl='money'+(esReal(p,m)?'':' proj');
-  if(p[m.k+'_inv']==null) return `<td class="money nod">s/d</td>`;
-  if(!p[m.k+'_inv']) return `<td class="${cl} nod">-</td>`;
-  const c=p[m.k+'_cant'], est=(p.est||[]).includes(m.k);
-  return `<td class="${cl}">${fmt(p[m.k+'_inv'])}${c!=null?`<span class="sub${est?' est':''}" ${est?'title="Cantidad estimada a partir de la facturación, no medida"':''}>${est?'≈':''}${fmtN(c)} ${uSuf(unidad)}</span>`:''}</td>`;
+const esReal=(p,m)=>!m.proy||(p.real||[]).includes(m.k);
+const esEst=(p,m)=>(p.est||[]).includes(m.k);
+
+/* ---- las tres vistas de la tabla ---- */
+const VISTAS={
+  fact:{lbl:'Facturación', uni:'en millones de $',
+        val:(p,k)=>p[k+'_inv'], fmt:v=>fmtM(v), agr:'suma'},
+  cant:{lbl:'Cantidad',    uni:'PNTs o segundos según el medio',
+        val:(p,k)=>p[k+'_cant'], fmt:(v,u)=>fmtN(Math.round(v))+' '+uSuf(u), agr:'suma'},
+  unit:{lbl:'Costo unitario', uni:'$ por PNT o por segundo',
+        val:(p,k)=>{const i=p[k+'_inv'],c=p[k+'_cant'];return (i!=null&&c)?i/c:(p[k+'_costo']??null)},
+        fmt:v=>'$'+Math.round(v).toLocaleString('es-AR'), agr:'pond'}
+};
+const fmtM=v=>v==null?'-':(Math.abs(v)>=1e6? (v/1e6).toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})
+                                           : (v/1e6).toLocaleString('es-AR',{minimumFractionDigits:3,maximumFractionDigits:3}));
+
+const SECCFG={}, SORT={}, VISTA={};
+const mesesCon=(p,mons,v)=>mons.filter(m=>VISTAS[v].val(p,m.k)!=null);
+function totalRow(p,mons,v){
+  const con=mesesCon(p,mons,v); if(!con.length) return null;
+  if(VISTAS[v].agr==='pond'){
+    const i=con.reduce((a,m)=>a+(p[m.k+'_inv']||0),0), c=con.reduce((a,m)=>a+(p[m.k+'_cant']||0),0);
+    return c?i/c:null;
+  }
+  return con.reduce((a,m)=>a+VISTAS[v].val(p,m.k),0);
 }
-function ultimos(p,mons){
-  const con=mons.filter(m=>p[m.k+'_inv']!=null);
+function promRow(p,mons,v){
+  const con=mesesCon(p,mons,v); if(!con.length) return null;
+  const t=totalRow(p,mons,v);
+  return VISTAS[v].agr==='pond'? t : t/con.length;
+}
+function ultimos(p,mons,v){
+  const con=mesesCon(p,mons,v);
   return con.length<2?null:[con[con.length-2],con[con.length-1]];
 }
-function varTot(p,mons){
-  const u=ultimos(p,mons);
-  if(!u||!p[u[0].k+'_inv']) return '-';
-  const v=+((p[u[1].k+'_inv']-p[u[0].k+'_inv'])/p[u[0].k+'_inv']*100).toFixed(1);
-  return `${fmtVar(v)} <span class="sub" style="display:inline">${u[1].ab}/${u[0].ab}</span>`;
+function varUlt(p,mons,v){
+  const u=ultimos(p,mons,v); if(!u) return '-';
+  const a=VISTAS[v].val(p,u[0].k), b=VISTAS[v].val(p,u[1].k);
+  if(!a) return '-';
+  const x=+((b-a)/a*100).toFixed(1);
+  const txt = x===0 ? '<span style="color:var(--muted);font-weight:600">0%</span>' : fmtVar(x);
+  return `${txt} <span class="sub" style="display:inline">${u[1].ab}/${u[0].ab}</span>`;
 }
-const SECCFG={}, SORT={};
-const totalRow=(p,mons)=>{const v=mons.filter(m=>p[m.k+'_inv']!=null);return v.length?v.reduce((a,m)=>a+p[m.k+'_inv'],0):null};
-const promRow=(p,mons)=>{const v=mons.filter(m=>p[m.k+'_inv']!=null);return v.length?v.reduce((a,m)=>a+p[m.k+'_inv'],0)/v.length:null};
-function sortVal(p,key,mons,cfg){
+function sortVal(p,key,mons,cfg,v){
   if(key==='nom') return p.nombre;
-  if(key==='price') return cfg.price(p);
-  if(key==='prom') return promRow(p,mons);
-  if(key==='vartot'){const u=ultimos(p,mons);return (!u||!p[u[0].k+'_inv'])?null:(p[u[1].k+'_inv']-p[u[0].k+'_inv'])/p[u[0].k+'_inv']}
-  return p[key+'_inv'];
+  if(key==='prom') return promRow(p,mons,v);
+  if(key==='tot') return totalRow(p,mons,v);
+  if(key==='var'){const u=ultimos(p,mons,v);if(!u)return null;const a=VISTAS[v].val(p,u[0].k);return a?(VISTAS[v].val(p,u[1].k)-a)/a:null}
+  return VISTAS[v].val(p,key);
 }
 function ordenar(cat,key){
   const st=SORT[cat];
   SORT[cat]= st && st.key===key ? {key,asc:!st.asc} : {key,asc:key==='nom'};
   renderSection(cat);
 }
+function verVista(cat,v){ VISTA[cat]=v; renderSection(cat); }
 function renderSection(cat){ document.getElementById('tc-'+cat).innerHTML=buildSection(cat,SECCFG[cat]); }
 
 function buildSection(cat,cfg){
   SECCFG[cat]=cfg;
+  const v=VISTA[cat]||(VISTA[cat]='fact'), V=VISTAS[v];
   const d=DATA[cat].slice();
   const mons=MONTHS.filter(m=>d.some(p=>p[m.k+'_inv']!=null));
   const st=SORT[cat]||(SORT[cat]={key:'prom',asc:false});
   d.sort((a,b)=>{
-    const x=sortVal(a,st.key,mons,cfg), y=sortVal(b,st.key,mons,cfg);
+    const x=sortVal(a,st.key,mons,cfg,v), y=sortVal(b,st.key,mons,cfg,v);
     if(typeof x==='string'||typeof y==='string') return st.asc?String(x).localeCompare(y):String(y).localeCompare(x);
-    if(x==null&&y==null) return 0;
-    if(x==null) return 1;            // los sin dato siempre al final
-    if(y==null) return -1;
+    if(x==null&&y==null) return 0; if(x==null) return 1; if(y==null) return -1;
     return st.asc?x-y:y-x;
   });
-  const tot={},cnt={}; mons.forEach(m=>{
+
+  /* KPIs: siempre sobre facturación, que es la referencia del negocio */
+  const tot={},cnt={},proy={};
+  mons.forEach(m=>{
     const con=d.filter(p=>p[m.k+'_inv']!=null);
     tot[m.k]=con.reduce((s,p)=>s+p[m.k+'_inv'],0); cnt[m.k]=con.length;
+    proy[m.k]= m.proy && con.filter(p=>!esReal(p,m)).length > con.length/2;
   });
+  const maxCnt=Math.max(...mons.map(m=>cnt[m.k]));
   const uS=mons.length>1?[mons[mons.length-2],mons[mons.length-1]]:null;
   let vUlt=0, comunes=0;
-  if(uS){                                   // solo filas con dato en los dos meses
+  if(uS){
     const cmp=d.filter(p=>p[uS[0].k+'_inv']!=null&&p[uS[1].k+'_inv']!=null);
     comunes=cmp.length;
     const a=cmp.reduce((x,p)=>x+p[uS[0].k+'_inv'],0), b=cmp.reduce((x,p)=>x+p[uS[1].k+'_inv'],0);
@@ -202,42 +255,64 @@ function buildSection(cat,cfg){
 
   let h=`<div class="section-title"><div class="icon ${cfg.icon}">${cfg.iconTxt}</div>${cfg.title} — ${mons[0].lbl} a ${mons[mons.length-1].lbl} 2026</div>`;
   h+='<div class="kpi-grid">';
-  const maxCnt=Math.max(...mons.map(m=>cnt[m.k]));
-  const proyMes={}; mons.forEach(m=>{
-    const con=d.filter(p=>p[m.k+'_inv']!=null);
-    proyMes[m.k]= m.proy && con.filter(p=>!esReal(p,m)).length > con.length/2;
-  });
   mons.forEach(m=>{
-    const par=cnt[m.k]<maxCnt*0.8?` (parcial ${cnt[m.k]}/${d.length})`:'';
-    h+=`<div class="kpi-card"><div class="kpi-label">Inv. ${m.lbl}${proyMes[m.k]?' (proy.)':''}${par}</div><div class="kpi-value">${fmt(tot[m.k])}</div></div>`;
+    const par=cnt[m.k]<maxCnt*0.8?`<span class="kpi-nota">parcial · ${cnt[m.k]} de ${d.length}</span>`:'';
+    h+=`<div class="kpi-card"><div class="kpi-label">${m.lbl}${proy[m.k]?' · proy.':''}</div><div class="kpi-value">${fmt(tot[m.k])}</div>${par}</div>`;
   });
-  if(uS) h+=`<div class="kpi-card"><div class="kpi-label">Var. ${uS[0].lbl} → ${uS[1].lbl}${comunes<d.length?` (${comunes} comparables)`:''}</div><div class="kpi-value">${fmtVar(vUlt)}</div></div>`;
-  h+=`<div class="kpi-card"><div class="kpi-label">${cfg.countLbl}</div><div class="kpi-value">${d.length}</div></div>`;
+  if(uS) h+=`<div class="kpi-card acc"><div class="kpi-label">Var. ${uS[0].ab} → ${uS[1].ab}</div><div class="kpi-value">${fmtVar(vUlt)}</div>${comunes<d.length?`<span class="kpi-nota">${comunes} comparables</span>`:''}</div>`;
+  h+=`<div class="kpi-card acc"><div class="kpi-label">${cfg.countLbl}</div><div class="kpi-value">${d.length}</div></div>`;
   h+='</div>';
-  h+=`<div class="card"><div class="card-hdr"><div class="card-ttl">${cfg.cardTtl}</div><span class="card-cnt">Ordenado por ${st.key==='prom'?'promedio mensual':st.key==='nom'?'nombre':st.key==='price'?cfg.priceLbl:st.key==='vartot'?'variación del último mes':MONTHS.find(m=>m.k===st.key).lbl} · clic en cualquier columna para reordenar</span></div>`;
+
+  h+=`<div class="card"><div class="card-hdr"><div><div class="card-ttl">${cfg.cardTtl}</div><div class="card-sub">${V.lbl} · ${V.uni}</div></div>`;
+  h+='<div class="toggle-group">'+Object.keys(VISTAS).map(x=>
+      `<button class="toggle-btn${x===v?' active':''}" onclick="verVista('${cat}','${x}')">${VISTAS[x].lbl}</button>`).join('')+'</div></div>';
   h+=`<div class="search-w"><input placeholder="Buscar ${cfg.nameLbl.toLowerCase()}..." oninput="filterT('tb-${cat}',this.value)"/></div>`;
-  const fl=k=>st.key===k?` <span class="ord">${st.asc?'▲':'▼'}</span>`:'';
-  h+=`<div class="tw"><table><thead><tr><th>#</th><th onclick="ordenar('${cat}','nom')">${cfg.nameLbl}${fl('nom')}</th><th onclick="ordenar('${cat}','price')">${cfg.priceLbl}${fl('price')}</th>`;
-  mons.forEach(m=>{h+=`<th class="${proyMes[m.k]?'proj':''}" onclick="ordenar('${cat}','${m.k}')">${m.lbl}${proyMes[m.k]?' <span class="pj">proy.</span>':''}${fl(m.k)}</th>`});
-  h+=`<th onclick="ordenar('${cat}','prom')">Prom. mes${fl('prom')}</th><th onclick="ordenar('${cat}','vartot')">Var. último mes${fl('vartot')}</th></tr></thead><tbody id="tb-${cat}">`;
+
+  const fl=k=>st.key===k?`<span class="ord">${st.asc?'▲':'▼'}</span>`:'';
+  h+=`<div class="tw"><table><thead><tr><th class="th-rank">#</th><th onclick="ordenar('${cat}','nom')">${cfg.nameLbl}${fl('nom')}</th>`;
+  mons.forEach(m=>{h+=`<th class="${proy[m.k]?'proj':''}" onclick="ordenar('${cat}','${m.k}')">${m.ab}${proy[m.k]?'<span class="pj">proy</span>':''}${fl(m.k)}</th>`});
+  h+=`<th class="th-tot" onclick="ordenar('${cat}','tot')">${V.agr==='pond'?'Promedio':'Total'}${fl('tot')}</th>`;
+  if(V.agr!=='pond') h+=`<th class="th-tot" onclick="ordenar('${cat}','prom')">Prom. mes${fl('prom')}</th>`;
+  h+=`<th onclick="ordenar('${cat}','var')">Var. último${fl('var')}</th></tr></thead><tbody id="tb-${cat}">`;
+
   d.forEach((p,i)=>{
     const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
-    h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}${p.kuarzo?' <span class="kzo">KUARZO</span>':''}</td><td class="money">${fmt(cfg.price(p))}</td>`;
-    mons.forEach(m=>{h+=monthCell(p,m,p.unidad)});
-    const t=totalRow(p,mons), pr=promRow(p,mons), nm=mons.filter(m=>p[m.k+'_inv']!=null).length;
-    h+=`<td class="money tot">${pr==null?'-':fmt(pr)}${pr!=null?`<span class="sub">${nm} ${nm===1?'mes':'meses'} · ${fmt(t)}</span>`:''}</td><td class="num">${varTot(p,mons)}</td></tr>`;
+    h+=`<tr class="${rc}"><td class="rank">${i+1}</td><td class="name">${p.nombre}${p.kuarzo?' <span class="kzo">KUARZO</span>':''}</td>`;
+    mons.forEach(m=>{
+      const val=V.val(p,m.k), inv=p[m.k+'_inv'];
+      const cl='money'+(inv!=null&&!esReal(p,m)?' proj':'');
+      if(inv==null) h+='<td class="money nod">s/d</td>';
+      else if(val==null||(!val&&v!=='cant')) h+=`<td class="${cl} nod">-</td>`;
+      else h+=`<td class="${cl}${esEst(p,m)&&v!=='fact'?' est':''}" ${esEst(p,m)&&v!=='fact'?'title="Calculado a partir de la facturación, no medido"':''}>${esEst(p,m)&&v!=='fact'?'≈':''}${V.fmt(val,p.unidad)}</td>`;
+    });
+    const t=totalRow(p,mons,v), pr=promRow(p,mons,v), nm=mesesCon(p,mons,v).length;
+    h+=`<td class="money tot">${t==null?'-':V.fmt(t,p.unidad)}${t!=null&&nm<mons.length?`<span class="sub">${nm} de ${mons.length} m</span>`:''}</td>`;
+    if(V.agr!=='pond') h+=`<td class="money tot">${pr==null?'-':V.fmt(pr,p.unidad)}</td>`;
+    h+=`<td class="num">${varUlt(p,mons,v)}</td></tr>`;
   });
+
+  /* fila de totales de la tabla */
+  if(V.agr==='suma'){
+    h+='<tr class="tfoot"><td></td><td class="name">TOTAL</td>';
+    mons.forEach(m=>{
+      const con=d.filter(p=>V.val(p,m.k)!=null);
+      const sv=con.reduce((a,p)=>a+V.val(p,m.k),0);
+      h+=`<td class="money">${con.length?V.fmt(sv,d[0].unidad):'-'}</td>`;
+    });
+    const gt=d.reduce((a,p)=>a+(totalRow(p,mons,v)||0),0);
+    h+=`<td class="money tot">${V.fmt(gt,d[0].unidad)}</td><td class="money tot">${V.fmt(gt/mons.length,d[0].unidad)}</td><td></td></tr>`;
+  }
   h+='</tbody></table></div></div>';
   return h;
 }
 
 function buildTV(){
-  const h=buildSection('tv',{icon:'tv',iconTxt:'TV',title:'TV por Programa',countLbl:'Programas',nameLbl:'Programa',priceLbl:'$/Salida',cardTtl:'Cantidad PNTs × Valor por salida = Inversión',price:p=>p.valor});
+  const h=buildSection('tv',{icon:'tv',iconTxt:'TV',title:'TV por Programa',countLbl:'Programas',nameLbl:'Programa',cardTtl:'Facturación por programa'});
   document.getElementById('tc-tv').innerHTML=h;
 }
 
 function buildStreaming(){
-  let h=buildSection('streaming',{icon:'stream',iconTxt:'S',title:'Streaming',countLbl:'Plataformas',nameLbl:'Plataforma',priceLbl:'$/Salida',cardTtl:'Cantidad PNTs × Valor por salida = Inversión',price:p=>p.valor});
+  let h=buildSection('streaming',{icon:'stream',iconTxt:'S',title:'Streaming',countLbl:'Plataformas',nameLbl:'Plataforma',cardTtl:'Facturación por plataforma'});
   // ---- Anunciantes por plataforma (Mayo-Junio 2026) ----
   if (typeof ADV_STREAMING !== 'undefined') {
     h += '<div class="section-title" style="margin-top:24px"><div class="icon stream">A</div>Anunciantes por Plataforma — Mayo & Junio 2026</div>';
@@ -290,12 +365,12 @@ function filterAdvPlat(input, platKey){
 }
 
 function buildCable(){
-  const h=buildSection('cable',{icon:'cable',iconTxt:'C',title:'Canales',countLbl:'Canales',nameLbl:'Canal',priceLbl:'$/Seg',cardTtl:'Cantidad Segundos × Valor por segundo = Inversión',price:p=>p.jul_costo??p.abr_costo});
+  const h=buildSection('cable',{icon:'cable',iconTxt:'C',title:'Canales',countLbl:'Canales',nameLbl:'Canal',cardTtl:'Facturación por canal'});
   document.getElementById('tc-cable').innerHTML=h;
 }
 
 function buildRadios(){
-  const h=buildSection('radios',{icon:'radio',iconTxt:'R',title:'Radios',countLbl:'Emisoras',nameLbl:'Radio',priceLbl:'$/Seg',cardTtl:'Costo/seg × Cantidad Segundos = Inversión',price:p=>p.jul_costo??p.abr_costo});
+  const h=buildSection('radios',{icon:'radio',iconTxt:'R',title:'Radios',countLbl:'Emisoras',nameLbl:'Radio',cardTtl:'Facturación por emisora'});
   document.getElementById('tc-radios').innerHTML=h;
 }
 
