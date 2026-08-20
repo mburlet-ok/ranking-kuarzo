@@ -170,3 +170,13 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   (en la vista de costo unitario no va: ahí el total es el promedio ponderado). Encabezados fijos con fondo
   sólido (con `rgba` se transparentaban al scrollear), zebra, hover, y **# y nombre fijos al scrollear en
   horizontal** para mobile. Los KPI muestran "parcial · N de M" y la tarjeta de variación va en verde.
+- 2026-08-20 (2): **TV Aire con PNTs reales** de `admedia maxi.xlsx` (Parte Control, eltrece + América +
+  elnueve, 01/05 a 30/06/2026; los PNT son las filas con Tipo Compra **"En Artistico"**, la tanda es
+  "Corte Comercial"). Ojo: la columna "Inversión" de ese archivo es **tarifa bruta** (cientos de veces lo
+  real), NO se usa. Método: PNTs medidos × el valor por salida efectivo de Abril de cada programa.
+  Actualizados Mayo y Junio de OTRO DIA PERDIDO, LAM, AHORA CAIGO, SQP, BENDITA, INTRUSOS,
+  LOS PROFESIONALES y PURO SHOW (dejan de estar proyectados). En **nuestros** programas la facturación
+  sigue siendo la de FC y solo se reemplazó la cantidad estimada por la medida (se les cae el ≈ en May/Jun).
+  El parte no trae Telefe, así que GH, CORTA POR LOZANO, A LA BARBARROSA y LA PEÑA DE MORFI quedan igual.
+  ARRIBA AMERICA aparece con 141 y 172 PNT en May/Jun pero la FC no le tiene facturación esos meses: se dejó
+  sin cargar. En TV solo quedan proyectados LA PEÑA DE MORFI y ESCUELA DE COCINA.
