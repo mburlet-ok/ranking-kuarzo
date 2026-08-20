@@ -188,3 +188,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Se agregó el campo **`proyM`** (lista de meses proyectados por fila) porque hasta ahora lo proyectado se
   marcaba solo por columna (`m.proy`), y Julio no es un mes proyectado para todos. `esReal()` lo contempla
   y el encabezado marca "proy" según la mayoría de las filas con dato de ese mes.
+- 2026-08-20 (4): llegó `julio.xlsx` (mismo parte de control, 01/07 a 31/07/2026, eltrece + América +
+  elnueve) y **Julio pasa a PNTs medidos**: se borran las estimaciones del punto anterior. Terceros:
+  PNTs reales × valor por salida. Nuestros: la plata sigue de FC y la cantidad ahora es medida (se cae el ≈
+  en todos los meses). El estimador del −15,4% funcionó bien salvo en LOS PROFESIONALES (164 estimados vs
+  245 reales) e INTRUSOS (223 vs 260). ARRIBA AMERICA ya tiene su cantidad de Julio (126 PNT).
+  LA PEÑA DE MORFI figura con 0 en el parte porque es Telefe y ese canal no está en el export: queda
+  proyectada. En TV solo quedan proyectados LA PEÑA DE MORFI y ESCUELA DE COCINA.
