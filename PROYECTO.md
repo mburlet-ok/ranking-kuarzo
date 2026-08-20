@@ -180,3 +180,11 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   El parte no trae Telefe, así que GH, CORTA POR LOZANO, A LA BARBARROSA y LA PEÑA DE MORFI quedan igual.
   ARRIBA AMERICA aparece con 141 y 172 PNT en May/Jun pero la FC no le tiene facturación esos meses: se dejó
   sin cargar. En TV solo quedan proyectados LA PEÑA DE MORFI y ESCUELA DE COCINA.
+- 2026-08-20 (3): **Julio estimado para los programas de terceros.** El parte de control de TV llega al
+  30/06, así que Julio se calculó aplicando el **−15,4%** que dieron Junio→Julio nuestros diez programas
+  con facturación real de FC (contraste: canales de terceros −23,5%, radios −0,7%). Por fila:
+  `jul_cant = round(jun_cant × 0,8461)` y `jul_inv = jul_cant × (jun_inv/jun_cant)`. Alcanza a OTRO DIA
+  PERDIDO, LAM, AHORA CAIGO, SQP, BENDITA, INTRUSOS, LOS PROFESIONALES, PURO SHOW y LA PEÑA DE MORFI.
+  Se agregó el campo **`proyM`** (lista de meses proyectados por fila) porque hasta ahora lo proyectado se
+  marcaba solo por columna (`m.proy`), y Julio no es un mes proyectado para todos. `esReal()` lo contempla
+  y el encabezado marca "proy" según la mayoría de las filas con dato de ese mes.
