@@ -208,3 +208,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   efectiva que traía cada fila, con las cantidades intactas. 33 filas: los 9 programas de TV de terceros,
   los 5 de Streaming, 11 canales y 8 radios. **Excluidos**: todo lo `kuarzo` (va con FC) y las filas cuya
   plata es un dato real que pasó el usuario — MITRE, LA 100, CANAL 13 y CANAL 9.
+- 2026-08-20 (7): **trazabilidad de los datos.** Nuevo campo `nota` por fila: se muestra como una "i" al
+  lado del nombre con el detalle en el tooltip. Puesto en TN, CANAL 13 y CANAL 9 ("cifra informada por el
+  canal, no medida por el monitor") y en MITRE y LA 100 ("lineal: la radio pasó el acumulado y se dividió
+  por los meses transcurridos"). Además, nueva sección **"De dónde sale cada número"** en la solapa
+  Información (`INFO.origen`), con el origen de cada bloque del informe.
