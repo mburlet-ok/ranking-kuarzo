@@ -213,3 +213,12 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   canal, no medida por el monitor") y en MITRE y LA 100 ("lineal: la radio pasó el acumulado y se dividió
   por los meses transcurridos"). Además, nueva sección **"De dónde sale cada número"** en la solapa
   Información (`INFO.origen`), con el origen de cada bloque del informe.
+- 2026-08-21: **solapa Información rearmada con el informe de CAAM** del 1er semestre 2026
+  (https://agenciasdemedios.com.ar/caam-informa-la-inversion-publicitaria-en-medios-de-argentina-del-1-er-semestre-2026/):
+  inversión total $1.012.533M (+41% nominal, **+5,6% real**), inflación IPC INDEC **33,5%** interanual a
+  junio, volumen físico −1% y cantidad de avisos −6%. Media mix en barras (Digital 50,8% · TV 30,9% ·
+  Vía Pública 11,5% · Radio 5,5% · Cine y Gráfica 0,7%) y el desglose de Digital. Nueva sección
+  **"El mercado contra nosotros"**: con la inflación oficial del 33,5% nuestra facturación Ene–Jul da
+  **−25,1% real** y el copro **−19,5%**, contra un mercado que creció +5,6% real — la diferencia es Digital,
+  que se lleva más de la mitad de la torta. **OJO**: el Excel `FC 2025-2026` trae la celda de inflación en
+  50% (era el supuesto del usuario); con 33,5% las variaciones reales de esa planilla cambian.
