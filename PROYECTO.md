@@ -195,3 +195,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   245 reales) e INTRUSOS (223 vs 260). ARRIBA AMERICA ya tiene su cantidad de Julio (126 PNT).
   LA PEÑA DE MORFI figura con 0 en el parte porque es Telefe y ese canal no está en el export: queda
   proyectada. En TV solo quedan proyectados LA PEÑA DE MORFI y ESCUELA DE COCINA.
+- 2026-08-20 (5): **CANAL 26 pasa de $1.000 a $3.600 el segundo** (dato del usuario), recalculada la
+  inversión de los cinco meses con los mismos segundos: sube de $118M a $426M en Marzo y de $167M a $601M
+  en Julio. Salta del puesto 9 al 7 de Canales. **OTRO DIA PERDIDO (Pergolini)**: el usuario pasó que Mayo
+  facturó **$600M**; con los 146 PNT medidos eso da **$4.109.589 por salida** (se venía usando $3.333.333,
+  el `valor` viejo del monitor). Se recalibraron con ese precio los tres meses que salen de PNTs medidos
+  (May $600,0M · Jun $550,7M · Jul $505,5M); Marzo y Abril quedan como estaban porque vienen del monitor
+  con su propio precio. Pasa a ser el 3er programa de TV.
