@@ -202,3 +202,9 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   el `valor` viejo del monitor). Se recalibraron con ese precio los tres meses que salen de PNTs medidos
   (May $600,0M · Jun $550,7M · Jul $505,5M); Marzo y Abril quedan como estaban porque vienen del monitor
   con su propio precio. Pasa a ser el 3er programa de TV.
+- 2026-08-20 (6): **+10% de tarifa unitaria desde Junio en todo lo que no es nuestro** (supuesto del
+  usuario: los medios deben haber actualizado tarifas a mitad de año). Se recalculó `costo` e `inv` de
+  **Junio y Julio** (Julio también: un aumento de tarifa no se revierte al mes siguiente) sobre la tarifa
+  efectiva que traía cada fila, con las cantidades intactas. 33 filas: los 9 programas de TV de terceros,
+  los 5 de Streaming, 11 canales y 8 radios. **Excluidos**: todo lo `kuarzo` (va con FC) y las filas cuya
+  plata es un dato real que pasó el usuario — MITRE, LA 100, CANAL 13 y CANAL 9.
