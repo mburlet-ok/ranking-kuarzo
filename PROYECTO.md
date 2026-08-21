@@ -222,3 +222,11 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   **−25,1% real** y el copro **−19,5%**, contra un mercado que creció +5,6% real — la diferencia es Digital,
   que se lleva más de la mitad de la torta. **OJO**: el Excel `FC 2025-2026` trae la celda de inflación en
   50% (era el supuesto del usuario); con 33,5% las variaciones reales de esa planilla cambian.
+- 2026-08-21 (2): sacada la sección "El mercado contra nosotros" y **rubros rearmado con datos medidos**.
+  Se agregó a `INFO` (`avisos`, `gruposRubro`, `topAnunciantes`) el conteo de **avisos emitidos** por rubro
+  y por anunciante en eltrece + América + elnueve, Mayo a Julio, sacado de las columnas `Anunciante` y
+  `Segmento` de los dos partes de control (`admedia maxi.xlsx` + `julio.xlsx`). Los rubros se arman con un
+  mapa de palabras clave sobre el nombre del anunciante (ver scratchpad `rubros_grupos.json`): cubren el
+  66% de los avisos. Totales: May 32.059 · Jun 32.691 · Jul 27.578 (**−14%**). Confirma la lectura del
+  usuario: bancos −43%, pauta pública −64%, automotrices y energía −52%; laboratorios cae 21% pero sigue
+  siendo un tercio de todos los avisos; retail es el único que crece fuerte (+42%).

@@ -396,6 +396,24 @@ const INFO={
   mix:[{n:'Digital',s:50.8},{n:'Televisión',s:30.9},{n:'Vía Pública',s:11.5},
        {n:'Radio',s:5.5},{n:'Cine',s:0.7},{n:'Gráfica',s:0.7}],
   digital:[{n:'Social Media',s:35},{n:'Display',s:31},{n:'Programática',s:20},{n:'Search',s:14}],
+  avisos:{may:32059,jun:32691,jul:27578},
+  gruposRubro:[
+    ['Laboratorios y farma',[11321,10832,8927],22],
+    ['Consumo masivo',[4400,6717,4990],15],
+    ['Retail y supermercados',[1052,1258,1498],6],
+    ['Cuidado personal y belleza',[1362,1063,1177],4],
+    ['Telecomunicaciones',[713,907,807],1],
+    ['Automotrices y energía',[838,890,406],9],
+    ['Bancos y finanzas',[346,287,198],7],
+    ['Apuestas online',[175,183,178],1],
+    ['Pauta pública',[249,128,89],14]
+  ],
+  topAnunciantes:[
+    ['Laboratorio Elea Phoenix',[3271,4190,4076]],['Genomma Lab',[3282,2851,1697]],
+    ['Unilever',[1589,2612,1931]],['Arcor',[281,1545,1318]],['Danone',[1168,1096,950]],
+    ['Telecom',[713,907,807]],['Laboratorio Millet',[1074,343,892]],["L'Oréal",[792,602,736]],
+    ['Cencosud',[381,494,647]],['Haleon',[669,587,331]],['YPF',[586,571,315]]
+  ],
   rubros:[
     ['Laboratorios','Muy golpeados. No le venden nada a nadie.'],
     ['Consumo masivo','Muy golpeado y <b>sin señales de mejora</b>.'],
@@ -452,21 +470,39 @@ function buildInfo(){
   h+='<div class="card"><div class="card-hdr"><div><div class="card-ttl">Dentro de Digital</div><div class="card-sub">se lleva más de la mitad del mercado</div></div></div>';
   h+='<div class="bars">'+barras(INFO.digital,'linear-gradient(90deg,#0ea5e9,#06b6d4)')+'</div></div>';
 
-  /* mercado vs nosotros */
-  h+='<div class="section-title"><div class="icon" style="background:#b91c1c">!</div>El mercado contra nosotros</div>';
-  h+='<div class="card"><div class="card-hdr"><div><div class="card-ttl">Enero a Julio, contra el mismo período de 2025</div><div class="card-sub">nuestras cifras salen de los cierres mensuales (hoja FC)</div></div></div>';
-  h+='<div class="tw"><table><thead><tr><th>&nbsp;</th><th>Nominal</th><th>Real</th><th>Lectura</th></tr></thead><tbody>';
-  [['Mercado total (CAAM)',0.41,'Le ganó a la inflación'],
-   ['Nuestra facturación',0.00,'Planchada en pesos'],
-   ['Nuestro copro',0.075,'Mejor mezcla: más peso de medios propios']].forEach((r,i)=>{
-    h+=`<tr class="${i===0?'r1':''}"><td class="name">${r[0]}</td><td class="num">${r[1]===0?'<span style="color:var(--muted);font-weight:600">0%</span>':fmtVar(+(r[1]*100).toFixed(1))}</td>`+
-       `<td class="num">${fmtVar(+(real(r[1],M.infl)*100).toFixed(1))}</td><td style="font-size:.74rem;color:var(--muted)">${r[2]}</td></tr>`;
+  /* ---- rubros, con los avisos medidos del parte de control ---- */
+  const AV=INFO.avisos, totAv=AV.may+AV.jun+AV.jul, varAv=(AV.jul-AV.may)/AV.may;
+  h+='<div class="section-title"><div class="icon tv">R</div>Cómo está cada rubro</div>';
+  h+='<div class="kpi-grid">';
+  h+=`<div class="kpi-card"><div class="kpi-label">Avisos en Mayo</div><div class="kpi-value">${AV.may.toLocaleString('es-AR')}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Avisos en Junio</div><div class="kpi-value">${AV.jun.toLocaleString('es-AR')}</div></div>`;
+  h+=`<div class="kpi-card"><div class="kpi-label">Avisos en Julio</div><div class="kpi-value">${AV.jul.toLocaleString('es-AR')}</div></div>`;
+  h+=`<div class="kpi-card acc"><div class="kpi-label">Julio vs Mayo</div><div class="kpi-value">${fmtVar(+(varAv*100).toFixed(1))}</div><span class="kpi-nota">menos pauta en pantalla</span></div>`;
+  h+='</div>';
+
+  h+='<div class="card"><div class="card-hdr"><div><div class="card-ttl">Quién pone la pauta y cómo se movió</div><div class="card-sub">avisos emitidos en eltrece, América y elnueve · Mayo a Julio 2026</div></div></div>';
+  h+='<div class="tw"><table><thead><tr><th>Rubro</th><th>Mayo</th><th>Junio</th><th>Julio</th><th>Share</th><th>Jul vs May</th><th>Anunciantes</th></tr></thead><tbody>';
+  INFO.gruposRubro.forEach((g,i)=>{
+    const [n,v,na]=g, sh=(v[0]+v[1]+v[2])/totAv*100, vr=v[0]?(v[2]-v[0])/v[0]*100:0;
+    h+=`<tr class="${i===0?'r1':''}"><td class="name">${n}</td>`+
+       v.map(x=>`<td class="num">${x.toLocaleString('es-AR')}</td>`).join('')+
+       `<td class="money tot">${sh.toFixed(1).replace('.',',')}%</td><td class="num">${fmtVar(+vr.toFixed(1))}</td>`+
+       `<td class="num" style="color:var(--muted)">${na}</td></tr>`;
+  });
+  h+='</tbody></table></div>';
+  h+='<div style="padding:10px 16px;font-size:.72rem;color:var(--muted);line-height:1.5">Estos nueve rubros son el 66% de los avisos relevados. El resto se reparte en anunciantes sueltos que no forman un rubro con volumen propio.</div></div>';
+
+  h+='<div class="card"><div class="card-hdr"><div><div class="card-ttl">Los que más pauta ponen</div><div class="card-sub">avisos por anunciante</div></div></div>';
+  h+='<div class="tw"><table><thead><tr><th>Anunciante</th><th>Mayo</th><th>Junio</th><th>Julio</th><th>Share</th><th>Jul vs May</th></tr></thead><tbody>';
+  INFO.topAnunciantes.forEach((a,i)=>{
+    const [n,v]=a, sh=(v[0]+v[1]+v[2])/totAv*100, vr=v[0]?(v[2]-v[0])/v[0]*100:0;
+    h+=`<tr class="${i===0?'r1':i===1?'r2':i===2?'r3':''}"><td class="name">${n}</td>`+
+       v.map(x=>`<td class="num">${x.toLocaleString('es-AR')}</td>`).join('')+
+       `<td class="money tot">${sh.toFixed(1).replace('.',',')}%</td><td class="num">${fmtVar(+vr.toFixed(1))}</td></tr>`;
   });
   h+='</tbody></table></div></div>';
-  h+='<div class="quote"><b>La diferencia está en Digital.</b> El mercado creció porque Digital se lleva más de la mitad de la torta. En los medios donde jugamos —televisión y radio, el 36,4% del mercado— la caída real que se ve en nuestros números es la que te describen los rubros de acá abajo.</div>';
 
-  h+='<div class="section-title"><div class="icon tv">R</div>Cómo está cada rubro</div>';
-  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Lo que se ve en la calle</div><span class="card-cnt">'+INFO.rubros.length+' puntos</span></div>';
+  h+='<div class="card"><div class="card-hdr"><div class="card-ttl">Lo que se ve en la calle</div><span class="card-cnt">lectura comercial</span></div>';
   INFO.rubros.forEach(([t,d])=>{h+=`<div class="info-item"><div class="info-tag">${t}</div><div class="info-txt">${d}</div></div>`});
   h+='</div>';
 
