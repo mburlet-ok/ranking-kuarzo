@@ -243,3 +243,7 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   · Nueva **columna "Observaciones"** en las cuatro tablas: etiqueta corta + tooltip con el origen del dato
     (`obs()` + constante `OBS`; el campo `fuente` en la fila marca 'canal' o 'lineal'). Mismo contenido que
     la sección "De dónde sale cada número" de Información, ahora también fila por fila.
+- 2026-08-24: sacado el banner violeta (`proj-note`) que estaba arriba de las solapas con todas las
+  aclaraciones de método: quedó redundante desde que cada fila tiene su columna **Observaciones** con el
+  origen del dato y la solapa Información tiene la sección "De dónde sale cada número". Se eliminó el div,
+  su CSS y la línea de `switchTab` que lo ocultaba en Información.
