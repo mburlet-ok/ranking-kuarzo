@@ -230,3 +230,16 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   66% de los avisos. Totales: May 32.059 · Jun 32.691 · Jul 27.578 (**−14%**). Confirma la lectura del
   usuario: bancos −43%, pauta pública −64%, automotrices y energía −52%; laboratorios cae 21% pero sigue
   siendo un tercio de todos los avisos; retail es el único que crece fuerte (+42%).
+- 2026-08-21 (3): tanda de cambios pedidos por el usuario:
+  · **Se saca la vista "Cantidad"** (PNTs / segundos) de las cuatro solapas: distorsionaba la lectura.
+    Quedan **Facturación** y **Costo unitario**. `VISTAS.unit` ahora toma primero `<mes>_costo` y solo
+    despeja `inv/cant` si no hay tarifa cargada; el promedio del período pasa a ser el promedio simple de
+    las tarifas de los meses con dato (antes era ponderado por cantidad).
+  · **Tarifas reales de lo que pagamos al cursar** (la facturación NO se toca, se recalcula la cantidad
+    implícita): CANAL 13 $43.000, A 24 $17.000, LA NACION + $14.000, LA 100 $10.000 y MITRE $8.000.
+  · **CANAL 9** pasa de $1.200M (solo tanda) a **$2.000M** (tanda + PNTs), que es la cifra completa que
+    figuraba en la solapa Información.
+  · **MIX TV** se mueve de TV Aire a Canales.
+  · Nueva **columna "Observaciones"** en las cuatro tablas: etiqueta corta + tooltip con el origen del dato
+    (`obs()` + constante `OBS`; el campo `fuente` en la fila marca 'canal' o 'lineal'). Mismo contenido que
+    la sección "De dónde sale cada número" de Información, ahora también fila por fila.
