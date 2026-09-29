@@ -252,3 +252,5 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   `DATA.cable`; los que no están en el top 20 llevan `rating_nd:'top'` (se ve "—") y CANAL 13 / CANAL 9 `rating_nd:'aire'`.
   Mapeo: LA NACION + = LN+, MAGAZINE = Ciudad Magazine, CIMEMAX = Cinemax. KZO, MIX TV, CINECANAL y AMC no figuran.
   Para actualizar el mes: cambiar los `rating`, el texto de `RATING_SRC` y el `card-sub` de cable.
+- 2026-09-29 (2): alta **AMERICA** en Canales (pedido del usuario, dato de la solapa Información): `jul_inv` $2.300M
+  (tanda + PNTs; $1.500M solo tanda en la nota), `fuente:'canal'`, cargado igual que CANAL 9. Sin costo por segundo.
