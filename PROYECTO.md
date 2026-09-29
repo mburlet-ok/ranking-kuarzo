@@ -258,3 +258,6 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
 - 2026-09-29 (3): rating de **KZO (0,10)** y **MIX TV (0,01)** en la columna "Rating ago" — dato que pasó el usuario
   (tabla Rat% lun a dom 7-24 hs, ene–sep 2026). La serie mensual va en `rating_hist` (tooltip de la celda).
   KZO: ene–abr 0,06 · may 0,07 · jun 0,08 · jul 0,08 · ago 0,10 · sep* 0,07. MIX TV: may–ago 0,01 · sep* 0,02.
+- 2026-09-29 (4): el usuario pasó el ranking completo de agosto (top 40, aire + cable, Rat% lun a dom 7-24 hs,
+  01/08–31/08/2026). Se completaron CANAL 13 = eltrece 3,78 · AMERICA = América TV 1,69 · CANAL 9 = elnueve 1,44 ·
+  CINECANAL 0,11. AMC no figura en el top 40 ("—"). Ya no hay filas "aire".
