@@ -254,3 +254,7 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Para actualizar el mes: cambiar los `rating`, el texto de `RATING_SRC` y el `card-sub` de cable.
 - 2026-09-29 (2): alta **AMERICA** en Canales (pedido del usuario, dato de la solapa Información): `jul_inv` $2.300M
   (tanda + PNTs; $1.500M solo tanda en la nota), `fuente:'canal'`, cargado igual que CANAL 9. Sin costo por segundo.
+
+- 2026-09-29 (3): rating de **KZO (0,10)** y **MIX TV (0,01)** en la columna "Rating ago" — dato que pasó el usuario
+  (tabla Rat% lun a dom 7-24 hs, ene–sep 2026). La serie mensual va en `rating_hist` (tooltip de la celda).
+  KZO: ene–abr 0,06 · may 0,07 · jun 0,08 · jul 0,08 · ago 0,10 · sep* 0,07. MIX TV: may–ago 0,01 · sep* 0,02.
