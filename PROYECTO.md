@@ -247,3 +247,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   aclaraciones de método: quedó redundante desde que cada fila tiene su columna **Observaciones** con el
   origen del dato y la solapa Información tiene la sección "De dónde sale cada número". Se eliminó el div,
   su CSS y la línea de `switchTab` que lo ocultaba en Información.
+- 2026-09-29: pestaña **Canales** suma columna **"Rating ago"** al lado del nombre: rating TV Paga agosto 2026,
+  Kantar IBOPE Media, lun a dom 7-24 hs (fuente: TotalMedios nota 65039, top 20). Campo `rating` en cada fila de
+  `DATA.cable`; los que no están en el top 20 llevan `rating_nd:'top'` (se ve "—") y CANAL 13 / CANAL 9 `rating_nd:'aire'`.
+  Mapeo: LA NACION + = LN+, MAGAZINE = Ciudad Magazine, CIMEMAX = Cinemax. KZO, MIX TV, CINECANAL y AMC no figuran.
+  Para actualizar el mes: cambiar los `rating`, el texto de `RATING_SRC` y el `card-sub` de cable.
