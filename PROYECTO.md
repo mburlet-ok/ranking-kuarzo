@@ -261,3 +261,9 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
 - 2026-09-29 (4): el usuario pasó el ranking completo de agosto (top 40, aire + cable, Rat% lun a dom 7-24 hs,
   01/08–31/08/2026). Se completaron CANAL 13 = eltrece 3,78 · AMERICA = América TV 1,69 · CANAL 9 = elnueve 1,44 ·
   CINECANAL 0,11. AMC no figura en el top 40 ("—"). Ya no hay filas "aire".
+- 2026-09-29 (5): columna de audiencia también en **Radios** ("Share", Kantar IBOPE lun a dom 24 hs, share dentro de
+  su banda AM o FM — no comparable entre bandas) y **Streaming** ("Audiencia", Data Trip, top 6). Config por solapa
+  en `RATCFG` (encabezado, fuente, formato, textos de "—"). Radios: MITRE 31,99 AM · RADIO 10 15,28 AM ·
+  RIVADAVIA 10,15 AM · LA 100 20,8 FM · ASPEN 15,3 · ROCK AND POP 9,8 · MEGA 6,0 · URBANA PLAY 5,7 · POP 3,9;
+  RCV/VALE/BLUE fuera del top 10. Streaming: LUZU 79.786 · TELEFE STREAM (=Telefe) 42.805 · BONDI 25.036 ·
+  OLGA 23.046; BLENDER/CANAL 13/GELATINA fuera del top 6. Las capturas que pasó el usuario no dicen el mes.
