@@ -285,3 +285,13 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   BARBARROSA $238,8M, BAG $119,9M, EMS $438,0M, CORTA $365,2M; Ago/Sep de GH/CORTA/BARBARROSA recalculadas con el nuevo
   precio de Julio. **RCV = línea AFAKOT** al pie de la hoja FC (es Radio con Vos): Jul $171,9M · Ago $154,5M · Sep $149,6M
   (antes Jul $170,6M y Sep $145,3M de los informes de la radio). Segundos ≈ plata ÷ $1.006.
+- 2026-10-06 (3): **ranking.html suma AGO y SEP 2026** (clientes, vendedores, programas, Con/Sin GH) reconstruidos desde las
+  grillas por programa (`COSTO MENSUAL`; MEDIOS = `TOTAL`) de `08 - AYR CIERRE Agosto 2026.xlsx` y `GRILLA SEPTIEMBRE 2026 28.xlsx`.
+  Totales: Ago $2.879,6M (sin GH $2.175,3M) · Sep $2.880,8M (sin GH $2.306,2M). Acumulado Ene–Sep $23.965M. Nuevo programa
+  **PODEMOS HABLAR** (hoja PH). Cantons a monto facturado al cliente: Ago con la hoja Facturacion (TOTAL CLIENTE, $121,9M);
+  Sep con la misma tarifa al cliente de Agosto porque la hoja Facturacion de Septiembre está vacía. Clientes nuevos con
+  vendedor dominante no-canal en `SELLER_MAP`. GPBA / "GOBIERNO DE LA PROVINCIA" quedan como GOBIERNO PCIA. BS. AS. (no se
+  suman a GCBA); SIMPLICITY → FARMACITY. Evolución y top-10 de clientes extendidos a Septiembre.
+  Validación del método: Julio reconstruido de `GRILLA JULIO PARA EL CIERRE.xlsx` da $2.949M contra $2.975M publicado (el
+  publicado salió de otra versión de la grilla + Cantons facturado). Scripts en el scratchpad de la sesión (build_month.py,
+  norm.py, merge.py, patch_ranking.py) — se pierden; el método está acá.
