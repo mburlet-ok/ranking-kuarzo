@@ -295,3 +295,14 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   Validación del método: Julio reconstruido de `GRILLA JULIO PARA EL CIERRE.xlsx` da $2.949M contra $2.975M publicado (el
   publicado salió de otra versión de la grilla + Cantons facturado). Scripts en el scratchpad de la sesión (build_month.py,
   norm.py, merge.py, patch_ranking.py) — se pierden; el método está acá.
+- 2026-10-06 (4): **Canales y Radios Ago/Sep con segundos medidos** del monitor Ibope (`~/Downloads/informe_tv_ago_sept_11926.xlsx`
+  y `informe_tv_ago_sept_11928.xlsx` — el segundo es de RADIO aunque se llame "tv"; indicador **Segundos**, columnas por vehículo).
+  OJO: los informes 11918/11920/11922/11924 traen **Pesos** (tarifa bruta), no sirven. Al sumar hay que saltear las filas
+  con "TOTAL" y, en TV, las filas sin Tipo de Compra (son subtotales); radio cierra exacto contra TOTAL GENERAL. En Canales
+  se toma solo **Corte Comercial**. Inversión = segundos × la tarifa de Julio (o Junio si no había Julio).
+  Septiembre es **preliminar** (dato final del monitor hasta 31/08). Nuevos medidos: CRONICA, CIMEMAX, MEGA y ROCK AND POP
+  (antes proyectados). KZO: plata FC, segundos medidos (Ago 52.913 · Sep 83.651), sale el ≈. LN+ y A24 suben ~2,5× sus
+  segundos contra Julio (el export de Julio era otro). **Sin tocar**: MITRE y LA 100 (lineal del dato de la radio; con sus
+  segundos medidos × tarifa darían ~2× lo informado), CANAL 13 / CANAL 9 / AMERICA (cifra del canal, solo Julio), Urbana y
+  RCV (FC), MIX TV, Streaming (el monitor da segundos, no PNTs, y solo Agosto) y los programas de TV Aire (el informe no
+  abre por programa: hace falta el parte de control con Programa + Tipo de Compra "En Artistico").
