@@ -311,3 +311,12 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   que TN ("algo está mal" en el monitor de Ago/Sep, que les da ~2,5× los segundos de Julio): se estiman con los segundos de
   Julio × la variación promedio medida de TN, C5N y Canal 26 (Ago +11,4%, Sep +15,5%). A24 $1.253M/$1.448M, LN+ $1.049M/$1.213M.
   Nueva fuente `estim` en `OBS` ("Estimado Ago/Sep") con nota por fila.
+- 2026-10-06 (6): **regla del usuario: usar SIEMPRE la última grilla del mes (la del 30 o 31)**, que está en
+  `/Volumes/comercial/Grilla/` (una por día; la del último día hábil = cierre; coincide con
+  `/Volumes/comercial/Facturacion/2026/0X - Facturacion <Mes> 2026.xlsx`). Septiembre pasa de la grilla del 28 a
+  `GRILLA SEPTIEMBRE 2026 30.xlsx`: **Urbana $901,3M** (antes $666,0M; 153.046 seg c/cargo), Corta $354,7M, Barbarrosa $184,9M,
+  BAG $101,8M, LCR $159,1M, TC $79,4M, CDP $156,6M, PB $69,0M, KZO $69,0M, MIX TV $21,2M, AFAKOT $151,8M.
+  **RCV = AFAKOT en todos los meses** (Mar $84,2M · Abr $157,7M · May $173,8M · Jun $175,4M), antes Mar/Abr venían del
+  monitor y May/Jun del dato de la radio. Mar–Jun del resto ya coincidían con la última grilla de cada mes. Jul y Ago quedan
+  con los valores corregidos posteriores (cierre/AyR), que son los que figuran en las columnas JULIO/AGOSTO de la grilla
+  del 30/09. ranking.html: Septiembre rearmado con la grilla del 30 (total $2.964,1M, acumulado Ene–Sep $24.048,7M).
