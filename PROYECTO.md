@@ -320,3 +320,10 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   monitor y May/Jun del dato de la radio. Mar–Jun del resto ya coincidían con la última grilla de cada mes. Jul y Ago quedan
   con los valores corregidos posteriores (cierre/AyR), que son los que figuran en las columnas JULIO/AGOSTO de la grilla
   del 30/09. ranking.html: Septiembre rearmado con la grilla del 30 (total $2.964,1M, acumulado Ene–Sep $24.048,7M).
+- 2026-10-06 (7): **TV Aire Ago/Sep con PNTs medidos** del parte de control `~/Downloads/Control 20261006122051.xlsx` (01–31/08)
+  y `Control 20261006123819.xlsx` (01–30/09): America, eltrece, elnueve **y TELEFE** (primera vez que el export trae Telefe).
+  PNT = filas con Tipo Compra "En Artistico", agrupando variantes de nombre por regex (ES MI SUEÑO + SEGUNDA TEMP/ETAPA,
+  SALVESE QUIEN PUEDA (T)+(SAB M), INTRUSOS + ESPECIAL, GRAN HERMANO II./GALA/LA NOCHE/GRAN FINAL, LA PEÑA DE MORFI I/II,
+  "PH PODEMOS HABLAR" I/II). Terceros: PNTs × valor por salida de Julio (OTRO DIA PERDIDO Ago $547,0M / Sep $605,8M, LAM
+  $272,3M/$305,2M, etc.); LA PEÑA DE MORFI deja de estar proyectada. Nuestros: plata FC, cantidad medida (sale el ≈ en Ago/Sep,
+  incluidos GH, CORTA, BARBARROSA y PODEMOS HABLAR). Sin dato: ESCUELA DE COCINA (no figura en el parte).
