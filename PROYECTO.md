@@ -327,3 +327,6 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   "PH PODEMOS HABLAR" I/II). Terceros: PNTs × valor por salida de Julio (OTRO DIA PERDIDO Ago $547,0M / Sep $605,8M, LAM
   $272,3M/$305,2M, etc.); LA PEÑA DE MORFI deja de estar proyectada. Nuestros: plata FC, cantidad medida (sale el ≈ en Ago/Sep,
   incluidos GH, CORTA, BARBARROSA y PODEMOS HABLAR). Sin dato: ESCUELA DE COCINA (no figura en el parte).
+- 2026-10-06 (8): alta **TELEFE** en Canales: **$11.000M de tanda + PNTs, informado por el canal**, cargado en **Septiembre**
+  (`fuente:'canal'`, sin $/seg ni rating: nuevo `rating_nd:'sd'`). También en la tabla de canales de Información
+  (`INFO.canales`) y en "De dónde sale cada número". Corregido el texto de origen de RCV (ahora AFAKOT).
