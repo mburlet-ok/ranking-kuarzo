@@ -306,3 +306,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   segundos medidos × tarifa darían ~2× lo informado), CANAL 13 / CANAL 9 / AMERICA (cifra del canal, solo Julio), Urbana y
   RCV (FC), MIX TV, Streaming (el monitor da segundos, no PNTs, y solo Agosto) y los programas de TV Aire (el informe no
   abre por programa: hace falta el parte de control con Programa + Tipo de Compra "En Artistico").
+- 2026-10-06 (5): pedido del usuario: **CANAL 13, CANAL 9 y AMERICA** Ago = Jul +5% y Sep = Ago +3% (C13 $3.675M/$3.785M ·
+  C9 $2.100M/$2.163M · América $2.415M/$2.487M), marcados como proyectados. **A 24 y LA NACION +** no pueden facturar más
+  que TN ("algo está mal" en el monitor de Ago/Sep, que les da ~2,5× los segundos de Julio): se estiman con los segundos de
+  Julio × la variación promedio medida de TN, C5N y Canal 26 (Ago +11,4%, Sep +15,5%). A24 $1.253M/$1.448M, LN+ $1.049M/$1.213M.
+  Nueva fuente `estim` en `OBS` ("Estimado Ago/Sep") con nota por fila.
