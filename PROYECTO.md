@@ -281,3 +281,7 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   RCV: Sep $145.251.510 de `INFORME RCV SEPTIEMBRE.xlsx` (hoja VENTAS GRAL); **Agosto RCV sin dato**. MIX TV solo plata.
   OJO: la columna JULIO de la FC de Septiembre no coincide con el cierre de Julio cargado (GH $1.080,5M vs $1.016,8M,
   BARBARROSA $238,8M vs $209,0M, BAG $119,9M vs $111,1M, EMS $438,0M vs $434,6M, CORTA $365,2M vs $361,2M): Julio no se tocó.
+- 2026-10-06 (2): **Julio actualizado con la columna JULIO de la FC de Septiembre** (pedido del usuario): GH $1.080,5M,
+  BARBARROSA $238,8M, BAG $119,9M, EMS $438,0M, CORTA $365,2M; Ago/Sep de GH/CORTA/BARBARROSA recalculadas con el nuevo
+  precio de Julio. **RCV = línea AFAKOT** al pie de la hoja FC (es Radio con Vos): Jul $171,9M · Ago $154,5M · Sep $149,6M
+  (antes Jul $170,6M y Sep $145,3M de los informes de la radio). Segundos ≈ plata ÷ $1.006.
