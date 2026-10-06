@@ -267,3 +267,17 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
   RIVADAVIA 10,15 AM · LA 100 20,8 FM · ASPEN 15,3 · ROCK AND POP 9,8 · MEGA 6,0 · URBANA PLAY 5,7 · POP 3,9;
   RCV/VALE/BLUE fuera del top 10. Streaming: LUZU 79.786 · TELEFE STREAM (=Telefe) 42.805 · BONDI 25.036 ·
   OLGA 23.046; BLENDER/CANAL 13/GELATINA fuera del top 6. Las capturas que pasó el usuario no dicen el mes.
+- 2026-10-06: **Agosto y Septiembre 2026 para nuestros programas y medios** (los de terceros quedan s/d hasta que
+  lleguen el parte de control y los monitores de Ago/Sep). Plata = INGRESOS de la hoja FC de
+  `~/Downloads/08 - AYR CIERRE Agosto 2026.xlsx` (versión del 07/09; la de `08 - CIERRE` del 01/09 tenía PODEMOS
+  HABLAR en $205,3M, el AYR y la columna AGOSTO de la grilla de Septiembre dicen $268,2M) y de
+  `~/Downloads/GRILLA SEPTIEMBRE 2026 28.xlsx` (14:04; la "Copia ... CIERRE OK" de las 13:57 tiene LCR $157,2M y
+  CDP $153,7M en vez de $160,4M / $157,3M). **Alta PODEMOS HABLAR** (Telefe, línea PH de la FC): Ago $268,2M · Sep $330,0M.
+  Cantidades (todas con ≈ hasta que llegue el control): EMS, LCR, CDP, TC, BAG, PB, ARRIBA AMERICA y PODEMOS HABLAR =
+  columna **Q** de su hoja de grilla (validado contra Julio medido: EMS 158=158, CDP 182 vs 183, TC 232 vs 234; desvía
+  en BAG 157 vs 141, PB 97 vs 118 y ARRA 49 vs 126). GH, CORTA y BARBARROSA = plata ÷ precio efectivo de Julio (la Q de
+  la grilla de GH no son PNTs: Julio da 140 contra 307). KZO = plata ÷ $/seg de Julio ($852); la columna Seg. de la
+  hoja KZO TANDA da ~41–54 mil contra 85 mil medidos. URBANA: segundos reales "Seg. c/ Cargo" (Ago 129.941 · Sep 147.694).
+  RCV: Sep $145.251.510 de `INFORME RCV SEPTIEMBRE.xlsx` (hoja VENTAS GRAL); **Agosto RCV sin dato**. MIX TV solo plata.
+  OJO: la columna JULIO de la FC de Septiembre no coincide con el cierre de Julio cargado (GH $1.080,5M vs $1.016,8M,
+  BARBARROSA $238,8M vs $209,0M, BAG $119,9M vs $111,1M, EMS $438,0M vs $434,6M, CORTA $365,2M vs $361,2M): Julio no se tocó.
