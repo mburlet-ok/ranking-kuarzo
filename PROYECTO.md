@@ -330,3 +330,6 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
 - 2026-10-06 (8): alta **TELEFE** en Canales: **$11.000M de tanda + PNTs, informado por el canal**, cargado en **Septiembre**
   (`fuente:'canal'`, sin $/seg ni rating: nuevo `rating_nd:'sd'`). También en la tabla de canales de Información
   (`INFO.canales`) y en "De dónde sale cada número". Corregido el texto de origen de RCV (ahora AFAKOT).
+- 2026-10-08: **Streaming Septiembre**: BLENDER **$60M (todo pauta pública)** y BONDI **$50M**, informados por el
+  streaming (dato del usuario), cargados en `sep_inv` con `fuente:'canal'` y nota. Sin PNTs ni $/PNT. El resto de
+  Streaming sigue s/d en Jul–Sep (el KPI de Septiembre queda "parcial 2/7").
