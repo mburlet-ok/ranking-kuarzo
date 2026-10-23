@@ -333,3 +333,8 @@ Dashboard HTML interactivo que muestra rankings de inversión publicitaria en pr
 - 2026-10-08: **Streaming Septiembre**: BLENDER **$60M (todo pauta pública)** y BONDI **$50M**, informados por el
   streaming (dato del usuario), cargados en `sep_inv` con `fuente:'canal'` y nota. Sin PNTs ni $/PNT. El resto de
   Streaming sigue s/d en Jul–Sep (el KPI de Septiembre queda "parcial 2/7").
+- 2026-10-23: pedido del usuario: **MITRE y LA 100 Jul–Sep = mismo valor que Junio** ($1.050M / $864M, misma tarifa y
+  segundos, marcados ≈; sigue `fuente:'lineal'`). Alta **LA FABRICA PODCAST** en Streaming: **$350M informado**, cargado en
+  Septiembre (`fuente:'canal'`, como Blender/Bondi). Nueva solapa **Namings** (`NAMINGS` + `buildNamings()`), montos en
+  dólares informados: Changomás (River, Mas Monumental) **US$ 5M** y Movistar Arena **US$ 4M** — no se pasaron a pesos ni se
+  dijo el período. Subtítulo del encabezado pasa a "Marzo a Septiembre 2026".
