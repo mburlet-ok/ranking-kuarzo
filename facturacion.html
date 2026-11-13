@@ -181,11 +181,7 @@ const esEst=(p,m)=>(p.est||[]).includes(m.k);
 /* ---- las tres vistas de la tabla ---- */
 const VISTAS={
   fact:{lbl:'Facturación', uni:'en millones de $',
-        val:(p,k)=>p[k+'_inv'], fmt:v=>fmtM(v), agr:'suma'},
-  unit:{lbl:'Costo unitario', uni:'$ por PNT o por segundo',
-        val:(p,k)=>{if(p[k+'_inv']==null)return null;const c=p[k+'_costo'];
-                    return c??(p[k+'_cant']?p[k+'_inv']/p[k+'_cant']:null)},
-        fmt:v=>'$'+Math.round(v).toLocaleString('es-AR'), agr:'pond'}
+        val:(p,k)=>p[k+'_inv'], fmt:v=>fmtM(v), agr:'suma'}
 };
 const fmtM=v=>v==null?'-':(Math.abs(v)>=1e6? (v/1e6).toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})
                                            : (v/1e6).toLocaleString('es-AR',{minimumFractionDigits:3,maximumFractionDigits:3}));
@@ -295,8 +291,7 @@ function buildSection(cat,cfg){
   h+='</div>';
 
   h+=`<div class="card"><div class="card-hdr"><div><div class="card-ttl">${cfg.cardTtl}</div><div class="card-sub">${V.lbl} · ${V.uni}${RATCFG[cat]?RATCFG[cat].sub:''}</div></div>`;
-  h+='<div class="toggle-group">'+Object.keys(VISTAS).map(x=>
-      `<button class="toggle-btn${x===v?' active':''}" onclick="verVista('${cat}','${x}')">${VISTAS[x].lbl}</button>`).join('')+'</div></div>';
+  h+='</div>';
   h+=`<div class="search-w"><input placeholder="Buscar ${cfg.nameLbl.toLowerCase()}..." oninput="filterT('tb-${cat}',this.value)"/></div>`;
 
   const fl=k=>st.key===k?`<span class="ord">${st.asc?'▲':'▼'}</span>`:'';
@@ -467,7 +462,7 @@ const INFO={
     ['Programas de terceros','PNTs medidos del parte de control × el valor por salida de cada programa.'],
     ['Tarifas que pagamos','Canal 13 <b>$43.000</b>, América 24 <b>$17.000</b>, La Nación+ <b>$14.000</b> el segundo, y en radio La 100 <b>$10.000</b> y Mitre <b>$8.000</b>: es lo que pagamos nosotros al cursar.'],
     ['Tarifas desde Junio','Al resto de lo que no es nuestro se le aplicó un <b>+10%</b> de tarifa desde Junio, por la actualización de mitad de año.'],
-    ['Cantidades','El informe ya no muestra PNTs ni segundos: distorsionaban la lectura. Solo facturación y costo unitario.'],
+    ['Cantidades','El informe ya no muestra PNTs ni segundos: distorsionaban la lectura. Solo facturación.'],
     ['Urbana Play y RCV','Facturación real: Urbana de la hoja FC y RCV de la línea AFAKOT de la FC, de la última grilla de cada mes.']
   ],
   notas:[
